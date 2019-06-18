@@ -1,0 +1,64 @@
+.application {
+  color: #333;
+  font-family: "Gentium Book Basic", serif;
+  font-size: 16px;
+}
+
+h1 {
+  font-family: "Oswald", sans-serif;
+  font-weight: 400;
+}
+
+h2,
+h3 {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+}
+
+a {
+  text-decoration: none;
+}
+
+.v-btn {
+  font-family: "Lato", sans-serif;
+}
+
+.font-oswald {
+  font-family: "Oswald", sans-serif;
+}
+
+.font-lato {
+  font-family: "Lato", sans-serif;
+}
+
+.small {
+  font-size: 0.8em;
+}
+
+.large {
+  font-size: 1.1em;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.light {
+  font-weight: 300;
+}
+
+.greycolor {
+  color: rgba(0, 0, 0, 0.54);
+}
