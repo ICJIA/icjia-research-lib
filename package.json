@@ -2,7 +2,7 @@
   "name": "icjia-research-lib",
   "version": "0.1.0",
   "scripts": {
-    "build": "node build-utils/build-lib.js",
+    "build": "node build-utils/build-lib.js && node build-utils/export-css.js",
     "lint": "vue-cli-service lint",
     "demo": "node build-utils/update-index-file.js && vue-cli-service serve"
   },
@@ -10,7 +10,10 @@
     "packages/*",
     "src/*",
     "*.json",
-    "*.js"
+    "*.js",
+    "icjia-research-lib.css",
+    "README.md",
+    "LICENSE"
   ],
   "dependencies": {
     "core-js": "^2.6.5",
