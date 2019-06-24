@@ -12,7 +12,7 @@ console.info('📝 Updating index file')
 require('./update-index-file')
 
 // Get the names of all components in the src directory
-const componentNames = require('./component-names')
+// const componentNames = require('./component-names')
 
 // Get the binary for vue-cli-service
 const vueCliServicePath = getPath('../node_modules/.bin/vue-cli-service')
@@ -46,10 +46,7 @@ function renameIndex(componentName) {
     libConfig.name,
     _.kebabCase(componentName)
   ]).join('.')
-  const destPackageFolder = path.resolve(
-    __dirname,
-    `../packages/${packageName}`
-  )
+  const destPackageFolder = path.resolve(__dirname, `../${packageName}`)
 
   for (const build of builds) {
     const oldIndexPath = path.resolve(
