@@ -2,8 +2,6 @@
 const fs = require('fs-extra')
 const path = require('path')
 const { execSync } = require('child_process')
-const libConfig = require('../lib')
-const _ = require('lodash')
 
 console.info("🚀 Let's build this thing!")
 
@@ -11,22 +9,21 @@ console.info("🚀 Let's build this thing!")
 console.info('📝 Updating index file')
 require('./update-index-file')
 
-// Get the names of all components in the src directory
-// const componentNames = require('./component-names')
-
 // Get the binary for vue-cli-service
 const vueCliServicePath = getPath('../node_modules/.bin/vue-cli-service')
-
-fs.emptyDirSync(getPath('../packages'))
 
 // Build the main lib, with all components packaged into a plugin
 console.info('🏗 Building main library')
 execSync(
   `${vueCliServicePath} build src/index.js --target lib --name index --dest dist/`
 )
+
 // Rename the CommonJS build so that it can be imported with
 // ${libConfig}/dist
 renameIndex()
+
+// Export CSS
+exportCSS()
 
 function renameIndex(componentName) {
   const builds = [
@@ -42,11 +39,7 @@ function renameIndex(componentName) {
     }
   ]
 
-  const packageName = _.compact([
-    libConfig.name,
-    _.kebabCase(componentName)
-  ]).join('.')
-  const destPackageFolder = path.resolve(__dirname, `../${packageName}`)
+  const destPackageFolder = path.resolve(__dirname, `../lib`)
 
   for (const build of builds) {
     const oldIndexPath = path.resolve(
@@ -80,35 +73,19 @@ function renameIndex(componentName) {
         .replace(path.basename(oldMapPath), path.basename(newMapPath))
     )
   }
+}
 
-  fs.copySync(getPath('../src'), path.resolve(destPackageFolder, 'src'), {
-    filter: filePath => {
-      return !/\.unit\.js$/.test(filePath)
+function exportCSS() {
+  const srcPath = getPath('../dist/index.css')
+  const destPath = getPath('../lib/index.css')
+
+  try {
+    if (fs.existsSync(srcPath)) {
+      fs.copyFileSync(srcPath, destPath)
+      console.info('💅 CSS file is exported.')
     }
-  })
-  fs.writeFileSync(
-    path.resolve(destPackageFolder, 'index.js'),
-    `\
-export * from './src${componentName ? '/' + componentName + '.vue' : ''}'
-`
-  )
-
-  if (componentName) {
-    const componentPackageFolder = path.resolve(
-      __dirname,
-      `../packages/${libConfig.name}/${componentName}`
-    )
-    fs.copySync(destPackageFolder, componentPackageFolder, {
-      filter: filePath => {
-        return !/(LICENSE|README\.md|src)$/.test(filePath)
-      }
-    })
-    fs.writeFileSync(
-      path.resolve(componentPackageFolder, 'index.js'),
-      `\
-export * from '${path.join('../src', componentName || '')}'
-`
-    )
+  } catch (err) {
+    console.error(err)
   }
 }
 
