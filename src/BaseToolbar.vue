@@ -7,11 +7,7 @@
         target="_blank"
         rel="noreferrer"
       >
-        <img
-          src="./assets/logo-icjia-small-blue-3.png"
-          :height="logoHpixel"
-          alt="logo"
-        />
+        <img :src="logoSrc" :height="logoHpixel" alt="logo" />
       </a>
 
       <router-link to="/">
@@ -51,7 +47,11 @@
 <script>
 export default {
   props: {
-    menu: Boolean
+    menu: Boolean,
+    logoPath: {
+      type: String,
+      default: ''
+    }
   },
   data() {
     return {
@@ -70,6 +70,9 @@ export default {
     },
     logoHpixel() {
       return `${this.height * 0.6}px`
+    },
+    logoSrc() {
+      return this.logoPath ? this.logoPath : process.env.VUE_APP_LOGO_URL
     }
   }
 }
