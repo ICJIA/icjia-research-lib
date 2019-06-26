@@ -12,7 +12,7 @@
 
       <router-link to="/">
         <v-toolbar-title>
-          <template>{{ titleUpper }}</template>
+          <template>{{ 'RESEARCH HUB' }}</template>
           <slot name="titleExtra"></slot>
         </v-toolbar-title>
       </router-link>
@@ -56,15 +56,10 @@ export default {
   data() {
     return {
       height: 60,
-      title: 'Research Hub',
-      views: ['about', 'apps', 'articles', 'datasets'],
       drawer: null
     }
   },
   computed: {
-    titleUpper() {
-      return this.title.toUpperCase()
-    },
     hpixel() {
       return `${this.height}px`
     },
