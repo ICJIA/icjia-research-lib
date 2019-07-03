@@ -90,10 +90,6 @@
           <BasePropDisplay v-if="dataset.timeperiod" name="Time period">
             <template>{{ dataset.timeperiod | formatTimeperiod }}</template>
           </BasePropDisplay>
-
-          <BasePropDisplay v-if="dataset.agegroup" name="Age group">
-            <template>{{ dataset.agegroup | capitalize }}</template>
-          </BasePropDisplay>
         </v-flex>
 
         <v-flex sm12 md6 lg8>

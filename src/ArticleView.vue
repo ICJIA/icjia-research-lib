@@ -52,7 +52,6 @@
           <v-flex xs12 sm10 pt-4>
             <v-layout align-center justify-space-between row>
               <div class="greycolor font-lato uppercase">
-
                 <span
                   v-for="(category, i) in article.categories"
                   :key="category"
