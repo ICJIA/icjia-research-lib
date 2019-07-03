@@ -52,9 +52,6 @@
           <v-flex xs12 sm10 pt-4>
             <v-layout align-center justify-space-between row>
               <div class="greycolor font-lato uppercase">
-                <span v-for="type in article.type" :key="type">{{ type }}</span>
-
-                <template>{{ '&nbsp;&nbsp;|&nbsp;&nbsp;' }}</template>
 
                 <span
                   v-for="(category, i) in article.categories"
@@ -65,7 +62,7 @@
                   <template>{{ category }}</template>
                 </span>
 
-                <template>{{ '&nbsp;&nbsp;' }}</template>
+                <template>{{ '&nbsp;&nbsp;|&nbsp;&nbsp;' }}</template>
 
                 <template v-if="article.tags">
                   <BasePropChip

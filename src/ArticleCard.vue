@@ -66,13 +66,6 @@
                 <template>{{ category | capitalize }}</template>
               </span>
             </BasePropDisplay>
-
-            <BasePropDisplay v-if="article.type" name="Type">
-              <span v-for="(type, i) in article.type" :key="type">
-                <template v-if="i > 0">{{ ', ' }}</template>
-                <template>{{ type | capitalize }}</template>
-              </span>
-            </BasePropDisplay>
           </v-container>
         </div>
 
