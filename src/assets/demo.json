@@ -49,11 +49,10 @@
     "authors": [
       {
         "title": "Jane Doe",
-        "slug": ""
+        "slug": "jane-doe"
       },
       {
-        "title": "Richard Roe",
-        "slug": ""
+        "title": "Richard Roe"
       }
     ],
     "citation": "Doe, J. & Roe, R. (2019). <em>My Dummy Article.</em> Chicago, IL: Illinois Criminal Justice Information Authority.",
