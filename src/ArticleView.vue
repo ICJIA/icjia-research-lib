@@ -95,9 +95,12 @@
                   article.authors.length > i + 1 ? ', ' : ' and '
                 }}</template>
 
-                <router-link :to="author.slug | path('authors')">
-                  <template>{{ author.title }}</template>
-                </router-link>
+                <template v-if="author.slug">
+                  <router-link :to="author.slug | path('authors')">
+                    <template>{{ author.title }}</template>
+                  </router-link>
+                </template>
+                <template v-else>{{ author.title }}</template>
               </span>
 
               <template>{{ '&nbsp;&nbsp;|&nbsp;&nbsp;' }}</template>
