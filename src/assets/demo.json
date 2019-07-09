@@ -1,5 +1,6 @@
 {
   "app": {
+    "_id": "",
     "title": "My dummy app",
     "slug": "",
     "date": "2019-01-01",
@@ -30,6 +31,7 @@
     ]
   },
   "article": {
+    "_id": "",
     "title": "My dummy article",
     "slug": "",
     "date": "2019-01-01",
@@ -46,6 +48,15 @@
     ],
     "abstract": "This is a dummy Articles item prepared for demonstration purposes.",
     "markdown": "## Introduction\n\nThis is a dummy article.[^1]\n\n## Main\n\nYou are reading a dummy article. I present you the following dummy figure, _Figure 1_:\n\n<div class=\"article-figure\">\n\n#### Figure 1\n#### My dummy figure\n\n![Figure 1][figure1]\n\n###### Source: LoremFlicker.com\n</div>\n\n\n\n## Conclusion\n\nThank you for reading this dummy article.\n\n[^1]:This is a dummy footer.",
+    "mainfiletype": "pdf version",
+    "mainfile": {
+      "name": "Dummy file.pdf",
+      "url": "/files/articles/dummy.pdf"
+    },
+    "extrafile": {
+      "name": "Dummy file.pdf",
+      "url": "/files/articles/dummy.pdf"
+    },
     "authors": [
       {
         "title": "Jane Doe",
@@ -72,6 +83,7 @@
     ]
   },
   "dataset": {
+    "_id": "",
     "title": "My dummy dataset",
     "slug": "",
     "date": "2019-01-01",
@@ -84,7 +96,6 @@
       }
     ],
     "unit": "county",
-    "agegroup": "all",
     "timeperiod": {
       "yeartype": "calendar",
       "yearmin": "2009",
@@ -114,6 +125,10 @@
     ],
     "citation": "Illinois Criminal Justice Information Authority. (2019). <em>My Dummy Dataset.</em> Chicago, IL: Illinois Criminal Justice Information Authority.",
     "funding": "This project was supported by Grant #00-XX-XX-0000, awarded to the Illinois Criminal Justice Information Authority by the U.S. Department of Justice Office of Justice Programs’ Bureau of Justice Assistance. Points of view or opinions contained within this product are those of the authors and do not necessarily represent the official position or policies of the U.S. Department of Justice.",
+    "datafile": {
+      "name": "Dummy file.csv",
+      "url": "/files/datasets/dummy.csv"
+    },
     "apps": [
       {
         "title": "A related app",
