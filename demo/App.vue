@@ -50,6 +50,7 @@
         <RHArticleView
           :item="article"
           :key="`articleView${componentKey}`"
+          :downloader="articlesDownloader"
           @tag-click="onTagClick($event)"
         />
       </v-flex>
@@ -67,6 +68,7 @@
               v-if="contentType === 'dataset'"
               :item="dataset"
               :key="`datasetView${componentKey}`"
+              :downloader="datasetsDownloader"
               @tag-click="onTagClick($event)"
             />
           </v-flex>
@@ -112,6 +114,7 @@
 </template>
 <script>
 import data from '../src/assets/demo.json'
+import { saveAs } from 'file-saver'
 
 export default {
   name: 'App',
@@ -167,6 +170,14 @@ export default {
     },
     onTagClick(x) {
       alert(x)
+    },
+    articlesDownloader(id, type) {
+      const file = this.article[`${type}file`]
+      saveAs(file.url, decodeURI(file.name))
+    },
+    datasetsDownloader(id) {
+      const file = this.dataset.datafile
+      saveAs(file.url, decodeURI(file.name))
     }
   }
 }

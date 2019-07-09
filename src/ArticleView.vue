@@ -18,30 +18,27 @@
             v-scroll="onScrollTOC"
           />
 
-          <v-divider
-            v-if="article.reportpdf || article.slidespdf"
-            class="my-3"
-          ></v-divider>
+          <v-divider v-if="article.mainfile" class="my-3"></v-divider>
 
           <v-btn
-            v-if="article.reportpdf"
+            v-if="article.mainfile"
             block
             outline
             class="small"
-            @click="downloadHelper('report')"
+            @click="downloadHelper('main')"
           >
-            <template>{{ 'Get PDF' }}</template>
+            <template>{{ `Get ${article.mainfiletype}` }}</template>
             <v-icon>get_app</v-icon>
           </v-btn>
 
           <v-btn
-            v-if="article.slidespdf"
+            v-if="article.extrafile"
             block
             outline
             class="small"
-            @click="downloadHelper('slides')"
+            @click="downloadHelper('extra')"
           >
-            <template>{{ 'Get slides' }}</template>
+            <template>{{ 'Get appendix' }}</template>
             <v-icon>get_app</v-icon>
           </v-btn>
         </div>

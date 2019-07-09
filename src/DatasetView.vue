@@ -196,10 +196,6 @@ export default {
         (item.apps && item.apps.length) ||
         (item.articles && item.articles.length)
       )
-    },
-    isDataCsv() {
-      const item = this.item
-      return item.datafilename && item.datafilename !== ''
     }
   },
   mounted() {
@@ -237,7 +233,7 @@ export default {
       )
     },
     async downloadHelper() {
-      await this.downloader(this.item._id, this.isDataCsv)
+      await this.downloader(this.item._id)
       this.dialog = false
     }
   }
