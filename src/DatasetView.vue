@@ -233,7 +233,7 @@ export default {
       )
     },
     async downloadHelper() {
-      await this.downloader(this.item._id)
+      await this.downloader()
       this.dialog = false
     }
   }

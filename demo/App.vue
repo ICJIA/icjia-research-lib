@@ -171,11 +171,11 @@ export default {
     onTagClick(x) {
       alert(x)
     },
-    articlesDownloader(id, type) {
+    articlesDownloader(type) {
       const file = this.article[`${type}file`]
       saveAs(file.url, decodeURI(file.name))
     },
-    datasetsDownloader(id) {
+    datasetsDownloader() {
       const file = this.dataset.datafile
       saveAs(file.url, decodeURI(file.name))
     }

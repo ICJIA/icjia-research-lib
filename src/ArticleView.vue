@@ -274,7 +274,7 @@ export default {
   },
   methods: {
     async downloadHelper(type) {
-      await this.downloader(this.item._id, type)
+      await this.downloader(type)
     },
     onScroll(e) {
       if (typeof window === 'undefined') return
