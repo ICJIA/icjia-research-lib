@@ -1,0 +1,145 @@
+{
+  "app": {
+    "_id": "",
+    "title": "My dummy app",
+    "slug": "",
+    "date": "2019-01-01",
+    "categories": ["corrections"],
+    "tags": ["tag A", "tag B"],
+    "image": "https://picsum.photos/300/300",
+    "contributors": [
+      {
+        "title": "John Doe",
+        "url": "about:blank"
+      }
+    ],
+    "description": "This is a dummy Apps item prepared for demonstration purposes.",
+    "url": "about:blank",
+    "citation": "Doe, J. (2019). <em>My Dummy app.</em> Chicago, IL: Illinois Criminal Justice Information Authority.",
+    "funding": "This project was supported by Grant #00-XX-XX-0000, awarded to the Illinois Criminal Justice Information Authority by the U.S. Department of Justice Office of Justice Programs’ Bureau of Justice Assistance. Points of view or opinions contained within this product are those of the authors and do not necessarily represent the official position or policies of the U.S. Department of Justice.",
+    "articles": [
+      {
+        "title": "A related article",
+        "slug": ""
+      }
+    ],
+    "datasets": [
+      {
+        "title": "A related dataset",
+        "slug": ""
+      }
+    ]
+  },
+  "article": {
+    "_id": "",
+    "title": "My dummy article",
+    "slug": "",
+    "date": "2019-01-01",
+    "type": ["Reports"],
+    "categories": ["courts"],
+    "tags": ["tag A", "tag B"],
+    "splash": "https://picsum.photos/640/640",
+    "thumbnail": "https://picsum.photos/640/640",
+    "images": [
+      {
+        "title": "figure1",
+        "src": "https://picsum.photos/600/360"
+      }
+    ],
+    "abstract": "This is a dummy Articles item prepared for demonstration purposes.",
+    "markdown": "## Introduction\n\nThis is a dummy article.[^1]\n\n## Main\n\nYou are reading a dummy article. I present you the following dummy figure, _Figure 1_:\n\n<div class=\"article-figure\">\n\n#### Figure 1\n#### My dummy figure\n\n![Figure 1][figure1]\n\n###### Source: LoremFlicker.com\n</div>\n\n\n\n## Conclusion\n\nThank you for reading this dummy article.\n\n[^1]:This is a dummy footer.",
+    "mainfiletype": "pdf version",
+    "mainfile": {
+      "name": "Dummy file.pdf",
+      "url": "/files/articles/dummy.pdf"
+    },
+    "extrafile": {
+      "name": "Dummy file.pdf",
+      "url": "/files/articles/dummy.pdf"
+    },
+    "authors": [
+      {
+        "title": "Jane Doe",
+        "slug": "jane-doe"
+      },
+      {
+        "title": "Richard Roe"
+      }
+    ],
+    "citation": "Doe, J. & Roe, R. (2019). <em>My Dummy Article.</em> Chicago, IL: Illinois Criminal Justice Information Authority.",
+    "doi": "https://dx.doi.org/",
+    "funding": "This project was supported by Grant #00-XX-XX-0000, awarded to the Illinois Criminal Justice Information Authority by the U.S. Department of Justice Office of Justice Programs’ Bureau of Justice Assistance. Points of view or opinions contained within this document are those of the authors and do not necessarily represent the official position or policies of the U.S. Department of Justice.",
+    "apps": [
+      {
+        "title": "A related app",
+        "slug": ""
+      }
+    ],
+    "datasets": [
+      {
+        "title": "A related dataset",
+        "slug": ""
+      }
+    ]
+  },
+  "dataset": {
+    "_id": "",
+    "title": "My dummy dataset",
+    "slug": "",
+    "date": "2019-01-01",
+    "categories": ["crimes"],
+    "tags": ["tag A", "tag B"],
+    "sources": [
+      {
+        "title": "Illinois Criminal Justice Information Authority",
+        "url": "about:blank"
+      }
+    ],
+    "unit": "county",
+    "timeperiod": {
+      "yeartype": "calendar",
+      "yearmin": "2009",
+      "yearmax": "2019"
+    },
+    "description": "This is a dummy Datasets item prepared for demonstration purposes.",
+    "notes": ["This is the first note.", "And here is the second note."],
+    "variables": [
+      {
+        "name": "variable one",
+        "type": "int",
+        "definition": "a",
+        "values": "b"
+      },
+      {
+        "name": "variable two",
+        "type": "float",
+        "definition": "c",
+        "values": "d"
+      },
+      {
+        "name": "variable three",
+        "type": "str",
+        "definition": "e",
+        "values": "f"
+      }
+    ],
+    "citation": "Illinois Criminal Justice Information Authority. (2019). <em>My Dummy Dataset.</em> Chicago, IL: Illinois Criminal Justice Information Authority.",
+    "funding": "This project was supported by Grant #00-XX-XX-0000, awarded to the Illinois Criminal Justice Information Authority by the U.S. Department of Justice Office of Justice Programs’ Bureau of Justice Assistance. Points of view or opinions contained within this product are those of the authors and do not necessarily represent the official position or policies of the U.S. Department of Justice.",
+    "datafile": {
+      "name": "Dummy file.csv",
+      "url": "/files/datasets/dummy.csv"
+    },
+    "apps": [
+      {
+        "title": "A related app",
+        "slug": ""
+      }
+    ],
+    "articles": [
+      {
+        "title": "A related article",
+        "slug": ""
+      }
+    ]
+  }
+}
