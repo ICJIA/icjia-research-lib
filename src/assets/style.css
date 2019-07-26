@@ -1,17 +1,17 @@
 .application {
   color: #333;
-  font-family: "Gentium Book Basic", serif;
+  font-family: 'Gentium Book Basic', serif;
   font-size: 16px;
 }
 
 h1 {
-  font-family: "Oswald", sans-serif;
+  font-family: 'Oswald', sans-serif;
   font-weight: 400;
 }
 
 h2,
 h3 {
-  font-family: "Lato", sans-serif;
+  font-family: 'Lato', sans-serif;
   font-weight: 400;
 }
 
@@ -20,15 +20,15 @@ a {
 }
 
 .v-btn {
-  font-family: "Lato", sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 .font-oswald {
-  font-family: "Oswald", sans-serif;
+  font-family: 'Oswald', sans-serif;
 }
 
 .font-lato {
-  font-family: "Lato", sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 .small {
@@ -61,4 +61,17 @@ a {
 
 .greycolor {
   color: rgba(0, 0, 0, 0.54);
+}
+
+.info-block {
+  background-color: rgba(27, 31, 35, 0.05);
+  font-family: 'Lato', sans-serif;
+  margin: 16px 0px;
+  padding: 24px 48px 16px;
+}
+
+.info-block-title {
+  font-weight: bold;
+  padding-bottom: 16px;
+  text-transform: uppercase;
 }
