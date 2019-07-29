@@ -165,6 +165,20 @@ import BasePropChip from './components/BasePropChip'
 import BasePropDisplay from './components/BasePropDisplay'
 import ExternalContribution from './components/ExternalContribution'
 
+const arr2table = ({ arr, cols = ['name', 'type', 'definition', 'values'] }) =>
+  `<table>${getThead({ cols })}${getTbody({ cols, rows: arr })}</table>`
+
+const getRow = (row, cols) =>
+  `<tr>${cols.map(col => `<td>${row[col] ? row[col] : ''}</td>`).join('')}</tr>`
+
+const getTbody = ({ rows, cols }) =>
+  `<tbody>${rows.map(row => getRow(row, cols)).join('')}</tbody>`
+
+const getThead = ({ cols }) =>
+  `<thead><tr>${cols
+    .map(col => `<th>${col[0].toUpperCase()}${col.slice(1)}</th>`)
+    .join('')}</tr></tbody>`
+
 export default {
   components: {
     BaseButton,
@@ -201,39 +215,11 @@ export default {
     }
   },
   mounted() {
-    const item = this.item
-    if (item.variables)
-      this.$refs.variables.innerHTML = this.array2table(item.variables)
+    const { variables } = this.item
+    if (variables)
+      this.$refs.variables.innerHTML = arr2table({ arr: variables })
   },
   methods: {
-    array2table(array) {
-      let cols = ['name', 'type', 'definition', 'values']
-      let header = ''
-      let body = ''
-
-      cols.forEach(col => {
-        header += '<th>' + col[0].toUpperCase() + col.slice(1) + '</th>'
-      })
-
-      array.forEach(row => {
-        body += '<tr>'
-
-        cols.forEach(col => {
-          let value = row[col] ? row[col] : ''
-          body += '<td>' + value + '</td>'
-        })
-
-        body += '</tr>'
-      })
-
-      return (
-        '<table><thead><tr>' +
-        header +
-        '</tr></thead><tbody>' +
-        body +
-        '</tbody></table>'
-      )
-    },
     async downloadHelper() {
       await this.downloader()
       this.dialog = false
