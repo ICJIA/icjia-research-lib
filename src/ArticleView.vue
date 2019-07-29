@@ -208,6 +208,19 @@ const md = require('markdown-it')(mdOpts)
   .use(require('markdown-it-footnote'))
   .use(require('markdown-it-anchor'), mdAnchorOpts)
 
+const addImages = (images, markdown) =>
+  `${markdown}${images.map(i => `\n\n[${i.title}]: ${i.src}`)}`
+
+const parseHeadings = markdown =>
+  new DOMParser()
+    .parseFromString(md.render(markdown), 'text/html')
+    .querySelectorAll('h2')
+
+const renderMarkdown = markdown => {
+  const [main, footer] = md.render(markdown).split('<hr class="footnotes-sep">')
+  return { main, footer }
+}
+
 export default {
   components: {
     ArticleTOC,
@@ -242,31 +255,14 @@ export default {
       return this.$vuetify.breakpoint.name === 'md'
     },
     articleBody() {
-      const item = this.item
-      if (item.markdown) {
-        let markdown = item.markdown
-        if (item.images) {
-          item.images.forEach(image => {
-            markdown += `\n\n[${image.title}]: ${image.src}`
-          })
-        }
-        const spliter = '<hr class="footnotes-sep">'
-        const body = md.render(markdown).split(spliter)
-        return {
-          main: body[0],
-          footer: body[1]
-        }
-      } else return ''
+      const { markdown, images } = this.item
+      return markdown
+        ? renderMarkdown(images ? addImages(images, markdown) : markdown)
+        : ''
     },
     headings() {
-      const item = this.item
-      if (item.markdown) {
-        const markdown = md.render(item.markdown)
-        const doc = new DOMParser().parseFromString(markdown, 'text/html')
-        return doc.querySelectorAll('h2')
-      } else {
-        return null
-      }
+      const { markdown } = this.item
+      return markdown ? parseHeadings(markdown) : null
     }
   },
   methods: {
