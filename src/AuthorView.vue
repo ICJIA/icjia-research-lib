@@ -34,13 +34,7 @@
 <script>
 import ArticleCard from './ArticleCard'
 
-function sortByDate(items) {
-  return items.sort((a, b) => {
-    if (a.date < b.date) return 1
-    if (a.date > b.date) return -1
-    return 0
-  })
-}
+const getSortedArticleIds = ({ articles }) => articles.sort()
 
 export default {
   components: {
@@ -61,28 +55,22 @@ export default {
       return this.item
     }
   },
-  mounted() {
-    const item = this.item
-    this.articleIds = item.articles
-    Promise.all(
-      item.articles.map(async el => {
-        return await this.getArticleInfo(el._id)
-      })
-    ).then(articles => {
-      this.articles = sortByDate(articles)
-    })
+  async mounted() {
+    this.articleIds = getSortedArticleIds(this.item)
+    this.articles = await this.getArticles()
   },
-  beforeUpdate() {
-    const item = this.item
-    if (this.articleIds !== item.articles) {
-      this.articleIds = item.articles
-      Promise.all(
-        this.item.articles.map(async el => {
-          return await this.getArticleInfo(el._id)
-        })
-      ).then(articles => {
-        this.articles = sortByDate(articles)
-      })
+  async beforeUpdate() {
+    const newArticleIds = getSortedArticleIds(this.item)
+    if (this.articleIds !== newArticleIds) {
+      this.articleIds = newArticleIds
+      this.articles = await this.getArticles()
+    }
+  },
+  methods: {
+    async getArticles() {
+      return await Promise.all(
+        this.articleIds.map(async el => await this.getArticleInfo(el._id))
+      )
     }
   }
 }
