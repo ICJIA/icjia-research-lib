@@ -130,7 +130,7 @@
 </template>
 
 <script>
-import { allContentMixin } from './mixins/contentMixin'
+import { baseFilters } from './mixins/contentMixin'
 import BaseButton from './components/BaseButton'
 import BaseCard from './components/BaseCard'
 import BasePropChip from './components/BasePropChip'
@@ -139,7 +139,6 @@ import ExternalContribution from './components/ExternalContribution'
 import BaseInfoBlock from './components/BaseInfoBlock'
 
 export default {
-  mixins: [allContentMixin],
   components: {
     BaseButton,
     BaseCard,
@@ -148,6 +147,7 @@ export default {
     ExternalContribution,
     BaseInfoBlock
   },
+  mixins: [baseFilters],
   props: {
     item: Object
   },
@@ -156,11 +156,8 @@ export default {
       return this.item
     },
     hasRelated() {
-      const item = this.item
-      return (
-        (item.articles && item.articles.length) ||
-        (item.datasets && item.datasets.length)
-      )
+      const { articles, datasets } = this.item
+      return (articles && articles.length) || (datasets && datasets.length)
     }
   }
 }

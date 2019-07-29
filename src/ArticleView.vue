@@ -166,13 +166,15 @@
               </BaseInfoBlock>
             </div>
 
-            <v-divider></v-divider>
+            <template v-if="articleBody.footer">
+              <v-divider></v-divider>
 
-            <div
-              class="article-body"
-              v-html="articleBody.footer"
-              v-scroll="onScroll"
-            />
+              <div
+                class="article-body"
+                v-html="articleBody.footer"
+                v-scroll="onScroll"
+              />
+            </template>
           </v-flex>
         </v-layout>
       </v-flex>
@@ -181,7 +183,7 @@
 </template>
 
 <script>
-import { allContentMixin } from './mixins/contentMixin'
+import { baseFilters } from './mixins/contentMixin'
 import ArticleTOC from './components/ArticleTOC'
 import BaseButton from './components/BaseButton'
 import BaseInfoBlock from './components/BaseInfoBlock'
@@ -208,8 +210,20 @@ const md = require('markdown-it')(mdOpts)
   .use(require('markdown-it-footnote'))
   .use(require('markdown-it-anchor'), mdAnchorOpts)
 
+const addImages = (images, markdown) =>
+  `${markdown}${images.map(i => `\n\n[${i.title}]: ${i.src}`)}`
+
+const parseHeadings = markdown =>
+  new DOMParser()
+    .parseFromString(md.render(markdown), 'text/html')
+    .querySelectorAll('h2')
+
+const renderMarkdown = markdown => {
+  const [main, footer] = md.render(markdown).split('<hr class="footnotes-sep">')
+  return { main, footer }
+}
+
 export default {
-  mixins: [allContentMixin],
   components: {
     ArticleTOC,
     BaseButton,
@@ -217,6 +231,7 @@ export default {
     BasePropChip,
     ExternalContribution
   },
+  mixins: [baseFilters],
   props: {
     item: Object,
     downloader: Function
@@ -235,41 +250,21 @@ export default {
       return this.item
     },
     hasRelated() {
-      const item = this.item
-      return (
-        (item.apps && item.apps.length) ||
-        (item.datasets && item.datasets.length)
-      )
+      const { apps, datasets } = this.item
+      return (apps && apps.length) || (datasets && datasets.length)
     },
     isMedium() {
       return this.$vuetify.breakpoint.name === 'md'
     },
     articleBody() {
-      const item = this.item
-      if (item.markdown) {
-        let markdown = item.markdown
-        if (item.images) {
-          item.images.forEach(image => {
-            markdown += `\n\n[${image.title}]: ${image.src}`
-          })
-        }
-        const spliter = '<hr class="footnotes-sep">'
-        const body = md.render(markdown).split(spliter)
-        return {
-          main: body[0],
-          footer: body[1]
-        }
-      } else return ''
+      const { markdown, images } = this.item
+      return markdown
+        ? renderMarkdown(images ? addImages(images, markdown) : markdown)
+        : ''
     },
     headings() {
-      const item = this.item
-      if (item.markdown) {
-        const markdown = md.render(item.markdown)
-        const doc = new DOMParser().parseFromString(markdown, 'text/html')
-        return doc.querySelectorAll('h2')
-      } else {
-        return null
-      }
+      const { markdown } = this.item
+      return markdown ? parseHeadings(markdown) : null
     }
   },
   methods: {
@@ -302,23 +297,20 @@ export default {
       this.isTOCSticky = top > threshold
     },
     printArticle() {
+      const content = document.getElementById('article-view').innerHTML
+      const styleSelector = 'link[rel="stylesheet"], style'
+      const style = [...document.querySelectorAll(styleSelector)]
+        .map(el => el.outerHTML)
+        .join('')
+
+      this.printWindow({ head: style, body: content })
+    },
+    printWindow({ head, body }) {
       const win = window.open('', '')
-      const html = document.getElementById('article-view').innerHTML
-      let style = ''
-
-      document
-        .querySelectorAll('link[rel="stylesheet"], style')
-        .forEach(node => {
-          style += node.outerHTML
-        })
-
-      win.document.write(
-        `<!DOCTYPE html><html><head>${style}</head><body>${html}</body></html>`
-      )
+      win.document.write(`<head>${head}</head><body>${body}</body>`)
+      win.document.write('<script>window.print(); window.close()<' + '/script>')
       win.document.close()
       win.focus()
-      win.print()
-      win.close()
     }
   }
 }
