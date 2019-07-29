@@ -196,11 +196,8 @@ export default {
       return this.item
     },
     hasRelated() {
-      const item = this.item
-      return (
-        (item.apps && item.apps.length) ||
-        (item.articles && item.articles.length)
-      )
+      const { apps, articles } = this.item
+      return (apps && apps.length) || (articles && articles.length)
     }
   },
   mounted() {

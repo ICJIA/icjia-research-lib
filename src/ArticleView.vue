@@ -235,11 +235,8 @@ export default {
       return this.item
     },
     hasRelated() {
-      const item = this.item
-      return (
-        (item.apps && item.apps.length) ||
-        (item.datasets && item.datasets.length)
-      )
+      const { apps, datasets } = this.item
+      return (apps && apps.length) || (datasets && datasets.length)
     },
     isMedium() {
       return this.$vuetify.breakpoint.name === 'md'

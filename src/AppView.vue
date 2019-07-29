@@ -156,11 +156,8 @@ export default {
       return this.item
     },
     hasRelated() {
-      const item = this.item
-      return (
-        (item.articles && item.articles.length) ||
-        (item.datasets && item.datasets.length)
-      )
+      const { articles, datasets } = this.item
+      return (articles && articles.length) || (datasets && datasets.length)
     }
   }
 }
