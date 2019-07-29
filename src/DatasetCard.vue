@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import { allContentMixin, datasetMixin } from './mixins/contentMixin'
+import { baseFilters } from './mixins/contentMixin'
 import BaseButton from './components/BaseButton'
 import BaseCard from './components/BaseCard'
 import BasePropChip from './components/BasePropChip'
@@ -74,7 +74,6 @@ import BaseTitleDisplay from './components/BaseTitleDisplay'
 import ExternalContribution from './components/ExternalContribution'
 
 export default {
-  mixins: [allContentMixin, datasetMixin],
   components: {
     BaseButton,
     BaseCard,
@@ -83,6 +82,7 @@ export default {
     BaseTitleDisplay,
     ExternalContribution
   },
+  mixins: [baseFilters],
   props: {
     item: Object
   },

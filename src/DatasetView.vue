@@ -157,7 +157,7 @@
 </template>
 
 <script>
-import { allContentMixin, datasetMixin } from './mixins/contentMixin'
+import { baseFilters } from './mixins/contentMixin'
 import BaseButton from './components/BaseButton'
 import BaseCard from './components/BaseCard'
 import BaseInfoBlock from './components/BaseInfoBlock'
@@ -166,7 +166,6 @@ import BasePropDisplay from './components/BasePropDisplay'
 import ExternalContribution from './components/ExternalContribution'
 
 export default {
-  mixins: [allContentMixin, datasetMixin],
   components: {
     BaseButton,
     BaseCard,
@@ -175,6 +174,12 @@ export default {
     BasePropDisplay,
     ExternalContribution
   },
+  filters: {
+    formatTimeperiod({ yearmin, yearmax, yeartype }) {
+      return `${yearmin}-${yearmax} (${yeartype})`
+    }
+  },
+  mixins: [baseFilters],
   props: {
     item: Object,
     downloader: Function

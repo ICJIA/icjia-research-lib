@@ -181,7 +181,7 @@
 </template>
 
 <script>
-import { allContentMixin } from './mixins/contentMixin'
+import { baseFilters } from './mixins/contentMixin'
 import ArticleTOC from './components/ArticleTOC'
 import BaseButton from './components/BaseButton'
 import BaseInfoBlock from './components/BaseInfoBlock'
@@ -209,7 +209,6 @@ const md = require('markdown-it')(mdOpts)
   .use(require('markdown-it-anchor'), mdAnchorOpts)
 
 export default {
-  mixins: [allContentMixin],
   components: {
     ArticleTOC,
     BaseButton,
@@ -217,6 +216,7 @@ export default {
     BasePropChip,
     ExternalContribution
   },
+  mixins: [baseFilters],
   props: {
     item: Object,
     downloader: Function
