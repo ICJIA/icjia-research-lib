@@ -166,13 +166,15 @@
               </BaseInfoBlock>
             </div>
 
-            <v-divider></v-divider>
+            <template v-if="articleBody.footer">
+              <v-divider></v-divider>
 
-            <div
-              class="article-body"
-              v-html="articleBody.footer"
-              v-scroll="onScroll"
-            />
+              <div
+                class="article-body"
+                v-html="articleBody.footer"
+                v-scroll="onScroll"
+              />
+            </template>
           </v-flex>
         </v-layout>
       </v-flex>
