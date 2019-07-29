@@ -295,23 +295,20 @@ export default {
       this.isTOCSticky = top > threshold
     },
     printArticle() {
+      const content = document.getElementById('article-view').innerHTML
+      const styleSelector = 'link[rel="stylesheet"], style'
+      const style = [...document.querySelectorAll(styleSelector)]
+        .map(el => el.outerHTML)
+        .join('')
+
+      this.printWindow({ head: style, body: content })
+    },
+    printWindow({ head, body }) {
       const win = window.open('', '')
-      const html = document.getElementById('article-view').innerHTML
-      let style = ''
-
-      document
-        .querySelectorAll('link[rel="stylesheet"], style')
-        .forEach(node => {
-          style += node.outerHTML
-        })
-
-      win.document.write(
-        `<!DOCTYPE html><html><head>${style}</head><body>${html}</body></html>`
-      )
+      win.document.write(`<head>${head}</head><body>${body}</body>`)
+      win.document.write('<script>window.print(); window.close()<' + '/script>')
       win.document.close()
       win.focus()
-      win.print()
-      win.close()
     }
   }
 }
