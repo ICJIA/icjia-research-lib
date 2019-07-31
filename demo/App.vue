@@ -5,9 +5,7 @@
         <span class="light"> Library Demo</span>
       </template>
       <template v-slot:toolbarItems>
-        <v-btn v-for="view in views" :key="view" flat>
-          <template>{{ view }}</template>
-        </v-btn>
+        <v-btn v-for="view in views" :key="view" flat>{{ view }}</v-btn>
       </template>
 
       <template v-slot:toolbarDrawerItems>
@@ -17,9 +15,11 @@
       </template>
     </RHBaseToolbar>
 
-    <v-layout justify-center row wrap>
-      <v-flex xs9 md3>
-        <v-radio-group v-model="contentType" row>
+    <v-layout justify-center row wrap class="controller">
+      <h3 class="pt-3">Demo Options</h3>
+
+      <v-flex xs12>
+        <v-radio-group v-model="contentType" row class="justify-center">
           <v-radio label="App" value="app"></v-radio>
           <v-radio label="Article" value="article"></v-radio>
           <v-radio label="Dataset" value="dataset"></v-radio>
@@ -29,14 +29,25 @@
       <v-flex xs9 md2>
         <v-switch
           v-model="external"
+          class="justify-center"
           :label="`External contribution: ${external.toString()}`"
           :disabled="contentType === 'author'"
         ></v-switch>
       </v-flex>
 
-      <v-flex xs9 md1>
+      <v-flex xs9 md2>
+        <v-switch
+          v-model="preview"
+          class="justify-center"
+          :label="`Preview mode: ${preview.toString()}`"
+          :disabled="contentType === 'author'"
+        ></v-switch>
+      </v-flex>
+
+      <v-flex xs9 md2>
         <v-switch
           v-model="view"
+          class="justify-center"
           :label="`Full view: ${view.toString()}`"
           :disabled="contentType === 'author'"
         ></v-switch>
@@ -48,9 +59,10 @@
     <template v-if="view">
       <v-flex v-if="contentType === 'article'" xs12>
         <RHArticleView
-          :item="article"
           :key="`articleView${componentKey}`"
+          :item="article"
           :downloader="articlesDownloader"
+          :preview="preview"
           @tag-click="onTagClick($event)"
         />
       </v-flex>
@@ -60,14 +72,16 @@
           <v-flex xs12 sm10 md8>
             <RHAppView
               v-if="contentType === 'app'"
-              :item="app"
               :key="`appView${componentKey}`"
+              :item="app"
+              :preview="preview"
               @tag-click="onTagClick($event)"
             />
             <RHDatasetView
               v-if="contentType === 'dataset'"
-              :item="dataset"
               :key="`datasetView${componentKey}`"
+              :item="dataset"
+              :preview="preview"
               :downloader="datasetsDownloader"
               @tag-click="onTagClick($event)"
             />
@@ -82,8 +96,9 @@
           <v-layout v-if="contentType === 'app'" row wrap justify-center>
             <v-flex xs12 sm6 lg4>
               <RHAppCard
-                :item="app"
                 :key="`appCard${componentKey}`"
+                :item="app"
+                :preview="preview"
                 @tag-click="onTagClick($event)"
               />
             </v-flex>
@@ -91,16 +106,18 @@
 
           <RHArticleCard
             v-if="contentType === 'article'"
-            :item="article"
             :key="`articleCard${componentKey}`"
+            :item="article"
+            :preview="preview"
             @tag-click="onTagClick($event)"
           />
 
           <v-layout v-if="contentType === 'dataset'" row wrap justify-center>
             <v-flex xs12 xl6>
               <RHDatasetCard
-                :item="dataset"
                 :key="`datasetCard${componentKey}`"
+                :item="dataset"
+                :preview="preview"
                 @tag-click="onTagClick($event)"
               />
             </v-flex>
@@ -113,29 +130,30 @@
   </v-app>
 </template>
 <script>
-import data from '../src/assets/demo.json'
+import data from './demo.json'
 import { saveAs } from 'file-saver'
 
 export default {
   name: 'App',
   data() {
     return {
-      contentType: 'app',
-      view: false,
-      views: ['foo', 'bar'],
-      external: false,
       componentKey: 0,
+      contentType: 'app',
       data,
+      external: false,
       footer: {
         agency: {
           name: 'Illinois Criminal Justice Information Authority',
           url: 'http://www.icjia.state.il.us/'
         },
         github: {
-          url: '/',
-          version: '0.1.0'
+          url: 'https://github.com/icjia/icjia-research-lib',
+          version: '0.1.2'
         }
-      }
+      },
+      preview: false,
+      view: false,
+      views: ['foo', 'bar']
     }
   },
   computed: {
@@ -182,3 +200,19 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.controller {
+  background-color: #466c8c;
+  color: white !important;
+}
+
+.controller >>> label.v-label.theme--light,
+.controller >>> i.v-icon.material-icons.theme--light {
+  color: white;
+}
+
+.v-input >>> .theme--light.v-messages {
+  display: none !important;
+}
+</style>
