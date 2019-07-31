@@ -21,7 +21,7 @@
               <h3>Did you read the metadata?</h3>
             </v-card-title>
 
-            <v-card-text>{{ msgDialog }} </v-card-text>
+            <v-card-text>{{ msgDialog }}</v-card-text>
 
             <v-divider></v-divider>
 
@@ -37,7 +37,7 @@
         </v-dialog>
       </div>
 
-      <BaseButton to="/datasets">back</BaseButton>
+      <BaseButton :to="preview ? '' : '/datasets'">back</BaseButton>
     </v-card-title>
 
     <v-divider />
@@ -141,12 +141,12 @@
 
         <ul class="font-lato small">
           <li v-for="(app, i) in dataset.apps" :key="`app${i}`">
-            <router-link :to="app.slug | path('apps')">
+            <router-link :to="preview ? '' : `/apps/${app.slug}`">
               <template>{{ `[APP] ${app.title}` }}</template>
             </router-link>
           </li>
           <li v-for="(article, i) in dataset.articles" :key="`article${i}`">
-            <router-link :to="article.slug | path('articles')">
+            <router-link :to="preview ? '' : `/articles/${article.slug}`">
               <template>{{ `[ARTICLE] ${article.title}` }}</template>
             </router-link>
           </li>
@@ -196,7 +196,11 @@ export default {
   mixins: [baseFilters],
   props: {
     item: Object,
-    downloader: Function
+    downloader: Function,
+    preview: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {
