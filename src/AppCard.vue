@@ -16,7 +16,7 @@
       </v-flex>
 
       <v-layout row wrap>
-        <BaseTitleDisplay :to="app.slug | path('apps')">
+        <BaseTitleDisplay :to="preview ? '' : `/apps/${app.slug}`">
           <template>{{ app.title }}</template>
         </BaseTitleDisplay>
 
@@ -66,7 +66,7 @@
     <v-card-actions>
       <v-spacer></v-spacer>
 
-      <BaseButton :to="app.slug | path('apps')" icon="more_horiz">
+      <BaseButton :to="preview ? null : `/apps/${app.slug}`" icon="more_horiz">
         <template>{{ 'more' }}</template>
       </BaseButton>
     </v-card-actions>
@@ -93,7 +93,11 @@ export default {
   },
   mixins: [baseFilters],
   props: {
-    item: Object
+    item: Object,
+    preview: {
+      type: Boolean,
+      default: false
+    }
   },
   computed: {
     app() {

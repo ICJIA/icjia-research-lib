@@ -25,7 +25,9 @@
             </v-flex>
 
             <v-layout row wrap>
-              <BaseTitleDisplay :to="article.slug | path('articles')">
+              <BaseTitleDisplay
+                :to="preview ? '' : `/articles/${article.slug}`"
+              >
                 <template>{{ article.title }}</template>
               </BaseTitleDisplay>
 
@@ -55,7 +57,7 @@
                 }}</template>
 
                 <template v-if="author.slug">
-                  <router-link :to="author.slug | path('authors')">
+                  <router-link :to="preview ? '' : `/authors/${author.slug}`">
                     <template>{{ author.title }}</template>
                   </router-link>
                 </template>
@@ -83,7 +85,10 @@
             <v-icon>{{ abstractIcon }}</v-icon>
           </v-btn>
 
-          <BaseButton :to="article.slug | path('articles')" icon="more_horiz">
+          <BaseButton
+            :to="preview ? null : `/articles/${article.slug}`"
+            icon="more_horiz"
+          >
             <template>{{ 'more' }}</template>
           </BaseButton>
         </v-card-actions>
@@ -117,7 +122,11 @@ export default {
   mixins: [baseFilters],
   props: {
     item: Object,
-    onTagClick: Function
+    onTagClick: Function,
+    preview: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {

@@ -6,7 +6,7 @@
       </v-flex>
 
       <v-layout row wrap>
-        <BaseTitleDisplay :to="dataset.slug | path('datasets')">
+        <BaseTitleDisplay :to="preview ? '' : `/datasets/${dataset.slug}`">
           <template>{{ dataset.title }}</template>
         </BaseTitleDisplay>
 
@@ -57,7 +57,10 @@
     </v-container>
 
     <v-container class="pa-0 text-xs-right">
-      <BaseButton :to="dataset.slug | path('datasets')" icon="more_horiz">
+      <BaseButton
+        :to="preview ? null : `/datasets/${dataset.slug}`"
+        icon="more_horiz"
+      >
         <template>{{ 'more' }}</template>
       </BaseButton>
     </v-container>
@@ -84,7 +87,11 @@ export default {
   },
   mixins: [baseFilters],
   props: {
-    item: Object
+    item: Object,
+    preview: {
+      type: Boolean,
+      default: false
+    }
   },
   computed: {
     dataset() {

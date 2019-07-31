@@ -9,17 +9,13 @@
 
       <v-spacer />
 
-      <BaseButton :href="app.url" icon="play_arrow">
-        <template>{{ 'Launch' }}</template>
-      </BaseButton>
+      <BaseButton :href="app.url" icon="play_arrow">Launch</BaseButton>
 
       <BaseButton v-if="app.src" :href="app.src" icon="code">
         <template>{{ 'Source code' }}</template>
       </BaseButton>
 
-      <BaseButton to="/apps">
-        <template>{{ 'back' }}</template>
-      </BaseButton>
+      <BaseButton :to="preview ? '' : '/apps'">back</BaseButton>
     </v-card-title>
 
     <v-divider />
@@ -112,12 +108,12 @@
 
             <ul class="font-lato small">
               <li v-for="(article, i) in app.articles" :key="`article${i}`">
-                <router-link :to="article.slug | path('articles')">
+                <router-link :to="preview ? '' : `/articles/${article.slug}`">
                   <template>{{ `[ARTICLE] ${article.title}` }}</template>
                 </router-link>
               </li>
               <li v-for="(dataset, i) in app.datasets" :key="`dataset${i}`">
-                <router-link :to="dataset.slug | path('datasets')">
+                <router-link :to="preview ? '' : `/datasets/${dataset.slug}`">
                   <template>{{ `[DATASET] ${dataset.title}` }}</template>
                 </router-link>
               </li>
@@ -149,7 +145,11 @@ export default {
   },
   mixins: [baseFilters],
   props: {
-    item: Object
+    item: Object,
+    preview: {
+      type: Boolean,
+      default: false
+    }
   },
   computed: {
     app() {

@@ -71,7 +71,7 @@
                 </template>
               </div>
 
-              <BaseButton to="/articles">back</BaseButton>
+              <BaseButton :to="preview ? '' : '/articles'">back</BaseButton>
             </v-layout>
 
             <ExternalContribution v-if="article.external" />
@@ -93,7 +93,7 @@
                 }}</template>
 
                 <template v-if="author.slug">
-                  <router-link :to="author.slug | path('authors')">
+                  <router-link :to="preview ? '' : `/authors/${author.slug}`">
                     <template>{{ author.title }}</template>
                   </router-link>
                 </template>
@@ -119,7 +119,7 @@
 
                 <ul class="font-lato">
                   <li v-for="(app, i) in article.apps" :key="`app${i}`">
-                    <router-link :to="app.slug | path('apps')">
+                    <router-link :to="preview ? '' : `/apps/${app.slug}`">
                       <template>{{ `[APP] ${app.title}` }}</template>
                     </router-link>
                   </li>
@@ -127,7 +127,9 @@
                     v-for="(dataset, i) in article.datasets"
                     :key="`dataset${i}`"
                   >
-                    <router-link :to="dataset.slug | path('datasets')">
+                    <router-link
+                      :to="preview ? '' : `/datasets/${dataset.slug}`"
+                    >
                       <template>{{ `[DATASET] ${dataset.title}` }}</template>
                     </router-link>
                   </li>
@@ -160,7 +162,7 @@
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <template>{{ ' ' + article.doi }}</template>
+                    <template>{{ ` ${article.doi}` }}</template>
                   </a>
                 </template>
               </BaseInfoBlock>
@@ -234,7 +236,11 @@ export default {
   mixins: [baseFilters],
   props: {
     item: Object,
-    downloader: Function
+    downloader: Function,
+    preview: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {
