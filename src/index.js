@@ -6,11 +6,11 @@
 
 import Vue from 'vue'
 import Vuetify from 'vuetify/lib'
-import 'vuetify/src/stylus/app.styl'
+import './assets/main.styl'
 import './assets/style.css'
 
 Vue.use(Vuetify, {
-  iconfont: 'md',
+  theme: false
 })
 
 import AppCard from './AppCard.vue'
