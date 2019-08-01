@@ -3,75 +3,104 @@
   font-family: 'Gentium Book Basic', serif;
   font-size: 16px;
 }
-
 h1 {
   font-family: 'Oswald', sans-serif;
   font-weight: 400;
 }
-
 h2,
 h3 {
   font-family: 'Lato', sans-serif;
   font-weight: 400;
 }
-
 a {
   text-decoration: none;
 }
-
 .v-btn {
   font-family: 'Lato', sans-serif;
 }
-
 .font-oswald {
   font-family: 'Oswald', sans-serif;
 }
-
 .font-lato {
   font-family: 'Lato', sans-serif;
 }
-
 .small {
   font-size: 0.8em;
 }
-
 .large {
   font-size: 1.1em;
 }
-
 .bold {
   font-weight: bold;
 }
-
 .italic {
   font-style: italic;
 }
-
 .uppercase {
   text-transform: uppercase;
 }
-
 .capitalize {
   text-transform: capitalize;
 }
-
 .light {
   font-weight: 300;
 }
-
 .greycolor {
   color: rgba(0, 0, 0, 0.54);
 }
-
 .info-block {
   background-color: rgba(27, 31, 35, 0.05);
   font-family: 'Lato', sans-serif;
   margin: 16px 0px;
   padding: 24px 48px 16px;
 }
-
 .info-block-title {
   font-weight: bold;
   padding-bottom: 16px;
   text-transform: uppercase;
+}
+
+/* vuetify theme minimal */
+a {
+  color: #1976d2;
+}
+.primary {
+  background-color: #1976d2 !important;
+  border-color: #1976d2 !important;
+}
+.primary--text {
+  color: #1976d2 !important;
+  caret-color: #1976d2 !important;
+}
+.error {
+  background-color: #ff5252 !important;
+  border-color: #ff5252 !important;
+}
+.error--text {
+  color: #ff5252 !important;
+  caret-color: #ff5252 !important;
+}
+.info {
+  background-color: #2196f3 !important;
+  border-color: #2196f3 !important;
+}
+.info--text {
+  color: #2196f3 !important;
+  caret-color: #2196f3 !important;
+}
+.success {
+  background-color: #4caf50 !important;
+  border-color: #4caf50 !important;
+}
+.success--text {
+  color: #4caf50 !important;
+  caret-color: #4caf50 !important;
+}
+.warning {
+  background-color: #fb8c00 !important;
+  border-color: #fb8c00 !important;
+}
+.warning--text {
+  color: #fb8c00 !important;
+  caret-color: #fb8c00 !important;
 }

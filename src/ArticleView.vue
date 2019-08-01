@@ -3,14 +3,8 @@
     <v-img :height="splashHeight" :src="article.splash"></v-img>
 
     <v-layout row wrap>
-      <v-flex md2 class="hidden-sm-and-down">
-        <div
-          :class="{
-            'sidebar-sticky': isTOCSticky,
-            'sidebar-md-only': isMedium,
-            'sidebar-lg-and-up': !isMedium
-          }"
-        >
+      <v-flex md4 lg3 class="hidden-sm-and-down">
+        <div class="article-toc" :class="{ 'article-toc-sticky': isTOCSticky }">
           <ArticleTOC
             v-if="headings"
             :headings="headings"
@@ -24,10 +18,10 @@
             v-if="article.mainfile"
             block
             outline
-            class="small"
+            class="article-download"
             @click="downloadHelper('main')"
           >
-            <template>{{ `Get ${article.mainfiletype}` }}</template>
+            <template>{{ article.mainfiletype }}</template>
             <v-icon>get_app</v-icon>
           </v-btn>
 
@@ -35,18 +29,18 @@
             v-if="article.extrafile"
             block
             outline
-            class="small"
+            class="article-download"
             @click="downloadHelper('extra')"
           >
-            <template>{{ 'Get appendix' }}</template>
+            <template>{{ 'appendix' }}</template>
             <v-icon>get_app</v-icon>
           </v-btn>
         </div>
       </v-flex>
 
-      <v-flex md10>
-        <v-layout justify-center row id="article-view">
-          <v-flex xs12 sm10 pt-4>
+      <v-flex md8 lg9>
+        <v-layout jrow id="article-view">
+          <v-flex xs12 sm10 lg9 offset-sm1 offset-md0 pt-4>
             <v-layout align-center justify-space-between row>
               <div class="greycolor font-lato uppercase">
                 <span
@@ -108,7 +102,7 @@
 
               <template>{{ '&nbsp;&nbsp;|&nbsp;&nbsp;' }}</template>
 
-              <v-icon id="print-button" @click="printArticle">fa-print</v-icon>
+              <v-icon id="article-print" @click="printArticle">fa-print</v-icon>
             </div>
 
             <template v-if="hasRelated">
@@ -211,6 +205,8 @@ const mdAnchorOpts = {
 const md = require('markdown-it')(mdOpts)
   .use(require('markdown-it-footnote'))
   .use(require('markdown-it-anchor'), mdAnchorOpts)
+  // eslint-disable-next-line no-undef
+  .use(require('markdown-it-texmath').use(katex))
 
 const addImages = (images, markdown) =>
   `${markdown}${images.map(i => `\n\n[${i.title}]: ${i.src}`)}`
@@ -258,9 +254,6 @@ export default {
     hasRelated() {
       const { apps, datasets } = this.item
       return (apps && apps.length) || (datasets && datasets.length)
-    },
-    isMedium() {
-      return this.$vuetify.breakpoint.name === 'md'
     },
     articleBody() {
       const { markdown, images } = this.item
@@ -323,30 +316,13 @@ export default {
 </script>
 
 <style scoped>
-a {
-  white-space: normal;
+#article-print:hover {
+  color: #1976d2;
 }
-
-.article-type {
-  color: grey;
-}
-
-.article-img {
-  width: 100%;
-}
-
-.article-title {
-  font-size: 48px;
-  font-weight: 700;
-  line-height: 1.3;
-}
-
 .article-abstract {
   font-weight: 300;
   font-size: 20px;
 }
-
-/* headers */
 .article-body >>> h1,
 .article-body >>> h2,
 .article-body >>> h3,
@@ -355,7 +331,6 @@ a {
   font-family: 'Oswald', sans-serif;
   line-height: 1.3;
 }
-
 .article-body >>> h1,
 .article-body >>> h2,
 .article-body >>> h3 {
@@ -363,7 +338,6 @@ a {
   margin-bottom: 11px;
   font-weight: 500;
 }
-
 .article-body >>> h4,
 .article-body >>> h5,
 .article-body >>> h6 {
@@ -374,40 +348,32 @@ a {
   margin-bottom: 11px;
   margin-top: 11px;
 }
-
 .article-body >>> h1 {
   font-size: 48px;
   font-weight: 700;
 }
-
 .article-body >>> h2 {
   font-size: 34px;
 }
-
 .article-body >>> h3 {
   font-size: 24px;
 }
-
 .article-body >>> h4 {
   font-size: 17px;
 }
-
 .article-body >>> h5 {
   font-size: 14px;
 }
-
 .article-body >>> h6 {
   font-family: 'Lato';
   font-size: 13px;
 }
-
 .article-body >>> p,
 .article-body >>> ul,
 .article-body >>> ol {
   font-size: 20px;
   margin-bottom: 11px;
 }
-
 .article-body >>> ul,
 .article-body >>> ol {
   margin-block-start: 1em;
@@ -416,11 +382,9 @@ a {
   margin-inline-end: 0px;
   padding-inline-start: 40px;
 }
-
 /* .article-body >>> p {
   text-indent: 1.5em;
 } */
-
 .article-body >>> hr {
   background: transparent;
   border: 0;
@@ -429,71 +393,6 @@ a {
   margin: 15px 0;
   overflow: hidden;
 }
-
-/* footnotes */
-.article-body >>> .footnotes {
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-
-.article-body >>> .footnotes p {
-  font-size: 16px;
-  text-indent: 0;
-}
-
-/* figure and table */
-.article-body >>> .article-figure {
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  padding: 24px 12px;
-}
-
-.article-body >>> .article-figure img {
-  max-width: 100%;
-  height: auto;
-}
-
-.article-body >>> .article-figure p,
-.article-body >>> .article-table p {
-  font-size: 16px;
-  text-indent: 0;
-}
-
-.article-body >>> .article-table {
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  padding: 24px 12px;
-}
-
-.article-body >>> table {
-  border-collapse: collapse;
-  border-spacing: 0;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.article-body >>> table th {
-  font-weight: 600;
-}
-
-.article-body >>> table td,
-.article-body >>> table th {
-  border: 1px solid grey;
-  padding: 6px 13px;
-}
-
-.article-body >>> table tr {
-  background-color: #fff;
-  border-top: 1px solid #c6cbd1;
-}
-
-.article-body >>> table tr:nth-child(2n) {
-  background-color: #f6f8fa;
-}
-
-/* blockquote */
 .article-body >>> blockquote {
   border-left: 0.25em solid #dfe2e5;
   font-family: 'Lato', sans-serif;
@@ -501,52 +400,95 @@ a {
   padding: 0 1em;
   margin: 2em 0;
 }
-
 .article-body >>> blockquote p,
 .article-body >>> blockquote ol,
 .article-body >>> blockquote ul {
   font-size: 18px;
   text-indent: 0;
 }
-
 .article-body >>> blockquote > :first-child {
   margin-top: 0;
 }
-
 .article-body >>> blockquote > :last-child {
   margin-bottom: 0;
 }
-
-/* others */
-#print-button:hover {
-  color: #1976d2;
+.article-body >>> table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-left: auto;
+  margin-right: auto;
 }
-
-.sidebar-md-only {
+.article-body >>> table th {
+  font-weight: 600;
+}
+.article-body >>> table td,
+.article-body >>> table th {
+  border: 1px solid grey;
+  padding: 6px 13px;
+}
+.article-body >>> table tr {
+  background-color: #fff;
+  border-top: 1px solid #c6cbd1;
+}
+.article-body >>> table tr:nth-child(2n) {
+  background-color: #f6f8fa;
+}
+.article-body >>> .article-figure {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding: 24px 12px;
+}
+.article-body >>> .article-figure img {
+  max-width: 100%;
+  height: auto;
+}
+.article-body >>> .article-figure p,
+.article-body >>> .article-table p {
+  font-size: 16px;
+  text-indent: 0;
+}
+.article-body >>> .article-table {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding: 24px 12px;
+}
+.article-body >>> .footnotes {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.article-body >>> .footnotes p {
+  font-size: 16px;
+  text-indent: 0;
+}
+.article-body >>> .katex {
+  font-size: 20px !important;
+}
+.article-download {
+  font-size: 0.8em;
+  border-color: rgba(0, 0, 0, 0.12);
+}
+.article-title {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+.article-toc {
   padding-top: 90px !important;
   padding-left: 45px !important;
-  max-width: 150px;
+  width: 275px;
 }
-
-.sidebar-lg-and-up {
-  padding-top: 90px !important;
-  padding-left: 90px !important;
-  max-width: 300px;
-}
-
-.sidebar-sticky {
+.article-toc-sticky {
   position: fixed;
   top: 0;
   left: 0;
 }
 
-.v-btn.v-btn--outline {
-  border-color: rgba(0, 0, 0, 0.12);
-}
-
 @media screen and (max-width: 600px) {
   #article-view {
-    padding-left: 32px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 }
 </style>

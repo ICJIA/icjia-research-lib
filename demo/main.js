@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Vuetify from 'vuetify/lib'
-import 'vuetify/src/stylus/app.styl'
+import '../src/assets/main.styl'
 import '../src/assets/style.css'
 
 import App from './App.vue'
@@ -17,9 +17,7 @@ import RHFooter from '../src/Footer.vue'
 
 Vue.config.productionTip = false
 Vue.use(Router)
-Vue.use(Vuetify, {
-  iconfont: 'md'
-})
+Vue.use(Vuetify, { theme: false })
 
 const router = new Router({
   mode: 'history'
