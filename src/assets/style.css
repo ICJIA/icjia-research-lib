@@ -59,7 +59,6 @@ a {
   padding-bottom: 16px;
   text-transform: uppercase;
 }
-
 /* vuetify theme minimal */
 a {
   color: #1976d2;
@@ -79,6 +78,14 @@ a {
 .error--text {
   color: #ff5252 !important;
   caret-color: #ff5252 !important;
+}
+.accent {
+  background-color: #82b1ff !important;
+  border-color: #82b1ff !important;
+}
+.accent--text {
+  color: #82b1ff !important;
+  caret-color: #82b1ff !important;
 }
 .info {
   background-color: #2196f3 !important;
@@ -103,4 +110,9 @@ a {
 .warning--text {
   color: #fb8c00 !important;
   caret-color: #fb8c00 !important;
+}
+/* katex overlap fix */
+.mord.accent {
+  background-color: transparent !important;
+  border-color: transparent !important;
 }
