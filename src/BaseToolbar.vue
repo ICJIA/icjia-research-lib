@@ -79,16 +79,13 @@ a {
   line-height: 1;
   color: rgba(0, 0, 0, 0.87);
 }
-
 img {
   margin-right: 10px;
 }
-
 #toolbar {
   font-family: 'Lato';
   box-shadow: 0 2px rgba(0, 0, 0, 0.2);
 }
-
 .slot {
   font-family: 'Lato';
   font-size: 0.8em;
