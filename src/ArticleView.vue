@@ -211,6 +211,7 @@ const mdAnchorOpts = {
 const md = require('markdown-it')(mdOpts)
   .use(require('markdown-it-footnote'))
   .use(require('markdown-it-anchor'), mdAnchorOpts)
+  .use(require('markdown-it-texmath').use(require('katex')))
 
 const addImages = (images, markdown) =>
   `${markdown}${images.map(i => `\n\n[${i.title}]: ${i.src}`)}`
@@ -515,6 +516,11 @@ a {
 
 .article-body >>> blockquote > :last-child {
   margin-bottom: 0;
+}
+
+/* katex */
+.article-body >>> .katex {
+  font-size: 20px !important;
 }
 
 /* others */

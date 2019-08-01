@@ -14,9 +14,11 @@
   ],
   "dependencies": {
     "core-js": "^2.6.5",
+    "katex": "^0.10.2",
     "markdown-it": "^8.4.2",
     "markdown-it-anchor": "~5.0.2",
     "markdown-it-footnote": "^3.0.1",
+    "markdown-it-texmath": "^0.5.5",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
     "vuetify": "^1.5.5"
