@@ -211,7 +211,8 @@ const mdAnchorOpts = {
 const md = require('markdown-it')(mdOpts)
   .use(require('markdown-it-footnote'))
   .use(require('markdown-it-anchor'), mdAnchorOpts)
-  .use(require('markdown-it-texmath').use(require('katex')))
+  // eslint-disable-next-line no-undef
+  .use(require('markdown-it-texmath').use(katex))
 
 const addImages = (images, markdown) =>
   `${markdown}${images.map(i => `\n\n[${i.title}]: ${i.src}`)}`
