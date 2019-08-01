@@ -4,13 +4,7 @@
 
     <v-layout row wrap>
       <v-flex md4 lg3 class="hidden-sm-and-down">
-        <div
-          :class="{
-            'sidebar-sticky': isTOCSticky,
-            'sidebar-md-only': isMedium,
-            'sidebar-lg-and-up': !isMedium
-          }"
-        >
+        <div class="article-toc" :class="{ 'article-toc-sticky': isTOCSticky }">
           <ArticleTOC
             v-if="headings"
             :headings="headings"
@@ -24,7 +18,7 @@
             v-if="article.mainfile"
             block
             outline
-            class="article-filebutton"
+            class="article-download"
             @click="downloadHelper('main')"
           >
             <template>{{ article.mainfiletype }}</template>
@@ -35,7 +29,7 @@
             v-if="article.extrafile"
             block
             outline
-            class="article-filebutton"
+            class="article-download"
             @click="downloadHelper('extra')"
           >
             <template>{{ 'appendix' }}</template>
@@ -108,7 +102,7 @@
 
               <template>{{ '&nbsp;&nbsp;|&nbsp;&nbsp;' }}</template>
 
-              <v-icon id="print-button" @click="printArticle">fa-print</v-icon>
+              <v-icon id="article-print" @click="printArticle">fa-print</v-icon>
             </div>
 
             <template v-if="hasRelated">
@@ -261,9 +255,6 @@ export default {
       const { apps, datasets } = this.item
       return (apps && apps.length) || (datasets && datasets.length)
     },
-    isMedium() {
-      return this.$vuetify.breakpoint.name === 'md'
-    },
     articleBody() {
       const { markdown, images } = this.item
       return markdown
@@ -325,24 +316,13 @@ export default {
 </script>
 
 <style scoped>
+#article-print:hover {
+  color: #1976d2;
+}
 .article-abstract {
   font-weight: 300;
   font-size: 20px;
 }
-.article-filebutton {
-  font-size: 0.8em;
-  border-color: rgba(0, 0, 0, 0.12);
-}
-.article-title {
-  font-size: 48px;
-  font-weight: 700;
-  line-height: 1.3;
-}
-#print-button:hover {
-  color: #1976d2;
-}
-
-/* article body: elements */
 .article-body >>> h1,
 .article-body >>> h2,
 .article-body >>> h3,
@@ -413,38 +393,24 @@ export default {
   margin: 15px 0;
   overflow: hidden;
 }
-
-/* article body: footnotes */
-.article-body >>> .footnotes {
-  margin-top: 30px;
-  margin-bottom: 30px;
+.article-body >>> blockquote {
+  border-left: 0.25em solid #dfe2e5;
+  font-family: 'Lato', sans-serif;
+  color: #6a737d;
+  padding: 0 1em;
+  margin: 2em 0;
 }
-.article-body >>> .footnotes p {
-  font-size: 16px;
+.article-body >>> blockquote p,
+.article-body >>> blockquote ol,
+.article-body >>> blockquote ul {
+  font-size: 18px;
   text-indent: 0;
 }
-
-/* article body: figure & table */
-.article-body >>> .article-figure {
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  padding: 24px 12px;
+.article-body >>> blockquote > :first-child {
+  margin-top: 0;
 }
-.article-body >>> .article-figure img {
-  max-width: 100%;
-  height: auto;
-}
-.article-body >>> .article-figure p,
-.article-body >>> .article-table p {
-  font-size: 16px;
-  text-indent: 0;
-}
-.article-body >>> .article-table {
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  padding: 24px 12px;
+.article-body >>> blockquote > :last-child {
+  margin-bottom: 0;
 }
 .article-body >>> table {
   border-collapse: collapse;
@@ -467,45 +433,53 @@ export default {
 .article-body >>> table tr:nth-child(2n) {
   background-color: #f6f8fa;
 }
-
-/* article body: blockquote */
-.article-body >>> blockquote {
-  border-left: 0.25em solid #dfe2e5;
-  font-family: 'Lato', sans-serif;
-  color: #6a737d;
-  padding: 0 1em;
-  margin: 2em 0;
+.article-body >>> .article-figure {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding: 24px 12px;
 }
-.article-body >>> blockquote p,
-.article-body >>> blockquote ol,
-.article-body >>> blockquote ul {
-  font-size: 18px;
+.article-body >>> .article-figure img {
+  max-width: 100%;
+  height: auto;
+}
+.article-body >>> .article-figure p,
+.article-body >>> .article-table p {
+  font-size: 16px;
   text-indent: 0;
 }
-.article-body >>> blockquote > :first-child {
-  margin-top: 0;
+.article-body >>> .article-table {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding: 24px 12px;
 }
-.article-body >>> blockquote > :last-child {
-  margin-bottom: 0;
+.article-body >>> .footnotes {
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
-
-/* article body: katex */
+.article-body >>> .footnotes p {
+  font-size: 16px;
+  text-indent: 0;
+}
 .article-body >>> .katex {
   font-size: 20px !important;
 }
-
-/* sidebar */
-.sidebar-md-only {
+.article-download {
+  font-size: 0.8em;
+  border-color: rgba(0, 0, 0, 0.12);
+}
+.article-title {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+.article-toc {
   padding-top: 90px !important;
   padding-left: 45px !important;
   width: 275px;
 }
-.sidebar-lg-and-up {
-  padding-top: 90px !important;
-  padding-left: 45px !important;
-  width: 275px;
-}
-.sidebar-sticky {
+.article-toc-sticky {
   position: fixed;
   top: 0;
   left: 0;
