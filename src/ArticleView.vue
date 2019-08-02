@@ -179,47 +179,16 @@
 </template>
 
 <script>
+import MarkdownItTexmath from 'markdown-it-texmath'
+import { createMarkdownUtils, initMarkdownIt } from './utils/markdownIt'
+import { initKatex } from './utils/katex'
 import { baseFilters } from './mixins/contentMixin'
+
 import ArticleTOC from './components/ArticleTOC'
 import BaseButton from './components/BaseButton'
 import BaseInfoBlock from './components/BaseInfoBlock'
 import BasePropChip from './components/BasePropChip'
 import ExternalContribution from './components/ExternalContribution'
-
-const mdOpts = {
-  html: true,
-  linkify: true,
-  typographer: true
-}
-
-const mdAnchorOpts = {
-  level: 2,
-  slugify: s =>
-    String(s)
-      .trim()
-      .toLowerCase()
-      .replace(/\s+/g, '-')
-      .replace(/[^a-zA-Z0-9-_]/g, '')
-}
-
-const md = require('markdown-it')(mdOpts)
-  .use(require('markdown-it-footnote'))
-  .use(require('markdown-it-anchor'), mdAnchorOpts)
-  // eslint-disable-next-line no-undef
-  .use(require('markdown-it-texmath').use(katex))
-
-const addImages = (images, markdown) =>
-  `${markdown}${images.map(i => `\n\n[${i.title}]: ${i.src}`)}`
-
-const parseHeadings = markdown =>
-  new DOMParser()
-    .parseFromString(md.render(markdown), 'text/html')
-    .querySelectorAll('h2')
-
-const renderMarkdown = markdown => {
-  const [main, footer] = md.render(markdown).split('<hr class="footnotes-sep">')
-  return { main, footer }
-}
 
 export default {
   components: {
@@ -243,6 +212,7 @@ export default {
       activeHeading: 'introduction',
       baseUrl: 'localhost:8080/',
       isTOCSticky: false,
+      markdownUtils: {},
       splashHeight: 500,
       viewTitleHeight: 60 + 80
     }
@@ -257,14 +227,25 @@ export default {
     },
     articleBody() {
       const { markdown, images } = this.item
-      return markdown
-        ? renderMarkdown(images ? addImages(images, markdown) : markdown)
-        : ''
+      const { renderMarkdown, addImages } = this.markdownUtils
+      const body =
+        markdown && renderMarkdown && addImages
+          ? renderMarkdown(images ? addImages(images, markdown) : markdown)
+          : ''
+      const [main, footer] = body.split('<hr class="footnotes-sep">')
+      return { main, footer }
     },
     headings() {
       const { markdown } = this.item
-      return markdown ? parseHeadings(markdown) : null
+      const { parseHeadings } = this.markdownUtils
+      return markdown && parseHeadings ? parseHeadings(markdown) : null
     }
+  },
+  async created() {
+    await initKatex()
+    // eslint-disable-next-line no-undef
+    const md = initMarkdownIt().use(MarkdownItTexmath.use(katex))
+    this.markdownUtils = createMarkdownUtils(md)
   },
   methods: {
     async downloadHelper(type) {
