@@ -17,14 +17,13 @@ import AppCard from './AppCard.vue'
 import AppView from './AppView.vue'
 import ArticleCard from './ArticleCard.vue'
 import ArticleView from './ArticleView.vue'
-import AuthorView from './AuthorView.vue'
 import BaseToolbar from './BaseToolbar.vue'
 import DatasetCard from './DatasetCard.vue'
 import DatasetView from './DatasetView.vue'
 import Footer from './Footer.vue'
 
 // Export components individually
-export { AppCard, AppView, ArticleCard, ArticleView, AuthorView, BaseToolbar, DatasetCard, DatasetView, Footer }
+export { AppCard, AppView, ArticleCard, ArticleView, BaseToolbar, DatasetCard, DatasetView, Footer }
 
 // What should happen if the user installs the library as a plugin
 function install(Vue) {
@@ -32,7 +31,6 @@ function install(Vue) {
   Vue.component('AppView', AppView)
   Vue.component('ArticleCard', ArticleCard)
   Vue.component('ArticleView', ArticleView)
-  Vue.component('AuthorView', AuthorView)
   Vue.component('BaseToolbar', BaseToolbar)
   Vue.component('DatasetCard', DatasetCard)
   Vue.component('DatasetView', DatasetView)
