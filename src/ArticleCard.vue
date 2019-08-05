@@ -50,13 +50,7 @@
                 <template v-if="i > 0">{{
                   article.authors.length > i + 1 ? ', ' : ' and '
                 }}</template>
-
-                <template v-if="author.slug">
-                  <router-link :to="preview ? '' : `/authors/${author.slug}`">
-                    <template>{{ author.title }}</template>
-                  </router-link>
-                </template>
-                <template v-else>{{ author.title }}</template>
+                <a @click="$emit('author-click', $event)">{{ author.title }}</a>
               </span>
             </BasePropDisplay>
 

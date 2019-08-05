@@ -84,13 +84,7 @@
                 <template v-if="i > 0">{{
                   article.authors.length > i + 1 ? ', ' : ' and '
                 }}</template>
-
-                <template v-if="author.slug">
-                  <router-link :to="preview ? '' : `/authors/${author.slug}`">
-                    <template>{{ author.title }}</template>
-                  </router-link>
-                </template>
-                <template v-else>{{ author.title }}</template>
+                <a @click="$emit('author-click', $event)">{{ author.title }}</a>
               </span>
 
               <span v-if="article.date">
@@ -100,6 +94,18 @@
 
               <span class="mx-2">|</span>
               <v-icon id="article-print" @click="printArticle">fa-print</v-icon>
+            </div>
+
+            <div v-if="hasAuthorInfo" class="info-block">
+              <div class="info-block-title">
+                <template>{{
+                  `About the author${article.authors.length > 1 ? 's' : ''}`
+                }}</template>
+              </div>
+
+              <p v-for="(author, i) in article.authors" :key="`authorinfo${i}`">
+                <template>{{ author.description }}</template>
+              </p>
             </div>
 
             <div v-if="hasRelated" class="info-block">
@@ -218,6 +224,10 @@ export default {
           : ''
       const [main, footer] = body.split('<hr class="footnotes-sep">')
       return { main, footer }
+    },
+    hasAuthorInfo() {
+      const { authors } = this.item
+      return authors.filter(el => el.description).length > 0
     },
     hasRelated() {
       const { apps, datasets } = this.item

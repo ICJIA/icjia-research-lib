@@ -60,10 +60,12 @@
     "authors": [
       {
         "title": "Jane Doe",
-        "slug": "jane-doe"
+        "slug": "jane-doe",
+        "description": "Jane Doe is Research Analyst at Illinois Criminal Justice Information Authority."
       },
       {
-        "title": "Richard Roe"
+        "title": "Richard Roe",
+        "description": "Richard Doe is Research Analyst at Illinois Criminal Justice Information Authority."
       }
     ],
     "citation": "Doe, J. & Roe, R. (2019). <em>My Dummy Article.</em> Chicago, IL: Illinois Criminal Justice Information Authority.",
