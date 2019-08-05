@@ -1,13 +1,11 @@
 <template>
   <BaseCard :external="app.external">
-    <v-img
-      height="200px"
-      :src="app.image"
-      lazy-src="https://via.placeholder.com/1/DDDDDD"
-    >
-      <v-layout slot="placeholder" fill-height align-center justify-center ma-0>
-        <v-progress-circular indeterminate color="grey lighten-3" />
-      </v-layout>
+    <v-img :src="app.image" class="hidden-sm-and-down" aspect-ratio="1.66">
+      <template v-slot:placeholder>
+        <v-layout fill-height align-center justify-center>
+          <v-progress-circular indeterminate />
+        </v-layout>
+      </template>
     </v-img>
 
     <v-card-title primary-title :class="app.external ? 'pt-1 pb-2' : ''">
@@ -31,6 +29,8 @@
         </div>
       </v-layout>
     </v-card-title>
+
+    <v-divider class="hidden-md-and-up pb-2"></v-divider>
 
     <v-container py-0 px-3>
       <BasePropDisplay name="Contributors">

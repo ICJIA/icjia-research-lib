@@ -22,16 +22,12 @@
 
     <v-layout row>
       <v-flex xs3>
-        <v-img :src="app.image" lazy-src="https://via.placeholder.com/1/DDDDDD">
-          <v-layout
-            slot="placeholder"
-            fill-height
-            align-center
-            justify-center
-            ma-0
-          >
-            <v-progress-circular indeterminate color="grey lighten-3" />
-          </v-layout>
+        <v-img :src="app.image">
+          <template v-slot:placeholder>
+            <v-layout fill-height align-center justify-center>
+              <v-progress-circular indeterminate />
+            </v-layout>
+          </template>
         </v-img>
       </v-flex>
 

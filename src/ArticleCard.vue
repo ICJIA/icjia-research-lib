@@ -2,20 +2,15 @@
   <BaseCard :external="article.external">
     <v-layout row>
       <v-img
-        class="hidden-sm-and-down"
         :src="article.thumbnail"
-        lazy-src="https://via.placeholder.com/1/DDDDDD"
-        max-width="300px"
+        class="hidden-sm-and-down"
+        max-width="240"
       >
-        <v-layout
-          slot="placeholder"
-          fill-height
-          align-center
-          justify-center
-          ma-0
-        >
-          <v-progress-circular indeterminate color="grey lighten-3" />
-        </v-layout>
+        <template v-slot:placeholder>
+          <v-layout fill-height align-center justify-center>
+            <v-progress-circular indeterminate />
+          </v-layout>
+        </template>
       </v-img>
       <v-layout column justify-space-between class="article-body">
         <div>

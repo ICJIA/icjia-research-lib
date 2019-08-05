@@ -1,6 +1,12 @@
 <template>
   <div class="mb-5">
-    <v-img :height="splashHeight" :src="article.splash"></v-img>
+    <v-img :height="splashHeight" :src="article.splash">
+      <template v-slot:placeholder>
+        <v-layout fill-height align-center justify-center>
+          <v-progress-circular indeterminate />
+        </v-layout>
+      </template>
+    </v-img>
 
     <v-layout row wrap>
       <v-flex md4 lg3 class="hidden-sm-and-down">
@@ -213,7 +219,6 @@ export default {
       baseUrl: 'localhost:8080/',
       isTOCSticky: false,
       markdownUtils: {},
-      splashHeight: 500,
       viewTitleHeight: 60 + 80
     }
   },
@@ -239,6 +244,13 @@ export default {
       const { markdown } = this.item
       const { parseHeadings } = this.markdownUtils
       return markdown && parseHeadings ? parseHeadings(markdown) : null
+    },
+    splashHeight() {
+      const { xs, sm } = this.$vuetify.breakpoint
+
+      if (xs) return 240
+      else if (sm) return 360
+      else return 480
     }
   },
   async created() {
