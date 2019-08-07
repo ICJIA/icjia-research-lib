@@ -22,16 +22,12 @@
 
     <v-layout row>
       <v-flex xs3>
-        <v-img :src="app.image" lazy-src="https://via.placeholder.com/1/DDDDDD">
-          <v-layout
-            slot="placeholder"
-            fill-height
-            align-center
-            justify-center
-            ma-0
-          >
-            <v-progress-circular indeterminate color="grey lighten-3" />
-          </v-layout>
+        <v-img :src="app.image">
+          <template v-slot:placeholder>
+            <v-layout fill-height align-center justify-center>
+              <v-progress-circular indeterminate />
+            </v-layout>
+          </template>
         </v-img>
       </v-flex>
 
@@ -98,28 +94,25 @@
               <span v-html="app.citation"></span>
             </template>
           </BaseInfoBlock>
+
+          <BaseInfoBlock v-if="hasRelated">
+            <template v-slot:title>{{ 'Related contents' }}</template>
+            <template v-slot:text>
+              <ul class="font-lato">
+                <li v-for="(article, i) in app.articles" :key="`article${i}`">
+                  <router-link :to="preview ? '' : `/articles/${article.slug}`">
+                    <template>{{ `[ARTICLE] ${article.title}` }}</template>
+                  </router-link>
+                </li>
+                <li v-for="(dataset, i) in app.datasets" :key="`dataset${i}`">
+                  <router-link :to="preview ? '' : `/datasets/${dataset.slug}`">
+                    <template>{{ `[DATASET] ${dataset.title}` }}</template>
+                  </router-link>
+                </li>
+              </ul>
+            </template>
+          </BaseInfoBlock>
         </v-container>
-
-        <template v-if="hasRelated">
-          <v-divider></v-divider>
-
-          <v-container>
-            <h2 class="pb-3 light">Related</h2>
-
-            <ul class="font-lato small">
-              <li v-for="(article, i) in app.articles" :key="`article${i}`">
-                <router-link :to="preview ? '' : `/articles/${article.slug}`">
-                  <template>{{ `[ARTICLE] ${article.title}` }}</template>
-                </router-link>
-              </li>
-              <li v-for="(dataset, i) in app.datasets" :key="`dataset${i}`">
-                <router-link :to="preview ? '' : `/datasets/${dataset.slug}`">
-                  <template>{{ `[DATASET] ${dataset.title}` }}</template>
-                </router-link>
-              </li>
-            </ul>
-          </v-container>
-        </template>
       </v-flex>
     </v-layout>
   </BaseCard>

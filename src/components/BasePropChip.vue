@@ -4,7 +4,7 @@
     small
     depressed
     round
-    @click="$emit('chip-click', $event.target.textContent)"
+    @click="$emit('chip-click', $event)"
   >
     <slot></slot>
   </v-btn>

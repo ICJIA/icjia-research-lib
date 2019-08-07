@@ -9,7 +9,6 @@ import RHAppCard from '../src/AppCard.vue'
 import RHAppView from '../src/AppView.vue'
 import RHArticleCard from '../src/ArticleCard.vue'
 import RHArticleView from '../src/ArticleView.vue'
-import RHAuthorView from '../src/AuthorView.vue'
 import RHBaseToolbar from '../src/BaseToolbar.vue'
 import RHDatasetCard from '../src/DatasetCard.vue'
 import RHDatasetView from '../src/DatasetView.vue'
@@ -28,7 +27,6 @@ const Components = {
   RHAppView,
   RHArticleCard,
   RHArticleView,
-  RHAuthorView,
   RHBaseToolbar,
   RHDatasetCard,
   RHDatasetView,

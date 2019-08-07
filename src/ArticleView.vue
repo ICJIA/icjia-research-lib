@@ -1,18 +1,23 @@
 <template>
   <div class="mb-5">
-    <v-img :height="splashHeight" :src="article.splash"></v-img>
+    <v-img :height="splashHeight" :src="article.splash">
+      <template v-slot:placeholder>
+        <v-layout fill-height align-center justify-center>
+          <v-progress-circular indeterminate />
+        </v-layout>
+      </template>
+    </v-img>
 
     <v-layout row wrap>
       <v-flex md4 lg3 class="hidden-sm-and-down">
         <div class="article-toc" :class="{ 'article-toc-sticky': isTOCSticky }">
           <ArticleTOC
             v-if="headings"
+            class="mb-5"
             :headings="headings"
             :activeHeading="activeHeading"
             v-scroll="onScrollTOC"
           />
-
-          <v-divider v-if="article.mainfile" class="my-3"></v-divider>
 
           <v-btn
             v-if="article.mainfile"
@@ -42,19 +47,19 @@
         <v-layout jrow id="article-view">
           <v-flex xs12 sm10 lg9 offset-sm1 offset-md0 pt-4>
             <v-layout align-center justify-space-between row>
-              <div class="greycolor font-lato uppercase">
+              <div>
                 <span
                   v-for="(category, i) in article.categories"
                   :key="category"
-                  class="uppercase"
+                  class="font-lato uppercase"
                 >
                   <template v-if="i > 0">{{ ', ' }}</template>
                   <template>{{ category }}</template>
                 </span>
 
-                <template>{{ '&nbsp;&nbsp;|&nbsp;&nbsp;' }}</template>
-
                 <template v-if="article.tags">
+                  <span class="mx-2">|</span>
+
                   <BasePropChip
                     v-for="tag of article.tags"
                     :key="tag"
@@ -72,66 +77,40 @@
 
             <h1 class="article-title">{{ article.title }}</h1>
 
-            <div class="article-abstract greycolor font-lato my-3">
-              <template>{{ article.abstract }}</template>
-            </div>
+            <div class="article-abstract my-4">{{ article.abstract }}</div>
 
-            <div class="mb-3">
-              <span
-                v-for="(author, i) in article.authors"
-                :key="i"
-                class="uppercase font-oswald"
-              >
+            <div class="mb-3 uppercase font-oswald">
+              <span v-for="(author, i) in article.authors" :key="i">
                 <template v-if="i > 0">{{
                   article.authors.length > i + 1 ? ', ' : ' and '
                 }}</template>
-
-                <template v-if="author.slug">
-                  <router-link :to="preview ? '' : `/authors/${author.slug}`">
-                    <template>{{ author.title }}</template>
-                  </router-link>
-                </template>
-                <template v-else>{{ author.title }}</template>
+                <a @click="$emit('author-click', $event)">{{ author.title }}</a>
               </span>
 
-              <template>{{ '&nbsp;&nbsp;|&nbsp;&nbsp;' }}</template>
-
-              <span v-if="article.date" class="uppercase font-oswald">
+              <span v-if="article.date">
+                <span class="mx-2">|</span>
                 <template>{{ article.date | formatDate }}</template>
               </span>
 
-              <template>{{ '&nbsp;&nbsp;|&nbsp;&nbsp;' }}</template>
-
+              <span class="mx-2">|</span>
               <v-icon id="article-print" @click="printArticle">fa-print</v-icon>
             </div>
 
-            <template v-if="hasRelated">
-              <v-divider></v-divider>
+            <BaseInfoBlock v-if="hasAuthorInfo" :large="true">
+              <template v-slot:title>{{
+                `About the author${article.authors.length > 1 ? 's' : ''}`
+              }}</template>
+              <template v-slot:text>
+                <p
+                  v-for="(author, i) in article.authors"
+                  :key="`authorinfo${i}`"
+                >
+                  <template>{{ author.description }}</template>
+                </p>
+              </template>
+            </BaseInfoBlock>
 
-              <v-container>
-                <h2 class="mb-3 light">Related</h2>
-
-                <ul class="font-lato">
-                  <li v-for="(app, i) in article.apps" :key="`app${i}`">
-                    <router-link :to="preview ? '' : `/apps/${app.slug}`">
-                      <template>{{ `[APP] ${app.title}` }}</template>
-                    </router-link>
-                  </li>
-                  <li
-                    v-for="(dataset, i) in article.datasets"
-                    :key="`dataset${i}`"
-                  >
-                    <router-link
-                      :to="preview ? '' : `/datasets/${dataset.slug}`"
-                    >
-                      <template>{{ `[DATASET] ${dataset.title}` }}</template>
-                    </router-link>
-                  </li>
-                </ul>
-              </v-container>
-            </template>
-
-            <v-divider />
+            <v-divider></v-divider>
 
             <div
               class="article-body"
@@ -149,7 +128,6 @@
                 <template v-slot:title>{{ 'Suggested citation' }}</template>
                 <template v-slot:text>
                   <span v-html="article.citation"></span>
-
                   <a
                     v-if="article.doi"
                     :href="article.doi"
@@ -158,6 +136,29 @@
                   >
                     <template>{{ ` ${article.doi}` }}</template>
                   </a>
+                </template>
+              </BaseInfoBlock>
+
+              <BaseInfoBlock v-if="hasRelated" :large="true">
+                <template v-slot:title>{{ 'Related contents' }}</template>
+                <template v-slot:text>
+                  <ul>
+                    <li v-for="(app, i) in article.apps" :key="`app${i}`">
+                      <router-link :to="preview ? '' : `/apps/${app.slug}`">
+                        <template>{{ `[APP] ${app.title}` }}</template>
+                      </router-link>
+                    </li>
+                    <li
+                      v-for="(dataset, i) in article.datasets"
+                      :key="`dataset${i}`"
+                    >
+                      <router-link
+                        :to="preview ? '' : `/datasets/${dataset.slug}`"
+                      >
+                        <template>{{ `[DATASET] ${dataset.title}` }}</template>
+                      </router-link>
+                    </li>
+                  </ul>
                 </template>
               </BaseInfoBlock>
             </div>
@@ -213,17 +214,12 @@ export default {
       baseUrl: 'localhost:8080/',
       isTOCSticky: false,
       markdownUtils: {},
-      splashHeight: 500,
       viewTitleHeight: 60 + 80
     }
   },
   computed: {
     article() {
       return this.item
-    },
-    hasRelated() {
-      const { apps, datasets } = this.item
-      return (apps && apps.length) || (datasets && datasets.length)
     },
     articleBody() {
       const { markdown, images } = this.item
@@ -235,10 +231,25 @@ export default {
       const [main, footer] = body.split('<hr class="footnotes-sep">')
       return { main, footer }
     },
+    hasAuthorInfo() {
+      const { authors } = this.item
+      return authors.filter(el => el.description).length > 0
+    },
+    hasRelated() {
+      const { apps, datasets } = this.item
+      return (apps && apps.length) || (datasets && datasets.length)
+    },
     headings() {
       const { markdown } = this.item
       const { parseHeadings } = this.markdownUtils
       return markdown && parseHeadings ? parseHeadings(markdown) : null
+    },
+    splashHeight() {
+      const { xs, sm } = this.$vuetify.breakpoint
+
+      if (xs) return 240
+      else if (sm) return 360
+      else return 480
     }
   },
   async created() {
@@ -301,8 +312,9 @@ export default {
   color: #1976d2;
 }
 .article-abstract {
-  font-weight: 300;
-  font-size: 20px;
+  color: rgba(0, 0, 0, 0.66);
+  font-family: 'Lato', sans-serif;
+  font-size: 18px;
 }
 .article-body >>> h1,
 .article-body >>> h2,

@@ -94,7 +94,7 @@
       <v-layout row wrap justify-center>
         <v-flex xs12 sm10 xl8>
           <v-layout v-if="contentType === 'app'" row wrap justify-center>
-            <v-flex xs12 sm6 lg4>
+            <v-flex xs12 md6 lg4>
               <RHAppCard
                 :key="`appCard${componentKey}`"
                 :item="app"
@@ -125,6 +125,8 @@
         </v-flex>
       </v-layout>
     </v-container>
+
+    <div class="mb-5"></div>
 
     <RHFooter :agency="footer.agency" :github="footer.github" />
   </v-app>
