@@ -1,5 +1,5 @@
-<template>
-  <div class="info-block" :class="large ? '' : 'small'">
+<template functional>
+  <div class="info-block" :class="props.large ? '' : 'small'">
     <div class="info-block-title">
       <slot name="title"></slot>
     </div>
