@@ -96,36 +96,19 @@
               <v-icon id="article-print" @click="printArticle">fa-print</v-icon>
             </div>
 
-            <div v-if="hasAuthorInfo" class="info-block">
-              <div class="info-block-title">
-                <template>{{
-                  `About the author${article.authors.length > 1 ? 's' : ''}`
-                }}</template>
-              </div>
-
-              <p v-for="(author, i) in article.authors" :key="`authorinfo${i}`">
-                <template>{{ author.description }}</template>
-              </p>
-            </div>
-
-            <div v-if="hasRelated" class="info-block">
-              <div class="info-block-title">Related contents</div>
-              <ul>
-                <li v-for="(app, i) in article.apps" :key="`app${i}`">
-                  <router-link :to="preview ? '' : `/apps/${app.slug}`">
-                    <template>{{ `[APP] ${app.title}` }}</template>
-                  </router-link>
-                </li>
-                <li
-                  v-for="(dataset, i) in article.datasets"
-                  :key="`dataset${i}`"
+            <BaseInfoBlock v-if="hasAuthorInfo" :large="true">
+              <template v-slot:title>{{
+                `About the author${article.authors.length > 1 ? 's' : ''}`
+              }}</template>
+              <template v-slot:text>
+                <p
+                  v-for="(author, i) in article.authors"
+                  :key="`authorinfo${i}`"
                 >
-                  <router-link :to="preview ? '' : `/datasets/${dataset.slug}`">
-                    <template>{{ `[DATASET] ${dataset.title}` }}</template>
-                  </router-link>
-                </li>
-              </ul>
-            </div>
+                  <template>{{ author.description }}</template>
+                </p>
+              </template>
+            </BaseInfoBlock>
 
             <v-divider></v-divider>
 
@@ -153,6 +136,29 @@
                   >
                     <template>{{ ` ${article.doi}` }}</template>
                   </a>
+                </template>
+              </BaseInfoBlock>
+
+              <BaseInfoBlock v-if="hasRelated" :large="true">
+                <template v-slot:title>{{ 'Related contents' }}</template>
+                <template v-slot:text>
+                  <ul>
+                    <li v-for="(app, i) in article.apps" :key="`app${i}`">
+                      <router-link :to="preview ? '' : `/apps/${app.slug}`">
+                        <template>{{ `[APP] ${app.title}` }}</template>
+                      </router-link>
+                    </li>
+                    <li
+                      v-for="(dataset, i) in article.datasets"
+                      :key="`dataset${i}`"
+                    >
+                      <router-link
+                        :to="preview ? '' : `/datasets/${dataset.slug}`"
+                      >
+                        <template>{{ `[DATASET] ${dataset.title}` }}</template>
+                      </router-link>
+                    </li>
+                  </ul>
                 </template>
               </BaseInfoBlock>
             </div>

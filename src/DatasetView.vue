@@ -107,52 +107,43 @@
             </ul>
           </BasePropDisplay>
         </v-flex>
-
-        <v-flex x12>
-          <BaseInfoBlock v-if="dataset.funding">
-            <template v-slot:title>{{ 'Funding acknowledgment' }}</template>
-            <template v-slot:text>{{ dataset.funding }}</template>
-          </BaseInfoBlock>
-
-          <BaseInfoBlock v-if="dataset.citation">
-            <template v-slot:title>{{ 'Suggested citation' }}</template>
-            <template v-slot:text>
-              <span v-html="dataset.citation"></span>
-            </template>
-          </BaseInfoBlock>
-        </v-flex>
       </v-layout>
-    </v-container>
 
-    <template v-if="dataset.variables">
-      <v-divider></v-divider>
-
-      <v-container class="hidden-sm-and-down">
+      <div v-if="dataset.variables" class="hidden-sm-and-down py-4">
         <h2 class="mb-3 light">Variables</h2>
-        <div ref="variables" class="variables-table font-lato small pb-2"></div>
-      </v-container>
-    </template>
+        <div ref="variables" class="variables-table font-lato small"></div>
+      </div>
 
-    <template v-if="hasRelated">
-      <v-divider></v-divider>
+      <BaseInfoBlock v-if="dataset.funding">
+        <template v-slot:title>{{ 'Funding acknowledgment' }}</template>
+        <template v-slot:text>{{ dataset.funding }}</template>
+      </BaseInfoBlock>
 
-      <v-container>
-        <h2 class="mb-3 light">Related</h2>
+      <BaseInfoBlock v-if="dataset.citation">
+        <template v-slot:title>{{ 'Suggested citation' }}</template>
+        <template v-slot:text>
+          <span v-html="dataset.citation"></span>
+        </template>
+      </BaseInfoBlock>
 
-        <ul class="font-lato small">
-          <li v-for="(app, i) in dataset.apps" :key="`app${i}`">
-            <router-link :to="preview ? '' : `/apps/${app.slug}`">
-              <template>{{ `[APP] ${app.title}` }}</template>
-            </router-link>
-          </li>
-          <li v-for="(article, i) in dataset.articles" :key="`article${i}`">
-            <router-link :to="preview ? '' : `/articles/${article.slug}`">
-              <template>{{ `[ARTICLE] ${article.title}` }}</template>
-            </router-link>
-          </li>
-        </ul>
-      </v-container>
-    </template>
+      <BaseInfoBlock v-if="hasRelated">
+        <template v-slot:title>{{ 'Related contents' }}</template>
+        <template v-slot:text>
+          <ul class="font-lato">
+            <li v-for="(app, i) in dataset.apps" :key="`app${i}`">
+              <router-link :to="preview ? '' : `/apps/${app.slug}`">
+                <template>{{ `[APP] ${app.title}` }}</template>
+              </router-link>
+            </li>
+            <li v-for="(article, i) in dataset.articles" :key="`article${i}`">
+              <router-link :to="preview ? '' : `/articles/${article.slug}`">
+                <template>{{ `[ARTICLE] ${article.title}` }}</template>
+              </router-link>
+            </li>
+          </ul>
+        </template>
+      </BaseInfoBlock>
+    </v-container>
   </BaseCard>
 </template>
 
