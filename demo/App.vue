@@ -150,7 +150,7 @@ export default {
         },
         github: {
           url: 'https://github.com/icjia/icjia-research-lib',
-          version: '0.1.2'
+          version: '0.3.1'
         }
       },
       preview: false,
