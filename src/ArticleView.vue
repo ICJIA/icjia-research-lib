@@ -386,10 +386,11 @@ export default {
   overflow: hidden;
 }
 .article-body >>> blockquote {
-  border-left: 0.25em solid #dfe2e5;
+  background-color: #ebf6ff;
+  border-left: 0.25em solid #466c8c;
   font-family: 'Lato', sans-serif;
-  color: #6a737d;
-  padding: 0 1em;
+  color: #466c8c;
+  padding: 1em 2em;
   margin: 2em 0;
 }
 .article-body >>> blockquote p,
