@@ -335,7 +335,6 @@ export default {
 .article-body >>> h5,
 .article-body >>> h6 {
   text-transform: uppercase;
-  color: black;
   letter-spacing: 0.04em;
   font-weight: 700;
   margin-bottom: 11px;
@@ -383,7 +382,7 @@ export default {
   border: 0;
   border-bottom: 1px solid #dfe2e5;
   height: 0;
-  margin: 15px 0;
+  margin: 1em 0;
   overflow: hidden;
 }
 .article-body >>> blockquote {
