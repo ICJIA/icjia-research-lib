@@ -16,7 +16,7 @@ const createMarkdownUtils = md => ({
 
 const initMarkdownIt = () =>
   require('markdown-it')(mdOpts)
-    .use(require('markdown-it-anchor'), mdAnchorOpts)
+    .use(require('markdown-it-anchor').default, mdAnchorOpts)
     .use(require('markdown-it-footnote'))
 
 const mdOpts = {
