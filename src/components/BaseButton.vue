@@ -1,5 +1,5 @@
 <template>
-  <v-btn flat exact :to="to" :href="href" :target="href ? '_blank' : ''">
+  <v-btn text exact :to="to" :href="href" :target="href ? '_blank' : ''">
     <slot></slot>
     <v-icon v-if="icon">{{ icon }}</v-icon>
   </v-btn>

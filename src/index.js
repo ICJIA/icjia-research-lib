@@ -6,12 +6,10 @@
 
 import Vue from 'vue'
 import Vuetify from 'vuetify/lib'
-import './assets/main.styl'
 import './assets/style.css'
 
-Vue.use(Vuetify, {
-  theme: false
-})
+Vue.use(Vuetify)
+
 
 import AppCard from './AppCard.vue'
 import AppView from './AppView.vue'

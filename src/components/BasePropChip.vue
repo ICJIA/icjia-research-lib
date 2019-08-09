@@ -1,9 +1,9 @@
 <template>
   <v-btn
-    class="chip"
+    class="chip small"
     small
     depressed
-    round
+    rounded
     @click="$emit('chip-click', $event)"
   >
     <slot></slot>

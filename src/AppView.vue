@@ -1,6 +1,6 @@
 <template>
   <BaseCard :view="true" :external="app.external">
-    <v-card-title primary-title>
+    <v-row class="mx-0 pa-6">
       <h2>
         <span class="small pl-2" style="color: #666">Apps</span>
         <v-icon>chevron_right</v-icon>
@@ -16,26 +16,26 @@
       </BaseButton>
 
       <BaseButton :to="preview ? '' : '/apps'">back</BaseButton>
-    </v-card-title>
+    </v-row>
 
     <v-divider />
 
-    <v-layout row>
+    <v-row class="mx-0">
       <v-flex xs3>
         <v-img :src="app.image">
           <template v-slot:placeholder>
-            <v-layout fill-height align-center justify-center>
+            <v-row class="fill-height" align="center" justify="center">
               <v-progress-circular indeterminate />
-            </v-layout>
+            </v-row>
           </template>
         </v-img>
       </v-flex>
 
       <v-flex xs9>
-        <v-container :class="app.external ? 'pt-1' : ''">
+        <v-container class="px-6" :class="app.external ? 'pt-1' : ''">
           <ExternalContribution v-if="app.external" />
 
-          <h2 class="pb-3 light">About this app</h2>
+          <h2 class="pb-4 light">About this app</h2>
           <BasePropDisplay name="Updated">
             <template>{{ app.date | formatDate }}</template>
           </BasePropDisplay>
@@ -114,7 +114,7 @@
           </BaseInfoBlock>
         </v-container>
       </v-flex>
-    </v-layout>
+    </v-row>
   </BaseCard>
 </template>
 

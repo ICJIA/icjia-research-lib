@@ -1,10 +1,11 @@
 <template>
-  <v-card
-    :class="view ? 'mb-5' : 'ma-3'"
+  <v-sheet
+    :elevation="2"
+    :class="view ? 'mb-12' : 'ma-6'"
     :color="external ? 'rgb(255, 252, 245)' : ''"
   >
     <slot></slot>
-  </v-card>
+  </v-sheet>
 </template>
 
 <script>

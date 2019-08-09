@@ -1,74 +1,68 @@
 <template>
-  <BaseCard :external="article.external">
-    <v-layout row>
+  <BaseCard ref="card" :external="article.external">
+    <v-row class="mx-0">
       <v-img
         :src="article.thumbnail"
         class="hidden-sm-and-down"
-        max-width="240"
+        max-width="200"
       >
         <template v-slot:placeholder>
-          <v-layout fill-height align-center justify-center>
+          <v-row class="fill-height" align="center" justify="center">
             <v-progress-circular indeterminate />
-          </v-layout>
+          </v-row>
         </template>
       </v-img>
-      <v-layout column justify-space-between class="article-body">
-        <div>
-          <v-card-title :class="article.external ? 'pt-1 pb-2' : ''">
-            <v-flex xs12>
-              <ExternalContribution v-if="article.external" />
-            </v-flex>
 
-            <v-layout row wrap>
-              <BaseTitleDisplay
-                :to="preview ? '' : `/articles/${article.slug}`"
+      <v-col class="mx-0 pa-0" align-self="end">
+        <v-container class="px-6" :class="article.external ? 'pt-1 pb-2' : ''">
+          <v-flex xs12>
+            <ExternalContribution v-if="article.external" />
+          </v-flex>
+
+          <v-row class="mx-0">
+            <BaseTitleDisplay :to="preview ? '' : `/articles/${article.slug}`">
+              <template>{{ article.title }}</template>
+            </BaseTitleDisplay>
+
+            <div v-if="article.tags">
+              <BasePropChip
+                v-for="tag of article.tags"
+                :key="tag"
+                @chip-click="$emit('tag-click', $event)"
               >
-                <template>{{ article.title }}</template>
-              </BaseTitleDisplay>
+                <template>{{ tag }}</template>
+              </BasePropChip>
+            </div>
+          </v-row>
+        </v-container>
 
-              <div v-if="article.tags">
-                <BasePropChip
-                  v-for="tag of article.tags"
-                  :key="tag"
-                  @chip-click="$emit('tag-click', $event)"
-                >
-                  <template>{{ tag }}</template>
-                </BasePropChip>
-              </div>
-            </v-layout>
-          </v-card-title>
+        <v-container class="px-6">
+          <BasePropDisplay v-if="article.date" name="Updated">
+            <template>{{ article.date | formatDate }}</template>
+          </BasePropDisplay>
 
-          <v-divider />
+          <BasePropDisplay v-if="article.authors" name="Authors">
+            <span v-for="(author, i) in article.authors" :key="author.title">
+              <template v-if="i > 0">{{
+                article.authors.length > i + 1 ? ', ' : ' and '
+              }}</template>
+              <a @click="$emit('author-click', $event)">{{ author.title }}</a>
+            </span>
+          </BasePropDisplay>
 
-          <v-container class="py-2">
-            <BasePropDisplay v-if="article.date" name="Updated">
-              <template>{{ article.date | formatDate }}</template>
-            </BasePropDisplay>
+          <BasePropDisplay v-if="article.categories" name="Categories">
+            <span v-for="(category, i) in article.categories" :key="category">
+              <template v-if="i > 0">{{ ', ' }}</template>
+              <template>{{ category | capitalize }}</template>
+            </span>
+          </BasePropDisplay>
+        </v-container>
 
-            <BasePropDisplay v-if="article.authors" name="Authors">
-              <span v-for="(author, i) in article.authors" :key="author.title">
-                <template v-if="i > 0">{{
-                  article.authors.length > i + 1 ? ', ' : ' and '
-                }}</template>
-                <a @click="$emit('author-click', $event)">{{ author.title }}</a>
-              </span>
-            </BasePropDisplay>
-
-            <BasePropDisplay v-if="article.categories" name="Categories">
-              <span v-for="(category, i) in article.categories" :key="category">
-                <template v-if="i > 0">{{ ', ' }}</template>
-                <template>{{ category | capitalize }}</template>
-              </span>
-            </BasePropDisplay>
-          </v-container>
-        </div>
-
-        <v-card-actions>
-          <v-spacer></v-spacer>
+        <v-row class="mx-0 px-3 py-3" justify="end">
           <v-btn
             v-if="article.abstract"
+            text
             @click="showAbstract = !showAbstract"
-            flat
           >
             <template>{{ 'abstract' }}</template>
             <v-icon>{{ abstractIcon }}</v-icon>
@@ -80,13 +74,13 @@
           >
             <template>{{ 'more' }}</template>
           </BaseButton>
-        </v-card-actions>
+        </v-row>
 
         <v-slide-y-transition>
           <v-card-text v-if="showAbstract">{{ article.abstract }}</v-card-text>
         </v-slide-y-transition>
-      </v-layout>
-    </v-layout>
+      </v-col>
+    </v-row>
   </BaseCard>
 </template>
 
@@ -128,6 +122,10 @@ export default {
     },
     abstractIcon() {
       return this.showAbstract ? 'keyboard_arrow_down' : 'keyboard_arrow_up'
+    },
+    cardHeight() {
+      console.log(this.$refs)
+      return this.$refs.card.$el.clientHeight
     }
   }
 }

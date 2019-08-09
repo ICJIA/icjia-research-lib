@@ -1,19 +1,19 @@
 <template>
-  <BaseCard :external="app.external">
+  <BaseCard ref="card" :external="app.external">
     <v-img :src="app.image" class="hidden-sm-and-down" aspect-ratio="1.66">
       <template v-slot:placeholder>
-        <v-layout fill-height align-center justify-center>
+        <v-row class="fill-height" align="center" justify="center">
           <v-progress-circular indeterminate />
-        </v-layout>
+        </v-row>
       </template>
     </v-img>
 
-    <v-card-title primary-title :class="app.external ? 'pt-1 pb-2' : ''">
+    <v-container class="px-6" :class="app.external ? 'pt-1 pb-2' : ''">
       <v-flex xs12>
         <ExternalContribution v-if="app.external" />
       </v-flex>
 
-      <v-layout row wrap>
+      <v-row class="py-0 mx-0">
         <BaseTitleDisplay :to="preview ? '' : `/apps/${app.slug}`">
           <template>{{ app.title }}</template>
         </BaseTitleDisplay>
@@ -27,12 +27,10 @@
             <template>{{ tag }}</template>
           </BasePropChip>
         </div>
-      </v-layout>
-    </v-card-title>
+      </v-row>
+    </v-container>
 
-    <v-divider class="hidden-md-and-up pb-2"></v-divider>
-
-    <v-container py-0 px-3>
+    <v-container class="px-6">
       <BasePropDisplay name="Contributors">
         <template v-if="app.contributors">
           <span v-for="(contributor, i) in app.contributors" :key="i">
@@ -63,13 +61,11 @@
       </BasePropDisplay>
     </v-container>
 
-    <v-card-actions>
-      <v-spacer></v-spacer>
-
+    <v-row justify="end" class="px-3 pb-3">
       <BaseButton :to="preview ? null : `/apps/${app.slug}`" icon="more_horiz">
         <template>{{ 'more' }}</template>
       </BaseButton>
-    </v-card-actions>
+    </v-row>
   </BaseCard>
 </template>
 

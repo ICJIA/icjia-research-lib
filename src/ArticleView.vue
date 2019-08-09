@@ -1,19 +1,19 @@
 <template>
-  <div class="mb-5">
+  <div class="mb-12">
     <v-img :height="splashHeight" :src="article.splash">
       <template v-slot:placeholder>
-        <v-layout fill-height align-center justify-center>
+        <v-row class="fill-height" align="center" justify="center">
           <v-progress-circular indeterminate />
-        </v-layout>
+        </v-row>
       </template>
     </v-img>
 
-    <v-layout row wrap>
+    <v-row>
       <v-flex md4 lg3 class="hidden-sm-and-down">
         <div class="article-toc" :class="{ 'article-toc-sticky': isTOCSticky }">
           <ArticleTOC
             v-if="headings"
-            class="mb-5"
+            class="mb-12"
             :headings="headings"
             :activeHeading="activeHeading"
             v-scroll="onScrollTOC"
@@ -22,7 +22,7 @@
           <v-btn
             v-if="article.mainfile"
             block
-            outline
+            outlined
             class="article-download"
             @click="downloadHelper('main')"
           >
@@ -33,7 +33,7 @@
           <v-btn
             v-if="article.extrafile"
             block
-            outline
+            outlined
             class="article-download"
             @click="downloadHelper('extra')"
           >
@@ -44,9 +44,9 @@
       </v-flex>
 
       <v-flex md8 lg9>
-        <v-layout jrow id="article-view">
-          <v-flex xs12 sm10 lg9 offset-sm1 offset-md0 pt-4>
-            <v-layout align-center justify-space-between row>
+        <v-row id="article-view">
+          <v-flex xs12 sm10 lg9 offset-sm1 offset-md0 pt-6>
+            <v-row align="center" justify="space-between">
               <div>
                 <span
                   v-for="(category, i) in article.categories"
@@ -71,15 +71,15 @@
               </div>
 
               <BaseButton :to="preview ? '' : '/articles'">back</BaseButton>
-            </v-layout>
+            </v-row>
 
             <ExternalContribution v-if="article.external" />
 
             <h1 class="article-title">{{ article.title }}</h1>
 
-            <div class="article-abstract my-4">{{ article.abstract }}</div>
+            <div class="article-abstract my-6">{{ article.abstract }}</div>
 
-            <div class="mb-3 uppercase font-oswald">
+            <div class="mb-4 uppercase font-oswald">
               <span v-for="(author, i) in article.authors" :key="i">
                 <template v-if="i > 0">{{
                   article.authors.length > i + 1 ? ', ' : ' and '
@@ -118,7 +118,7 @@
               v-scroll="onScroll"
             />
 
-            <div class="my-5">
+            <div class="my-12">
               <BaseInfoBlock v-if="article.funding" :large="true">
                 <template v-slot:title>{{ 'Funding acknowledgment' }}</template>
                 <template v-slot:text>{{ article.funding }}</template>
@@ -173,9 +173,9 @@
               />
             </template>
           </v-flex>
-        </v-layout>
+        </v-row>
       </v-flex>
-    </v-layout>
+    </v-row>
   </div>
 </template>
 
@@ -388,7 +388,6 @@ export default {
 .article-body >>> blockquote {
   background-color: #ebf6ff;
   border-left: 0.25em solid #466c8c;
-  font-family: 'Lato', sans-serif;
   color: #466c8c;
   padding: 1em 2em;
   margin: 2em 0;
@@ -460,6 +459,7 @@ export default {
 }
 .article-download {
   font-size: 0.8em;
+  margin-bottom: 1em;
   border-color: rgba(0, 0, 0, 0.12);
 }
 .article-title {
@@ -475,7 +475,6 @@ export default {
 .article-toc-sticky {
   position: fixed;
   top: 0;
-  left: 0;
 }
 
 @media screen and (max-width: 600px) {

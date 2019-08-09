@@ -1,52 +1,51 @@
 <template>
-  <BaseCard :external="dataset.external">
-    <v-card-title primary-title>
+  <BaseCard :view="true" :external="dataset.external">
+    <v-row class="mx-0 pa-6">
       <h2>
         <span class="small pl-2" style="color: #666">Datasets</span>
         <v-icon>chevron_right</v-icon>
         <template>{{ dataset.title }}</template>
       </h2>
 
-      <v-spacer />
+      <v-spacer></v-spacer>
 
-      <div class="text-xs-center">
+      <div class="text-center">
         <v-dialog persistent v-model="dialog" width="500">
-          <v-btn slot="activator" class="mr-0" flat>
-            <template>{{ 'Download' }}</template>
-            <v-icon>file_download</v-icon>
-          </v-btn>
+          <template v-slot:activator="{ on }">
+            <v-btn v-on="on" class="mr-0" text>
+              <template>{{ 'Download' }}</template>
+              <v-icon>file_download</v-icon>
+            </v-btn>
+          </template>
 
-          <v-card>
-            <v-card-title class="grey lighten-2">
-              <h3>Did you read the metadata?</h3>
-            </v-card-title>
+          <v-sheet class="font-lato">
+            <v-container pa-6>
+              <h3 class="pb-6">Did you read the metadata?</h3>
+              <template>{{ msgDialog }}</template>
+            </v-container>
 
-            <v-card-text>{{ msgDialog }}</v-card-text>
-
-            <v-divider></v-divider>
-
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn flat class="mr-0" @click="downloadHelper">
+            <v-row class="mx-0 px-3 pb-3" justify="end">
+              <v-btn text class="mr-0" @click="downloadHelper">
                 <template>{{ 'Yes, download' }}</template>
               </v-btn>
 
-              <v-btn flat class="mr-0" @click="dialog = false">Back</v-btn>
-            </v-card-actions>
-          </v-card>
+              <v-btn text class="mr-0" @click="dialog = false">Back</v-btn>
+            </v-row>
+          </v-sheet>
         </v-dialog>
       </div>
 
       <BaseButton :to="preview ? '' : '/datasets'">back</BaseButton>
-    </v-card-title>
+    </v-row>
 
     <v-divider />
 
-    <v-container :class="dataset.external ? 'pt-1' : ''">
+    <v-container class="pa-6" :class="dataset.external ? 'pt-1' : ''">
       <ExternalContribution v-if="dataset.external" />
 
-      <h2 class="mb-3 light">About this dataset</h2>
-      <v-layout row wrap>
+      <h2 class="mb-4 light">About this dataset</h2>
+
+      <v-row class="mx-0">
         <v-flex sm12 md6 lg4>
           <BasePropDisplay name="Updated">
             <template>{{ dataset.date | formatDate }}</template>
@@ -107,10 +106,10 @@
             </ul>
           </BasePropDisplay>
         </v-flex>
-      </v-layout>
+      </v-row>
 
-      <div v-if="dataset.variables" class="hidden-sm-and-down py-4">
-        <h2 class="mb-3 light">Variables</h2>
+      <div v-if="dataset.variables" class="hidden-sm-and-down py-6">
+        <h2 class="mb-4 light">Variables</h2>
         <div ref="variables" class="variables-table font-lato small"></div>
       </div>
 

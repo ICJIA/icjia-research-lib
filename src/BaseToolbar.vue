@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-toolbar id="toolbar" :height="hpixel" fixed scroll-off-screen>
+    <v-app-bar id="toolbar" :height="hpixel" fixed scroll-off-screen>
       <a
         class="hidden-xs-only"
         href="http://www.icjia.state.il.us"
@@ -26,13 +26,13 @@
       <v-btn
         v-if="menu"
         class="hidden-md-and-up"
-        flat
+        text
         icon
         @click="drawer = !drawer"
       >
         <v-icon>menu</v-icon>
       </v-btn>
-    </v-toolbar>
+    </v-app-bar>
 
     <div :style="{ height: hpixel, backgroundColor: '#466c8c' }"></div>
 
@@ -77,17 +77,17 @@ export default {
 a {
   text-decoration: none;
   line-height: 1;
-  color: rgba(0, 0, 0, 0.87);
+  color: rgba(0, 0, 0, 0.87) !important;
 }
 img {
   margin-right: 10px;
 }
 #toolbar {
-  font-family: 'Lato';
+  font-family: 'Lato', sans-serif;
   box-shadow: 0 2px rgba(0, 0, 0, 0.2);
 }
 .slot {
-  font-family: 'Lato';
+  font-family: 'Lato', sans-serif;
   font-size: 0.8em;
   text-transform: uppercase;
   text-align: center;

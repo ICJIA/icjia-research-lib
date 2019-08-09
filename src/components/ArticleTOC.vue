@@ -8,7 +8,7 @@
       <template v-for="heading in headings">
         <router-link :key="heading.id" :to="`#${heading.id}`">
           <div
-            class="large font-lato toc-item py-2 pl-4"
+            class="large font-lato toc-item py-2 pl-6"
             :class="{ 'toc-item-active': heading.id === activeHeading }"
           >
             <template>{{ heading.innerText }}</template>
