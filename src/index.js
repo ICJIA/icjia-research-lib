@@ -10,7 +10,6 @@ import './assets/style.css'
 
 Vue.use(Vuetify)
 
-
 import AppCard from './AppCard.vue'
 import AppView from './AppView.vue'
 import ArticleCard from './ArticleCard.vue'
