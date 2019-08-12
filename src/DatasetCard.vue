@@ -1,11 +1,11 @@
 <template>
   <BaseCard :external="dataset.external">
     <v-container class="px-6" :class="dataset.external ? 'pt-1 pb-2' : ''">
-      <v-flex xs12>
+      <v-col cols="12">
         <ExternalContribution v-if="dataset.external" />
-      </v-flex>
+      </v-col>
 
-      <v-container row wrap py-0>
+      <v-container class="row py-0">
         <BaseTitleDisplay :to="preview ? '' : `/datasets/${dataset.slug}`">
           <template>{{ dataset.title }}</template>
         </BaseTitleDisplay>
@@ -54,7 +54,7 @@
       </BasePropDisplay>
     </v-container>
 
-    <v-row justify="end" class="px-3 pb-3 mx-0">
+    <v-row class="px-3 pb-3 mx-0" justify="end">
       <BaseButton
         :to="preview ? null : `/datasets/${dataset.slug}`"
         icon="more_horiz"

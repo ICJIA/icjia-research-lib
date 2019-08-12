@@ -15,9 +15,9 @@
 
       <v-col class="mx-0 pa-0" align-self="end">
         <v-container class="px-6" :class="article.external ? 'pt-1 pb-2' : ''">
-          <v-flex xs12>
+          <v-col cols="12">
             <ExternalContribution v-if="article.external" />
-          </v-flex>
+          </v-col>
 
           <v-row class="mx-0">
             <BaseTitleDisplay :to="preview ? '' : `/articles/${article.slug}`">

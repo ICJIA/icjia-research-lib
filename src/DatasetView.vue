@@ -19,7 +19,7 @@
           </template>
 
           <v-sheet class="font-lato">
-            <v-container pa-6>
+            <v-container class="pa-6">
               <h3 class="pb-6">Did you read the metadata?</h3>
               <template>{{ msgDialog }}</template>
             </v-container>
@@ -46,7 +46,7 @@
       <h2 class="mb-4 light">About this dataset</h2>
 
       <v-row class="mx-0">
-        <v-flex sm12 md6 lg4>
+        <v-col cols="12" md="6" lg="4">
           <BasePropDisplay name="Updated">
             <template>{{ dataset.date | formatDate }}</template>
           </BasePropDisplay>
@@ -89,9 +89,9 @@
           <BasePropDisplay v-if="dataset.timeperiod" name="Time period">
             <template>{{ dataset.timeperiod | formatTimeperiod }}</template>
           </BasePropDisplay>
-        </v-flex>
+        </v-col>
 
-        <v-flex sm12 md6 lg8>
+        <v-col cols="12" md="6" lg="4">
           <BasePropDisplay v-if="dataset.unit" name="Unit of analysis">
             <template>{{ dataset.unit | capitalize }}</template>
           </BasePropDisplay>
@@ -105,7 +105,7 @@
               <li v-for="note in dataset.notes" :key="note">{{ note }}</li>
             </ul>
           </BasePropDisplay>
-        </v-flex>
+        </v-col>
       </v-row>
 
       <div v-if="dataset.variables" class="hidden-sm-and-down py-6">

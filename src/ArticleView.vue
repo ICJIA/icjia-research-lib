@@ -9,7 +9,7 @@
     </v-img>
 
     <v-row>
-      <v-flex md4 lg3 class="hidden-sm-and-down">
+      <v-col md="4" lg="3" class="hidden-sm-and-down">
         <div class="article-toc" :class="{ 'article-toc-sticky': isTOCSticky }">
           <ArticleTOC
             v-if="headings"
@@ -41,11 +41,18 @@
             <v-icon>get_app</v-icon>
           </v-btn>
         </div>
-      </v-flex>
+      </v-col>
 
-      <v-flex md8 lg9>
+      <v-col md="8" lg="9">
         <v-row id="article-view">
-          <v-flex xs12 sm10 lg9 offset-sm1 offset-md0 pt-6>
+          <v-col
+            class="pt-6"
+            cols="12"
+            sm="10"
+            lg="9"
+            offset-sm="1"
+            offset-md="0"
+          >
             <v-row align="center" justify="space-between">
               <div>
                 <span
@@ -172,9 +179,9 @@
                 v-scroll="onScroll"
               />
             </template>
-          </v-flex>
+          </v-col>
         </v-row>
-      </v-flex>
+      </v-col>
     </v-row>
   </div>
 </template>

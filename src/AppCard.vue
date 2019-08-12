@@ -9,9 +9,9 @@
     </v-img>
 
     <v-container class="px-6" :class="app.external ? 'pt-1 pb-2' : ''">
-      <v-flex xs12>
+      <v-col cols="12">
         <ExternalContribution v-if="app.external" />
-      </v-flex>
+      </v-col>
 
       <v-row class="py-0 mx-0">
         <BaseTitleDisplay :to="preview ? '' : `/apps/${app.slug}`">

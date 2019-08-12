@@ -21,7 +21,7 @@
     <v-divider />
 
     <v-row class="mx-0">
-      <v-flex xs3>
+      <v-col cols="3">
         <v-img :src="app.image">
           <template v-slot:placeholder>
             <v-row class="fill-height" align="center" justify="center">
@@ -29,9 +29,9 @@
             </v-row>
           </template>
         </v-img>
-      </v-flex>
+      </v-col>
 
-      <v-flex xs9>
+      <v-col cols="9">
         <v-container class="px-6" :class="app.external ? 'pt-1' : ''">
           <ExternalContribution v-if="app.external" />
 
@@ -113,7 +113,7 @@
             </template>
           </BaseInfoBlock>
         </v-container>
-      </v-flex>
+      </v-col>
     </v-row>
   </BaseCard>
 </template>
