@@ -15,8 +15,8 @@
       </template>
     </RHBaseToolbar>
 
-    <v-content>
-      <v-row class="controller mx-0" align="start" justify="center">
+    <v-content class="mb-12">
+      <v-row class="controller mx-0" justify="center" no-gutters>
         <h3 class="pt-4">Demo Options</h3>
 
         <v-col cols="12">
@@ -58,77 +58,75 @@
       <v-divider></v-divider>
 
       <template v-if="view">
-        <v-col v-if="contentType === 'article'" cols="12">
-          <RHArticleView
-            :key="`articleView${componentKey}`"
-            :item="article"
-            :downloader="articlesDownloader"
+        <RHArticleView
+          v-if="contentType === 'article'"
+          :key="`articleView${componentKey}`"
+          :item="article"
+          :downloader="articlesDownloader"
+          :preview="preview"
+          @tag-click="onTagClick($event)"
+        />
+
+        <v-col v-else class="mx-auto" cols="12" sm="10" md="8" xl="7">
+          <RHAppView
+            v-if="contentType === 'app'"
+            :key="`appView${componentKey}`"
+            :item="app"
             :preview="preview"
             @tag-click="onTagClick($event)"
           />
+          <RHDatasetView
+            v-if="contentType === 'dataset'"
+            :key="`datasetView${componentKey}`"
+            :item="dataset"
+            :preview="preview"
+            :downloader="datasetsDownloader"
+            @tag-click="onTagClick($event)"
+          />
         </v-col>
-
-        <v-container v-else>
-          <v-row class="mx-0 fill-height" justify="center">
-            <v-col cols="12" sm="10" md="8" xl="6">
-              <RHAppView
-                v-if="contentType === 'app'"
-                :key="`appView${componentKey}`"
-                :item="app"
-                :preview="preview"
-                @tag-click="onTagClick($event)"
-              />
-              <RHDatasetView
-                v-if="contentType === 'dataset'"
-                :key="`datasetView${componentKey}`"
-                :item="dataset"
-                :preview="preview"
-                :downloader="datasetsDownloader"
-                @tag-click="onTagClick($event)"
-              />
-            </v-col>
-          </v-row>
-        </v-container>
       </template>
 
-      <v-container v-else>
-        <v-row class="mx-0" justify="center">
-          <v-col cols="12" sm="10" xl="8">
-            <v-row justify="center">
-              <v-col v-if="contentType === 'app'" cols="12" md="6" lg="4">
-                <RHAppCard
-                  :key="`appCard${componentKey}`"
-                  :item="app"
-                  :preview="preview"
-                  @tag-click="onTagClick($event)"
-                />
-              </v-col>
-
-              <v-col v-if="contentType === 'article'" cols="12" sm="10">
-                <RHArticleCard
-                  :key="`articleCard${componentKey}`"
-                  :item="article"
-                  :preview="preview"
-                  @tag-click="onTagClick($event)"
-                />
-              </v-col>
-            </v-row>
-
-            <v-row v-if="contentType === 'dataset'" justify="center">
-              <v-col cols="12" sm="10" lg="6">
-                <RHDatasetCard
-                  :key="`datasetCard${componentKey}`"
-                  :item="dataset"
-                  :preview="preview"
-                  @tag-click="onTagClick($event)"
-                />
-              </v-col>
-            </v-row>
+      <template v-else>
+        <v-col class="mx-auto" cols="12" sm="10" lg="8" xl="7">
+          <v-col
+            v-if="contentType === 'app'"
+            class="mx-auto pa-0"
+            cols="12"
+            md="6"
+            lg="4"
+          >
+            <RHAppCard
+              :key="`appCard${componentKey}`"
+              :item="app"
+              :preview="preview"
+              @tag-click="onTagClick($event)"
+            />
           </v-col>
-        </v-row>
-      </v-container>
 
-      <div class="mb-12"></div>
+          <v-col v-if="contentType === 'article'" class="mx-auto pa-0">
+            <RHArticleCard
+              :key="`articleCard${componentKey}`"
+              :item="article"
+              :preview="preview"
+              @tag-click="onTagClick($event)"
+            />
+          </v-col>
+
+          <v-col
+            v-if="contentType === 'dataset'"
+            class="mx-auto pa-0"
+            cols="12"
+            lg="6"
+          >
+            <RHDatasetCard
+              :key="`datasetCard${componentKey}`"
+              :item="dataset"
+              :preview="preview"
+              @tag-click="onTagClick($event)"
+            />
+          </v-col>
+        </v-col>
+      </template>
     </v-content>
 
     <RHFooter :agency="footer.agency" :github="footer.github" />

@@ -1,6 +1,6 @@
 <template>
   <BaseCard ref="card" :external="app.external">
-    <v-img :src="app.image" class="hidden-sm-and-down" aspect-ratio="1.66">
+    <v-img :src="app.image" class="hidden-sm-and-down" aspect-ratio="2">
       <template v-slot:placeholder>
         <v-row class="fill-height" align="center" justify="center">
           <v-progress-circular indeterminate />
@@ -8,10 +8,8 @@
       </template>
     </v-img>
 
-    <v-container class="px-6" :class="app.external ? 'pt-1 pb-2' : ''">
-      <v-col cols="12">
-        <ExternalContribution v-if="app.external" />
-      </v-col>
+    <div class="px-6" :class="app.external ? 'pt-0' : 'pt-6'">
+      <ExternalContribution v-if="app.external" />
 
       <v-row class="py-0 mx-0">
         <BaseTitleDisplay :to="preview ? '' : `/apps/${app.slug}`">
@@ -28,9 +26,9 @@
           </BasePropChip>
         </div>
       </v-row>
-    </v-container>
+    </div>
 
-    <v-container class="px-6">
+    <div class="pt-4 px-6">
       <BasePropDisplay name="Contributors">
         <template v-if="app.contributors">
           <span v-for="(contributor, i) in app.contributors" :key="i">
@@ -59,9 +57,9 @@
           <template>{{ category | capitalize }}</template>
         </span>
       </BasePropDisplay>
-    </v-container>
+    </div>
 
-    <v-row justify="end" class="px-3 pb-3">
+    <v-row class="ma-0 px-2 pb-2" justify="end">
       <BaseButton
         :to="preview ? null : `/apps/${app.slug}`"
         icon="mdi-dots-horizontal"

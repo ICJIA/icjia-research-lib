@@ -1,5 +1,5 @@
 <template functional>
-  <h3>
+  <h3 style="padding-top: .15em;">
     <router-link :to="props.to">
       <slot></slot>
     </router-link>

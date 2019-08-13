@@ -1,9 +1,7 @@
 <template>
   <BasePropDisplay>
-    <div class="external">
-      <v-icon class="external">mdi-heart</v-icon>
-      <span>This is an external contribution</span>
-    </div>
+    <v-icon small class="external">mdi-heart</v-icon>
+    <span class="external">This is an external contribution</span>
   </BasePropDisplay>
 </template>
 

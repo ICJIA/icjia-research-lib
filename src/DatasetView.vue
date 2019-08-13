@@ -1,6 +1,6 @@
 <template>
-  <BaseCard :view="true" :external="dataset.external">
-    <v-row class="mx-0 pa-6">
+  <BaseCard :external="dataset.external">
+    <v-row class="mx-0 px-6 py-4">
       <h2>
         <span class="small pl-2" style="color: #666">Datasets</span>
         <v-icon>mdi-chevron-right</v-icon>
@@ -38,15 +38,15 @@
       <BaseButton :to="preview ? '' : '/datasets'">back</BaseButton>
     </v-row>
 
-    <v-divider />
+    <v-divider></v-divider>
 
-    <v-container class="pa-6" :class="dataset.external ? 'pt-1' : ''">
+    <div class="px-6 pb-6" :class="dataset.external ? 'pt-0' : 'pt-6'">
       <ExternalContribution v-if="dataset.external" />
 
       <h2 class="mb-4 light">About this dataset</h2>
 
       <v-row class="mx-0">
-        <v-col cols="12" md="6" lg="4">
+        <v-col class="py-0" cols="12" md="6" lg="4">
           <BasePropDisplay name="Updated">
             <template>{{ dataset.date | formatDate }}</template>
           </BasePropDisplay>
@@ -91,7 +91,7 @@
           </BasePropDisplay>
         </v-col>
 
-        <v-col cols="12" md="6" lg="4">
+        <v-col class="py-0" cols="12" md="6" lg="4">
           <BasePropDisplay v-if="dataset.unit" name="Unit of analysis">
             <template>{{ dataset.unit | capitalize }}</template>
           </BasePropDisplay>
@@ -142,7 +142,7 @@
           </ul>
         </template>
       </BaseInfoBlock>
-    </v-container>
+    </div>
   </BaseCard>
 </template>
 

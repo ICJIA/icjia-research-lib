@@ -14,12 +14,10 @@
       </v-img>
 
       <v-col class="mx-0 pa-0" align-self="end">
-        <v-container class="px-6" :class="article.external ? 'pt-1 pb-2' : ''">
-          <v-col cols="12">
-            <ExternalContribution v-if="article.external" />
-          </v-col>
+        <div class="px-6" :class="article.external ? 'pt-0' : 'pt-6'">
+          <ExternalContribution v-if="article.external" />
 
-          <v-row class="mx-0">
+          <v-row class="py-0 mx-0">
             <BaseTitleDisplay :to="preview ? '' : `/articles/${article.slug}`">
               <template>{{ article.title }}</template>
             </BaseTitleDisplay>
@@ -34,9 +32,9 @@
               </BasePropChip>
             </div>
           </v-row>
-        </v-container>
+        </div>
 
-        <v-container class="px-6">
+        <div class="pt-4 px-6">
           <BasePropDisplay v-if="article.date" name="Updated">
             <template>{{ article.date | formatDate }}</template>
           </BasePropDisplay>
@@ -56,9 +54,9 @@
               <template>{{ category | capitalize }}</template>
             </span>
           </BasePropDisplay>
-        </v-container>
+        </div>
 
-        <v-row class="mx-0 px-3 py-3" justify="end">
+        <v-row class="ma-0 px-2 pb-2" justify="end">
           <v-btn
             v-if="article.abstract"
             text
