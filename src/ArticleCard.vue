@@ -59,6 +59,7 @@
         <v-row class="ma-0 px-2 pb-2" justify="end">
           <v-btn
             v-if="article.abstract"
+            :aria-label="showAbstract ? 'Hide abstract' : 'Show abstract'"
             text
             @click="showAbstract = !showAbstract"
           >
@@ -67,6 +68,7 @@
           </v-btn>
 
           <BaseButton
+            label="More"
             :to="preview ? null : `/articles/${article.slug}`"
             icon="mdi-dots-horizontal"
           >

@@ -9,13 +9,20 @@
 
       <v-spacer></v-spacer>
 
-      <BaseButton :href="app.url" icon="mdi-play">Launch</BaseButton>
+      <BaseButton label="Launch" :href="app.url" icon="mdi-play">
+        <template>{{ 'Launch' }}</template>
+      </BaseButton>
 
-      <BaseButton v-if="app.src" :href="app.src" icon="code">
+      <BaseButton
+        v-if="app.src"
+        label="Source code"
+        :href="app.src"
+        icon="code"
+      >
         <template>{{ 'Source code' }}</template>
       </BaseButton>
 
-      <BaseButton :to="preview ? '' : '/apps'">back</BaseButton>
+      <BaseButton label="Back" :to="preview ? '' : '/apps'">back</BaseButton>
     </v-row>
 
     <v-divider></v-divider>

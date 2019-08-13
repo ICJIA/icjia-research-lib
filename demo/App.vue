@@ -20,7 +20,12 @@
         <h3 class="pt-4">Demo Options</h3>
 
         <v-col cols="12">
-          <v-radio-group v-model="contentType" class="justify-center" row>
+          <v-radio-group
+            v-model="contentType"
+            class="justify-center"
+            label="Content type"
+            row
+          >
             <v-radio label="App" value="app"></v-radio>
             <v-radio label="Article" value="article"></v-radio>
             <v-radio label="Dataset" value="dataset"></v-radio>
@@ -211,7 +216,7 @@ export default {
   font-family: 'Lato', sans-serif;
 }
 
-.controller >>> label.v-label.theme--light,
+.controller >>> .v-label.theme--light,
 .controller >>> i.v-icon.material-icons.theme--light {
   color: white;
 }

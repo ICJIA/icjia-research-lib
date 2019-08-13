@@ -54,6 +54,7 @@
 
     <v-row class="ma-0 px-2 pb-2" justify="end">
       <BaseButton
+        label="More"
         :to="preview ? null : `/datasets/${dataset.slug}`"
         icon="mdi-dots-horizontal"
       >

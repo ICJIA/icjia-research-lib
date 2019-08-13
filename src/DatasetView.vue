@@ -35,7 +35,9 @@
         </v-dialog>
       </div>
 
-      <BaseButton :to="preview ? '' : '/datasets'">back</BaseButton>
+      <BaseButton label="Back" :to="preview ? '' : '/datasets'">
+        <template>{{ 'back' }}</template>
+      </BaseButton>
     </v-row>
 
     <v-divider></v-divider>

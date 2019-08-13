@@ -77,7 +77,9 @@
                 </template>
               </div>
 
-              <BaseButton :to="preview ? '' : '/articles'">back</BaseButton>
+              <BaseButton label="Back" :to="preview ? '' : '/articles'">
+                <template>{{ 'back' }}</template>
+              </BaseButton>
             </v-row>
 
             <ExternalContribution v-if="article.external" />
