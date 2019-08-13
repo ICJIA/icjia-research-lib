@@ -12,7 +12,7 @@
 
       <router-link to="/">
         <v-toolbar-title>
-          <template>{{ 'RESEARCH HUB' }}</template>
+          <span style="letter-spacing: 0.03em;">RESEARCH HUB</span>
           <slot name="titleExtra"></slot>
         </v-toolbar-title>
       </router-link>
