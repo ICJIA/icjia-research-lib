@@ -1,7 +1,7 @@
 <template>
   <BasePropDisplay>
     <div class="external">
-      <v-icon class="external">favorite</v-icon>
+      <v-icon class="external">mdi-heart</v-icon>
       <span>This is an external contribution</span>
     </div>
   </BasePropDisplay>

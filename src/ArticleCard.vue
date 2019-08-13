@@ -70,7 +70,7 @@
 
           <BaseButton
             :to="preview ? null : `/articles/${article.slug}`"
-            icon="more_horiz"
+            icon="mdi-dots-horizontal"
           >
             <template>{{ 'more' }}</template>
           </BaseButton>
@@ -121,7 +121,7 @@ export default {
       return this.item
     },
     abstractIcon() {
-      return this.showAbstract ? 'keyboard_arrow_down' : 'keyboard_arrow_up'
+      return this.showAbstract ? 'mdi-chevron-down' : 'mdi-chevron-up'
     },
     cardHeight() {
       console.log(this.$refs)

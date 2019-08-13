@@ -62,7 +62,10 @@
     </v-container>
 
     <v-row justify="end" class="px-3 pb-3">
-      <BaseButton :to="preview ? null : `/apps/${app.slug}`" icon="more_horiz">
+      <BaseButton
+        :to="preview ? null : `/apps/${app.slug}`"
+        icon="mdi-dots-horizontal"
+      >
         <template>{{ 'more' }}</template>
       </BaseButton>
     </v-row>

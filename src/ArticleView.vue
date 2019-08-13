@@ -27,7 +27,7 @@
             @click="downloadHelper('main')"
           >
             <template>{{ article.mainfiletype }}</template>
-            <v-icon>get_app</v-icon>
+            <v-icon>mdi-download</v-icon>
           </v-btn>
 
           <v-btn
@@ -38,7 +38,7 @@
             @click="downloadHelper('extra')"
           >
             <template>{{ 'appendix' }}</template>
-            <v-icon>get_app</v-icon>
+            <v-icon>mdi-download</v-icon>
           </v-btn>
         </div>
       </v-col>
@@ -100,7 +100,9 @@
               </span>
 
               <span class="mx-2">|</span>
-              <v-icon id="article-print" @click="printArticle">fa-print</v-icon>
+              <v-icon id="article-print" @click="printArticle">
+                mdi-printer
+              </v-icon>
             </div>
 
             <BaseInfoBlock v-if="hasAuthorInfo" :large="true">

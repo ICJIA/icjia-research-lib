@@ -3,13 +3,13 @@
     <v-row class="mx-0 pa-6">
       <h2>
         <span class="small pl-2" style="color: #666">Apps</span>
-        <v-icon>chevron_right</v-icon>
+        <v-icon>mdi-chevron-right</v-icon>
         <template>{{ app.title }}</template>
       </h2>
 
       <v-spacer />
 
-      <BaseButton :href="app.url" icon="play_arrow">Launch</BaseButton>
+      <BaseButton :href="app.url" icon="mdi-play">Launch</BaseButton>
 
       <BaseButton v-if="app.src" :href="app.src" icon="code">
         <template>{{ 'Source code' }}</template>

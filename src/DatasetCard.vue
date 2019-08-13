@@ -57,7 +57,7 @@
     <v-row class="px-3 pb-3 mx-0" justify="end">
       <BaseButton
         :to="preview ? null : `/datasets/${dataset.slug}`"
-        icon="more_horiz"
+        icon="mdi-dots-horizontal"
       >
         <template>{{ 'more' }}</template>
       </BaseButton>

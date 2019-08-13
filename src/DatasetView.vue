@@ -3,7 +3,7 @@
     <v-row class="mx-0 pa-6">
       <h2>
         <span class="small pl-2" style="color: #666">Datasets</span>
-        <v-icon>chevron_right</v-icon>
+        <v-icon>mdi-chevron-right</v-icon>
         <template>{{ dataset.title }}</template>
       </h2>
 
@@ -14,7 +14,7 @@
           <template v-slot:activator="{ on }">
             <v-btn v-on="on" class="mr-0" text>
               <template>{{ 'Download' }}</template>
-              <v-icon>file_download</v-icon>
+              <v-icon>mdi-download</v-icon>
             </v-btn>
           </template>
 
