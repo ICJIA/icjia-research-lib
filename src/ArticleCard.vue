@@ -130,9 +130,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.article-body {
-  width: 100px;
-}
-</style>
