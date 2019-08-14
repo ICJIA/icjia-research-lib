@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Vuetify from 'vuetify/lib'
-import '../src/assets/style.css'
+import '../src/style.css'
 
 import App from './App.vue'
 import RHAppCard from '../src/AppCard.vue'
