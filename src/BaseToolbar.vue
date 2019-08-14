@@ -47,7 +47,10 @@
 <script>
 export default {
   props: {
-    menu: Boolean,
+    menu: {
+      type: Boolean,
+      default: true
+    },
     logoPath: {
       type: String,
       default: ''
