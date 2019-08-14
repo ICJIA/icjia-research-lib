@@ -1,21 +1,15 @@
-<template>
-  <BasePropDisplay>
-    <v-icon small class="external">mdi-heart</v-icon>
-    <span class="external">This is an external contribution</span>
-  </BasePropDisplay>
+<template functional>
+  <div class="pt-1 font-lato">
+    <i
+      aria-hidden="true"
+      class="v-icon notranslate external mdi mdi-heart"
+      style="font-size: 16px;"
+    ></i>
+    <span class="small external">This is an external contribution</span>
+  </div>
 </template>
 
-<script>
-import BasePropDisplay from './BasePropDisplay'
-
-export default {
-  components: {
-    BasePropDisplay
-  }
-}
-</script>
-
-<style>
+<style scoped>
 .external {
   color: orangered !important;
 }
