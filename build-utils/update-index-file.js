@@ -11,7 +11,6 @@ const indexFileContent = `\
 
 import Vue from 'vue'
 import Vuetify from 'vuetify/lib'
-import './assets/style.css'
 
 Vue.use(Vuetify)
 

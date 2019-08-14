@@ -76,7 +76,7 @@ function renameIndex(componentName) {
 }
 
 function exportCSS() {
-  const srcPath = getPath('../dist/index.css')
+  const srcPath = getPath('../src/style.css')
   const destPath = getPath('../lib/index.css')
 
   try {
