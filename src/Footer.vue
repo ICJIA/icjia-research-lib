@@ -1,5 +1,5 @@
 <template>
-  <v-footer height="auto">
+  <v-footer id="footer" height="auto">
     <div class="footer-content">
       <template>{{ '© ' + year + ' ' }}</template>
       <a :href="agency.url" target="_blank" rel="noreferrer">
@@ -28,16 +28,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
-
-.footer-content {
-  width: 100% !important;
-  text-align: center !important;
-}
-</style>

@@ -1,5 +1,5 @@
 <template>
-  <BaseCard :external="dataset.external">
+  <BaseCard id="dataset-view" :external="dataset.external">
     <v-row class="mx-0 px-6 py-4">
       <h2>
         <span class="small pl-2" style="color: #666">Datasets</span>
@@ -223,30 +223,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.variables-table {
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
-.variables-table >>> table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-.variables-table >>> table th {
-  font-weight: 600;
-}
-.variables-table >>> table td,
-.variables-table >>> table th {
-  border: 1px solid grey;
-  padding: 6px 13px;
-}
-.variables-table >>> table tr {
-  background-color: #fff;
-  border-top: 1px solid #c6cbd1;
-}
-.variables-table >>> table tr:nth-child(2n) {
-  background-color: #f6f8fa;
-}
-</style>

@@ -75,24 +75,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-a {
-  text-decoration: none;
-  line-height: 1;
-  color: rgba(0, 0, 0, 0.87) !important;
-}
-img {
-  margin-right: 10px;
-}
-#toolbar {
-  font-family: 'Lato', sans-serif;
-  box-shadow: 0 2px rgba(0, 0, 0, 0.2);
-}
-.slot {
-  font-family: 'Lato', sans-serif;
-  font-size: 0.8em;
-  text-transform: uppercase;
-  text-align: center;
-}
-</style>
