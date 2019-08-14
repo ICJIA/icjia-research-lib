@@ -8,9 +8,3 @@
     <span class="small external">This is an external contribution</span>
   </div>
 </template>
-
-<style scoped>
-.external {
-  color: orangered !important;
-}
-</style>
