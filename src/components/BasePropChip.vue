@@ -16,6 +16,6 @@
   margin: 4px;
   min-width: 0;
   text-transform: uppercase;
-  letter-spacing: 0.01;
+  letter-spacing: 0.01em;
 }
 </style>
