@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <RHBaseToolbar :menu="true">
+    <RHBaseToolbar>
       <template v-slot:titleExtra>
         <span class="light"> Library Demo</span>
       </template>
@@ -195,7 +195,7 @@ export default {
       this.componentKey += 1
     },
     onTagClick(x) {
-      alert(x)
+      alert(x.target.innerText)
     },
     articlesDownloader(type) {
       const file = this.article[`${type}file`]
