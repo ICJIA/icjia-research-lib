@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-app-bar id="toolbar" :height="hpixel" fixed scroll-off-screen>
+    <v-app-bar id="toolbar" :height="hpixel" fixed hide-on-scroll>
       <a
         class="hidden-xs-only"
         href="http://www.icjia.state.il.us"
