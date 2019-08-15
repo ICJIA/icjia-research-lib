@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Vuetify from 'vuetify/lib'
-import '../src/assets/main.styl'
-import '../src/assets/style.css'
+import '../src/style.css'
 
 import App from './App.vue'
 import RHAppCard from '../src/AppCard.vue'
@@ -16,10 +15,14 @@ import RHFooter from '../src/Footer.vue'
 
 Vue.config.productionTip = false
 Vue.use(Router)
-Vue.use(Vuetify, { theme: false })
+Vue.use(Vuetify)
 
 const router = new Router({
   mode: 'history'
+})
+
+const vuetify = new Vuetify({
+  theme: { disable: true }
 })
 
 const Components = {
@@ -39,5 +42,6 @@ Object.keys(Components).forEach(name => {
 
 new Vue({
   router,
+  vuetify,
   render: h => h(App)
 }).$mount(`#app`)

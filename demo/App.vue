@@ -1,132 +1,138 @@
 <template>
   <v-app>
-    <RHBaseToolbar :menu="true">
+    <RHBaseToolbar>
       <template v-slot:titleExtra>
         <span class="light"> Library Demo</span>
       </template>
       <template v-slot:toolbarItems>
-        <v-btn v-for="view in views" :key="view" flat>{{ view }}</v-btn>
+        <v-btn v-for="view in views" :key="view" text>{{ view }}</v-btn>
       </template>
 
       <template v-slot:toolbarDrawerItems>
-        <v-list-tile v-for="(view, i) in views" :key="i">
-          <v-list-tile-title>{{ view }}</v-list-tile-title>
-        </v-list-tile>
+        <v-list-item v-for="(view, i) in views" :key="i">
+          <v-list-item-title>{{ view }}</v-list-item-title>
+        </v-list-item>
       </template>
     </RHBaseToolbar>
 
-    <v-layout justify-center row wrap class="controller">
-      <h3 class="pt-3">Demo Options</h3>
+    <v-content class="mb-12">
+      <v-row class="controller mx-0" justify="center" no-gutters>
+        <h3 class="pt-4">Demo Options</h3>
 
-      <v-flex xs12>
-        <v-radio-group v-model="contentType" row class="justify-center">
-          <v-radio label="App" value="app"></v-radio>
-          <v-radio label="Article" value="article"></v-radio>
-          <v-radio label="Dataset" value="dataset"></v-radio>
-        </v-radio-group>
-      </v-flex>
+        <v-col cols="12">
+          <v-radio-group
+            v-model="contentType"
+            class="justify-center"
+            label="Content type"
+            row
+          >
+            <v-radio label="App" value="app"></v-radio>
+            <v-radio label="Article" value="article"></v-radio>
+            <v-radio label="Dataset" value="dataset"></v-radio>
+          </v-radio-group>
+        </v-col>
 
-      <v-flex xs9 md2>
-        <v-switch
-          v-model="external"
-          class="justify-center"
-          :label="`External contribution: ${external.toString()}`"
-          :disabled="contentType === 'author'"
-        ></v-switch>
-      </v-flex>
+        <v-col cols="9" md="2">
+          <v-switch
+            v-model="external"
+            class="justify-center"
+            :label="`External contribution: ${external.toString()}`"
+            :disabled="contentType === 'author'"
+          ></v-switch>
+        </v-col>
 
-      <v-flex xs9 md2>
-        <v-switch
-          v-model="preview"
-          class="justify-center"
-          :label="`Preview mode: ${preview.toString()}`"
-          :disabled="contentType === 'author'"
-        ></v-switch>
-      </v-flex>
+        <v-col cols="9" md="2">
+          <v-switch
+            v-model="preview"
+            class="justify-center"
+            :label="`Preview mode: ${preview.toString()}`"
+            :disabled="contentType === 'author'"
+          ></v-switch>
+        </v-col>
 
-      <v-flex xs9 md2>
-        <v-switch
-          v-model="view"
-          class="justify-center"
-          :label="`Full view: ${view.toString()}`"
-          :disabled="contentType === 'author'"
-        ></v-switch>
-      </v-flex>
-    </v-layout>
+        <v-col cols="9" md="2">
+          <v-switch
+            v-model="view"
+            class="justify-center"
+            :label="`Full view: ${view.toString()}`"
+            :disabled="contentType === 'author'"
+          ></v-switch>
+        </v-col>
+      </v-row>
 
-    <v-divider></v-divider>
+      <v-divider></v-divider>
 
-    <template v-if="view">
-      <v-flex v-if="contentType === 'article'" xs12>
+      <template v-if="view">
         <RHArticleView
+          v-if="contentType === 'article'"
           :key="`articleView${componentKey}`"
           :item="article"
           :downloader="articlesDownloader"
           :preview="preview"
           @tag-click="onTagClick($event)"
         />
-      </v-flex>
 
-      <v-container v-else>
-        <v-layout justify-center>
-          <v-flex xs12 sm10 md8>
-            <RHAppView
-              v-if="contentType === 'app'"
-              :key="`appView${componentKey}`"
+        <v-col v-else class="mx-auto" cols="12" sm="10" md="8" xl="7">
+          <RHAppView
+            v-if="contentType === 'app'"
+            :key="`appView${componentKey}`"
+            :item="app"
+            :preview="preview"
+            @tag-click="onTagClick($event)"
+          />
+          <RHDatasetView
+            v-if="contentType === 'dataset'"
+            :key="`datasetView${componentKey}`"
+            :item="dataset"
+            :preview="preview"
+            :downloader="datasetsDownloader"
+            @tag-click="onTagClick($event)"
+          />
+        </v-col>
+      </template>
+
+      <template v-else>
+        <v-col class="mx-auto" cols="12" sm="10" lg="8" xl="7">
+          <v-col
+            v-if="contentType === 'app'"
+            class="mx-auto pa-0"
+            cols="12"
+            md="6"
+            lg="4"
+          >
+            <RHAppCard
+              :key="`appCard${componentKey}`"
               :item="app"
               :preview="preview"
               @tag-click="onTagClick($event)"
             />
-            <RHDatasetView
-              v-if="contentType === 'dataset'"
-              :key="`datasetView${componentKey}`"
-              :item="dataset"
+          </v-col>
+
+          <v-col v-if="contentType === 'article'" class="mx-auto pa-0">
+            <RHArticleCard
+              :key="`articleCard${componentKey}`"
+              :item="article"
               :preview="preview"
-              :downloader="datasetsDownloader"
               @tag-click="onTagClick($event)"
             />
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </template>
+          </v-col>
 
-    <v-container v-else>
-      <v-layout row wrap justify-center>
-        <v-flex xs12 sm10 xl8>
-          <v-layout v-if="contentType === 'app'" row wrap justify-center>
-            <v-flex xs12 md6 lg4>
-              <RHAppCard
-                :key="`appCard${componentKey}`"
-                :item="app"
-                :preview="preview"
-                @tag-click="onTagClick($event)"
-              />
-            </v-flex>
-          </v-layout>
-
-          <RHArticleCard
-            v-if="contentType === 'article'"
-            :key="`articleCard${componentKey}`"
-            :item="article"
-            :preview="preview"
-            @tag-click="onTagClick($event)"
-          />
-
-          <v-layout v-if="contentType === 'dataset'" row wrap justify-center>
-            <v-flex xs12 xl6>
-              <RHDatasetCard
-                :key="`datasetCard${componentKey}`"
-                :item="dataset"
-                :preview="preview"
-                @tag-click="onTagClick($event)"
-              />
-            </v-flex>
-          </v-layout>
-        </v-flex>
-      </v-layout>
-    </v-container>
-
-    <div class="mb-5"></div>
+          <v-col
+            v-if="contentType === 'dataset'"
+            class="mx-auto pa-0"
+            cols="12"
+            lg="6"
+          >
+            <RHDatasetCard
+              :key="`datasetCard${componentKey}`"
+              :item="dataset"
+              :preview="preview"
+              @tag-click="onTagClick($event)"
+            />
+          </v-col>
+        </v-col>
+      </template>
+    </v-content>
 
     <RHFooter :agency="footer.agency" :github="footer.github" />
   </v-app>
@@ -150,7 +156,7 @@ export default {
         },
         github: {
           url: 'https://github.com/icjia/icjia-research-lib',
-          version: '0.3.1'
+          version: '0.4.0'
         }
       },
       preview: false,
@@ -189,7 +195,7 @@ export default {
       this.componentKey += 1
     },
     onTagClick(x) {
-      alert(x)
+      alert(x.target.innerText)
     },
     articlesDownloader(type) {
       const file = this.article[`${type}file`]
@@ -207,9 +213,10 @@ export default {
 .controller {
   background-color: #466c8c;
   color: white !important;
+  font-family: 'Lato', sans-serif;
 }
 
-.controller >>> label.v-label.theme--light,
+.controller >>> .v-label.theme--light,
 .controller >>> i.v-icon.material-icons.theme--light {
   color: white;
 }

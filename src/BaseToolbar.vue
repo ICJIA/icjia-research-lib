@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-toolbar id="toolbar" :height="hpixel" fixed scroll-off-screen>
+    <v-app-bar id="toolbar" :height="hpixel" fixed scroll-off-screen>
       <a
         class="hidden-xs-only"
         href="http://www.icjia.state.il.us"
@@ -12,7 +12,7 @@
 
       <router-link to="/">
         <v-toolbar-title>
-          <template>{{ 'RESEARCH HUB' }}</template>
+          <span style="letter-spacing: 0.03em;">RESEARCH HUB</span>
           <slot name="titleExtra"></slot>
         </v-toolbar-title>
       </router-link>
@@ -26,13 +26,13 @@
       <v-btn
         v-if="menu"
         class="hidden-md-and-up"
-        flat
+        text
         icon
         @click="drawer = !drawer"
       >
-        <v-icon>menu</v-icon>
+        <v-icon>mdi-menu</v-icon>
       </v-btn>
-    </v-toolbar>
+    </v-app-bar>
 
     <div :style="{ height: hpixel, backgroundColor: '#466c8c' }"></div>
 
@@ -47,7 +47,10 @@
 <script>
 export default {
   props: {
-    menu: Boolean,
+    menu: {
+      type: Boolean,
+      default: true
+    },
     logoPath: {
       type: String,
       default: ''
@@ -72,24 +75,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-a {
-  text-decoration: none;
-  line-height: 1;
-  color: rgba(0, 0, 0, 0.87);
-}
-img {
-  margin-right: 10px;
-}
-#toolbar {
-  font-family: 'Lato';
-  box-shadow: 0 2px rgba(0, 0, 0, 0.2);
-}
-.slot {
-  font-family: 'Lato';
-  font-size: 0.8em;
-  text-transform: uppercase;
-  text-align: center;
-}
-</style>

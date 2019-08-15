@@ -11,12 +11,8 @@ const indexFileContent = `\
 
 import Vue from 'vue'
 import Vuetify from 'vuetify/lib'
-import './assets/main.styl'
-import './assets/style.css'
 
-Vue.use(Vuetify, {
-  theme: false
-})
+Vue.use(Vuetify)
 
 ${componentNames
   .map(componentName => `import ${componentName} from './${componentName}.vue'`)

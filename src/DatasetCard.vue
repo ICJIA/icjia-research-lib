@@ -1,11 +1,9 @@
 <template>
   <BaseCard :external="dataset.external">
-    <v-card-title primary-title :class="dataset.external ? 'pt-1 pb-2' : ''">
-      <v-flex xs12>
-        <ExternalContribution v-if="dataset.external" />
-      </v-flex>
+    <div class="px-6" :class="dataset.external ? 'pt-0' : 'pt-6'">
+      <ExternalContribution v-if="dataset.external" />
 
-      <v-layout row wrap>
+      <v-row class="py-0 mx-0">
         <BaseTitleDisplay :to="preview ? '' : `/datasets/${dataset.slug}`">
           <template>{{ dataset.title }}</template>
         </BaseTitleDisplay>
@@ -19,12 +17,10 @@
             <template>{{ tag }}</template>
           </BasePropChip>
         </div>
-      </v-layout>
-    </v-card-title>
+      </v-row>
+    </div>
 
-    <v-divider />
-
-    <v-container class="py-2">
+    <div class="pt-4 px-6">
       <BasePropDisplay name="Updated">
         <template>{{ dataset.date | formatDate }}</template>
       </BasePropDisplay>
@@ -54,16 +50,17 @@
           <template>{{ category | capitalize }}</template>
         </span>
       </BasePropDisplay>
-    </v-container>
+    </div>
 
-    <v-container class="pa-0 text-xs-right">
+    <v-row class="ma-0 px-2 pb-2" justify="end">
       <BaseButton
+        label="More"
         :to="preview ? null : `/datasets/${dataset.slug}`"
-        icon="more_horiz"
+        icon="mdi-dots-horizontal"
       >
         <template>{{ 'more' }}</template>
       </BaseButton>
-    </v-container>
+    </v-row>
   </BaseCard>
 </template>
 

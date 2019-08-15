@@ -1,53 +1,54 @@
 <template>
-  <BaseCard :external="dataset.external">
-    <v-card-title primary-title>
+  <BaseCard id="dataset-view" :external="dataset.external">
+    <v-row class="mx-0 px-6 py-4">
       <h2>
         <span class="small pl-2" style="color: #666">Datasets</span>
-        <v-icon>chevron_right</v-icon>
+        <v-icon>mdi-chevron-right</v-icon>
         <template>{{ dataset.title }}</template>
       </h2>
 
-      <v-spacer />
+      <v-spacer></v-spacer>
 
-      <div class="text-xs-center">
+      <div class="text-center">
         <v-dialog persistent v-model="dialog" width="500">
-          <v-btn slot="activator" class="mr-0" flat>
-            <template>{{ 'Download' }}</template>
-            <v-icon>file_download</v-icon>
-          </v-btn>
+          <template v-slot:activator="{ on }">
+            <v-btn v-on="on" class="mr-0" text>
+              <template>{{ 'Download' }}</template>
+              <v-icon>mdi-download</v-icon>
+            </v-btn>
+          </template>
 
-          <v-card>
-            <v-card-title class="grey lighten-2">
-              <h3>Did you read the metadata?</h3>
-            </v-card-title>
+          <v-sheet class="font-lato">
+            <v-container class="pa-6">
+              <h3 class="pb-6">Did you read the metadata?</h3>
+              <template>{{ msgDialog }}</template>
+            </v-container>
 
-            <v-card-text>{{ msgDialog }}</v-card-text>
-
-            <v-divider></v-divider>
-
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn flat class="mr-0" @click="downloadHelper">
+            <v-row class="mx-0 px-3 pb-3" justify="end">
+              <v-btn text class="mr-0" @click="downloadHelper">
                 <template>{{ 'Yes, download' }}</template>
               </v-btn>
 
-              <v-btn flat class="mr-0" @click="dialog = false">Back</v-btn>
-            </v-card-actions>
-          </v-card>
+              <v-btn text class="mr-0" @click="dialog = false">Back</v-btn>
+            </v-row>
+          </v-sheet>
         </v-dialog>
       </div>
 
-      <BaseButton :to="preview ? '' : '/datasets'">back</BaseButton>
-    </v-card-title>
+      <BaseButton label="Back" :to="preview ? '' : '/datasets'">
+        <template>{{ 'back' }}</template>
+      </BaseButton>
+    </v-row>
 
-    <v-divider />
+    <v-divider></v-divider>
 
-    <v-container :class="dataset.external ? 'pt-1' : ''">
+    <div class="px-6 pb-6" :class="dataset.external ? 'pt-0' : 'pt-6'">
       <ExternalContribution v-if="dataset.external" />
 
-      <h2 class="mb-3 light">About this dataset</h2>
-      <v-layout row wrap>
-        <v-flex sm12 md6 lg4>
+      <h2 class="mb-4 light">About this dataset</h2>
+
+      <v-row class="mx-0">
+        <v-col class="py-0" cols="12" md="6" lg="4">
           <BasePropDisplay name="Updated">
             <template>{{ dataset.date | formatDate }}</template>
           </BasePropDisplay>
@@ -90,9 +91,9 @@
           <BasePropDisplay v-if="dataset.timeperiod" name="Time period">
             <template>{{ dataset.timeperiod | formatTimeperiod }}</template>
           </BasePropDisplay>
-        </v-flex>
+        </v-col>
 
-        <v-flex sm12 md6 lg8>
+        <v-col class="py-0" cols="12" md="6" lg="4">
           <BasePropDisplay v-if="dataset.unit" name="Unit of analysis">
             <template>{{ dataset.unit | capitalize }}</template>
           </BasePropDisplay>
@@ -106,11 +107,11 @@
               <li v-for="note in dataset.notes" :key="note">{{ note }}</li>
             </ul>
           </BasePropDisplay>
-        </v-flex>
-      </v-layout>
+        </v-col>
+      </v-row>
 
-      <div v-if="dataset.variables" class="hidden-sm-and-down py-4">
-        <h2 class="mb-3 light">Variables</h2>
+      <div v-if="dataset.variables" class="hidden-sm-and-down py-6">
+        <h2 class="mb-4 light">Variables</h2>
         <div ref="variables" class="variables-table font-lato small"></div>
       </div>
 
@@ -143,7 +144,7 @@
           </ul>
         </template>
       </BaseInfoBlock>
-    </v-container>
+    </div>
   </BaseCard>
 </template>
 
@@ -222,30 +223,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.variables-table {
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
-.variables-table >>> table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-.variables-table >>> table th {
-  font-weight: 600;
-}
-.variables-table >>> table td,
-.variables-table >>> table th {
-  border: 1px solid grey;
-  padding: 6px 13px;
-}
-.variables-table >>> table tr {
-  background-color: #fff;
-  border-top: 1px solid #c6cbd1;
-}
-.variables-table >>> table tr:nth-child(2n) {
-  background-color: #f6f8fa;
-}
-</style>

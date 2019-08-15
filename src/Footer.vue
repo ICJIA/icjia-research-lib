@@ -1,18 +1,16 @@
 <template>
-  <v-footer height="auto">
-    <v-layout justify-center row wrap>
-      <v-flex text-xs-center>
-        <template>{{ '© ' + year + ' ' }}</template>
-        <a :href="agency.url" target="_blank" rel="noreferrer">
-          <template>{{ agency.name }}</template>
-        </a>
-        <template>{{ ' | ' }}</template>
-        <a :href="github.url" target="_blank" rel="noreferrer">
-          <template>{{ github.version + ' ' }}</template>
-          <v-icon>fa fa-github</v-icon>
-        </a>
-      </v-flex>
-    </v-layout>
+  <v-footer id="footer" height="auto">
+    <div class="footer-content">
+      <template>{{ '© ' + year + ' ' }}</template>
+      <a :href="agency.url" target="_blank" rel="noreferrer">
+        <template>{{ agency.name }}</template>
+      </a>
+      <template>{{ ' | ' }}</template>
+      <a :href="github.url" target="_blank" rel="noreferrer">
+        <template>{{ github.version + ' ' }}</template>
+        <v-icon>mdi-github-circle</v-icon>
+      </a>
+    </div>
   </v-footer>
 </template>
 
@@ -30,11 +28,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
-</style>
