@@ -140,8 +140,8 @@ a {
 #toolbar img {
   margin-right: 10px;
 }
-
-#toolbar .slot {
+/* navigation drawer */
+#nav-drawer .v-list-item__title {
   font-family: 'Lato', sans-serif;
   font-size: 0.8em;
   text-transform: uppercase;

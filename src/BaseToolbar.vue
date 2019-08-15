@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-app-bar id="toolbar" :height="hpixel" fixed scroll-off-screen>
+    <v-app-bar id="toolbar" :height="hpixel" fixed hide-on-scroll>
       <a
         class="hidden-xs-only"
         href="http://www.icjia.state.il.us"
@@ -36,8 +36,15 @@
 
     <div :style="{ height: hpixel, backgroundColor: '#466c8c' }"></div>
 
-    <v-navigation-drawer v-model="drawer" temporary right app width="175">
-      <v-list class="slot">
+    <v-navigation-drawer
+      id="nav-drawer"
+      v-model="drawer"
+      temporary
+      right
+      app
+      width="175"
+    >
+      <v-list>
         <slot name="toolbarDrawerItems"></slot>
       </v-list>
     </v-navigation-drawer>
