@@ -1,5 +1,5 @@
 <template>
-  <v-footer id="footer" height="auto">
+  <v-footer id="footer" app height="auto">
     <div class="footer-content">
       <template>{{ '© ' + year + ' ' }}</template>
       <a :href="agency.url" target="_blank" rel="noreferrer">
