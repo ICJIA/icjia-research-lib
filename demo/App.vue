@@ -15,7 +15,7 @@
       </template>
     </RHBaseToolbar>
 
-    <v-content class="mb-12">
+    <v-content>
       <v-row class="controller mx-0" justify="center" no-gutters>
         <h3 class="pt-4">Demo Options</h3>
 
@@ -156,7 +156,7 @@ export default {
         },
         github: {
           url: 'https://github.com/icjia/icjia-research-lib',
-          version: '0.4.1'
+          version: '0.4.2'
         }
       },
       preview: false,
