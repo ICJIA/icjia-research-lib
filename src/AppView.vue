@@ -39,7 +39,7 @@
       </v-col>
 
       <v-col class="px-6 pb-6" :class="app.external ? 'pt-0' : 'pt-6'" cols="9">
-        <ExternalContribution v-if="app.external" />
+        <MarkerExternal v-if="app.external" />
 
         <h2 class="pb-4 light">About this app</h2>
         <BasePropDisplay name="Updated">
@@ -129,7 +129,7 @@ import BaseButton from './components/BaseButton'
 import BaseCard from './components/BaseCard'
 import BasePropChip from './components/BasePropChip'
 import BasePropDisplay from './components/BasePropDisplay'
-import ExternalContribution from './components/ExternalContribution'
+import MarkerExternal from './components/MarkerExternal'
 import BaseInfoBlock from './components/BaseInfoBlock'
 
 export default {
@@ -138,7 +138,7 @@ export default {
     BaseCard,
     BasePropChip,
     BasePropDisplay,
-    ExternalContribution,
+    MarkerExternal,
     BaseInfoBlock
   },
   mixins: [baseFilters],

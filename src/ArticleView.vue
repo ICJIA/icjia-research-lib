@@ -74,7 +74,7 @@
             </BaseButton>
           </v-row>
 
-          <ExternalContribution v-if="article.external" />
+          <MarkerExternal v-if="article.external" />
 
           <h1 class="article-title">{{ article.title }}</h1>
 
@@ -188,7 +188,7 @@ import ArticleTOC from './components/ArticleTOC'
 import BaseButton from './components/BaseButton'
 import BaseInfoBlock from './components/BaseInfoBlock'
 import BasePropChip from './components/BasePropChip'
-import ExternalContribution from './components/ExternalContribution'
+import MarkerExternal from './components/MarkerExternal'
 
 export default {
   components: {
@@ -196,7 +196,7 @@ export default {
     BaseButton,
     BaseInfoBlock,
     BasePropChip,
-    ExternalContribution
+    MarkerExternal
   },
   mixins: [baseFilters],
   props: {

@@ -43,7 +43,7 @@
     <v-divider></v-divider>
 
     <div class="px-6 pb-6" :class="dataset.external ? 'pt-0' : 'pt-6'">
-      <ExternalContribution v-if="dataset.external" />
+      <MarkerExternal v-if="dataset.external" />
 
       <h2 class="mb-4 light">About this dataset</h2>
 
@@ -155,7 +155,7 @@ import BaseCard from './components/BaseCard'
 import BaseInfoBlock from './components/BaseInfoBlock'
 import BasePropChip from './components/BasePropChip'
 import BasePropDisplay from './components/BasePropDisplay'
-import ExternalContribution from './components/ExternalContribution'
+import MarkerExternal from './components/MarkerExternal'
 
 const arr2table = ({ arr, cols = ['name', 'type', 'definition', 'values'] }) =>
   `<table>${getThead({ cols })}${getTbody({ cols, rows: arr })}</table>`
@@ -178,7 +178,7 @@ export default {
     BaseInfoBlock,
     BasePropChip,
     BasePropDisplay,
-    ExternalContribution
+    MarkerExternal
   },
   filters: {
     formatTimeperiod({ yearmin, yearmax, yeartype }) {

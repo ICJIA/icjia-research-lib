@@ -9,7 +9,7 @@
     </v-img>
 
     <div class="px-6" :class="app.external ? 'pt-0' : 'pt-6'">
-      <ExternalContribution v-if="app.external" />
+      <MarkerExternal v-if="app.external" />
 
       <v-row class="py-0 mx-0">
         <BaseTitleDisplay :to="preview ? '' : `/apps/${app.slug}`">
@@ -78,7 +78,7 @@ import BaseCard from './components/BaseCard'
 import BasePropChip from './components/BasePropChip'
 import BasePropDisplay from './components/BasePropDisplay'
 import BaseTitleDisplay from './components/BaseTitleDisplay'
-import ExternalContribution from './components/ExternalContribution'
+import MarkerExternal from './components/MarkerExternal'
 
 export default {
   components: {
@@ -87,7 +87,7 @@ export default {
     BasePropChip,
     BasePropDisplay,
     BaseTitleDisplay,
-    ExternalContribution
+    MarkerExternal
   },
   mixins: [baseFilters],
   props: {
