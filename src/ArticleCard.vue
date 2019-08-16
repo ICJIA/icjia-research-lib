@@ -56,7 +56,7 @@
           </BasePropDisplay>
         </div>
 
-        <v-row class="ma-0 px-2 pb-2" justify="end">
+        <v-row class="px-2 pb-2" no-gutters justify="end">
           <v-btn
             v-if="article.abstract"
             :aria-label="showAbstract ? 'Hide abstract' : 'Show abstract'"
@@ -77,7 +77,7 @@
         </v-row>
 
         <v-slide-y-transition>
-          <v-card-text v-if="showAbstract">{{ article.abstract }}</v-card-text>
+          <div v-show="showAbstract" class="pa-6">{{ article.abstract }}</div>
         </v-slide-y-transition>
       </v-col>
     </v-row>

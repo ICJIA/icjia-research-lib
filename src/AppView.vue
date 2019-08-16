@@ -42,6 +42,7 @@
         <MarkerExternal v-if="app.external" />
 
         <h2 class="pb-4 light">About this app</h2>
+
         <BasePropDisplay name="Updated">
           <template>{{ app.date | formatDate }}</template>
         </BasePropDisplay>

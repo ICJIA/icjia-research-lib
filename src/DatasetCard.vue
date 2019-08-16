@@ -4,12 +4,10 @@
       class="px-6"
       :class="dataset.external || dataset.project ? 'pt-0' : 'pt-6'"
     >
-      <v-row no-gutters>
-        <MarkerExternal v-if="dataset.external" />
-        <MarkerProject v-else-if="dataset.project" />
-      </v-row>
+      <MarkerExternal v-if="dataset.external" />
+      <MarkerProject v-else-if="dataset.project" />
 
-      <v-row class="py-0 mx-0">
+      <v-row class="pb-4" no-gutters>
         <BaseTitleDisplay :to="preview ? '' : `/datasets/${dataset.slug}`">
           <template>{{ dataset.title }}</template>
         </BaseTitleDisplay>
@@ -24,9 +22,7 @@
           </BasePropChip>
         </div>
       </v-row>
-    </div>
 
-    <div class="pt-4 px-6">
       <BasePropDisplay name="Updated">
         <template>{{ dataset.date | formatDate }}</template>
       </BasePropDisplay>
@@ -58,7 +54,7 @@
       </BasePropDisplay>
     </div>
 
-    <v-row class="ma-0 px-2 pb-2" justify="end">
+    <v-row class="px-2 pb-2" no-gutters justify="end">
       <BaseButton
         label="More"
         :to="preview ? null : `/datasets/${dataset.slug}`"

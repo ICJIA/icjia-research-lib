@@ -13,31 +13,22 @@
 
       <v-spacer></v-spacer>
 
-      <div class="text-center">
-        <v-dialog persistent v-model="dialog" width="500">
-          <template v-slot:activator="{ on }">
-            <v-btn v-on="on" class="mr-0" text>
-              <template>{{ 'Download' }}</template>
-              <v-icon>mdi-download</v-icon>
-            </v-btn>
-          </template>
+      <v-dialog v-model="dialog" class="text-center" persistent width="500">
+        <template v-slot:activator="{ on }">
+          <v-btn v-on="on" text>Download<v-icon>mdi-download</v-icon></v-btn>
+        </template>
 
-          <v-sheet class="font-lato">
-            <v-container class="pa-6">
-              <h3 class="pb-6">Did you read the metadata?</h3>
-              <template>{{ msgDialog }}</template>
-            </v-container>
+        <v-sheet class="font-lato">
+          <h3 class="pa-6">Did you read the metadata?</h3>
+          <p class="px-6 pb-6">{{ msgDialog }}</p>
 
-            <v-row class="mx-0 px-3 pb-3" justify="end">
-              <v-btn text class="mr-0" @click="downloadHelper">
-                <template>{{ 'Yes, download' }}</template>
-              </v-btn>
+          <v-row class="mx-0 px-3 pb-3" justify="end">
+            <v-btn text @click="downloadHelper">Yes, download</v-btn>
 
-              <v-btn text class="mr-0" @click="dialog = false">Back</v-btn>
-            </v-row>
-          </v-sheet>
-        </v-dialog>
-      </div>
+            <v-btn text @click="dialog = false">Back</v-btn>
+          </v-row>
+        </v-sheet>
+      </v-dialog>
 
       <BaseButton label="Back" :to="preview ? '' : '/datasets'">
         <template>{{ 'back' }}</template>
@@ -50,15 +41,13 @@
       class="px-6 pb-6"
       :class="dataset.external || dataset.project ? 'pt-0' : 'pt-6'"
     >
-      <v-row no-gutters>
-        <MarkerExternal v-if="dataset.external" />
-        <MarkerProject v-else-if="dataset.project" />
-      </v-row>
+      <MarkerExternal v-if="dataset.external" />
+      <MarkerProject v-else-if="dataset.project" />
 
       <h2 class="mb-4 light">About this dataset</h2>
 
-      <v-row class="mx-0">
-        <v-col class="py-0" cols="12" md="6" lg="4">
+      <v-row no-gutters>
+        <v-col cols="12" md="6" lg="4">
           <BasePropDisplay name="Updated">
             <template>{{ dataset.date | formatDate }}</template>
           </BasePropDisplay>
@@ -103,7 +92,7 @@
           </BasePropDisplay>
         </v-col>
 
-        <v-col class="py-0" cols="12" md="6" lg="4">
+        <v-col cols="12" md="6" lg="4">
           <BasePropDisplay v-if="dataset.unit" name="Unit of analysis">
             <template>{{ dataset.unit | capitalize }}</template>
           </BasePropDisplay>
@@ -210,7 +199,7 @@ export default {
     return {
       dialog: false,
       msgDialog:
-        'It is important for you to know the context of the dataset you are about to download. Make sure you have read and understand the metatdata shown in this page before using the dataset.'
+        'Context matters. Please read and understand the metatdata shown in this page before downloading and using the dataset.'
     }
   },
   computed: {
