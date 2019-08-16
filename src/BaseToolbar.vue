@@ -1,18 +1,20 @@
 <template>
   <div>
-    <v-app-bar id="toolbar" :height="hpixel" fixed hide-on-scroll>
+    <v-app-bar id="toolbar" app fixed hide-on-scroll :height="height">
       <a
         class="hidden-xs-only"
         href="http://www.icjia.state.il.us"
         target="_blank"
         rel="noreferrer"
       >
-        <img :src="logoSrc" :height="logoHpixel" alt="logo" />
+        <img :src="logoSrc" :height="logoHeight" alt="logo" />
       </a>
 
       <router-link to="/">
-        <v-toolbar-title>
-          <span style="letter-spacing: 0.03em;">RESEARCH HUB</span>
+        <v-toolbar-title class="large">
+          <span class="bold uppercase" style="letter-spacing: 0.03em">
+            <template>{{ 'Research Hub' }}</template>
+          </span>
           <slot name="titleExtra"></slot>
         </v-toolbar-title>
       </router-link>
@@ -26,22 +28,20 @@
       <v-btn
         v-if="menu"
         class="hidden-md-and-up"
-        text
         icon
+        text
         @click="drawer = !drawer"
       >
         <v-icon>mdi-menu</v-icon>
       </v-btn>
     </v-app-bar>
 
-    <div :style="{ height: hpixel, backgroundColor: '#466c8c' }"></div>
-
     <v-navigation-drawer
       id="nav-drawer"
       v-model="drawer"
-      temporary
-      right
       app
+      right
+      temporary
       width="175"
     >
       <v-list>
@@ -65,16 +65,13 @@ export default {
   },
   data() {
     return {
-      height: 60,
-      drawer: null
+      drawer: null,
+      height: 60
     }
   },
   computed: {
-    hpixel() {
-      return `${this.height}px`
-    },
-    logoHpixel() {
-      return `${this.height * 0.6}px`
+    logoHeight() {
+      return this.height * 0.75
     },
     logoSrc() {
       return this.logoPath ? this.logoPath : process.env.VUE_APP_LOGO_URL

@@ -1,5 +1,5 @@
 <template>
-  <div id="article-view" class="mb-12">
+  <div id="article-view">
     <v-img :height="splashHeight" :src="article.splash">
       <template v-slot:placeholder>
         <v-row class="fill-height" align="center" justify="center">
@@ -8,7 +8,7 @@
       </template>
     </v-img>
 
-    <v-row>
+    <v-row no-gutters>
       <v-col md="4" lg="3" class="hidden-sm-and-down">
         <div class="article-toc" :class="{ 'article-toc-sticky': isTOCSticky }">
           <ArticleTOC
@@ -45,7 +45,7 @@
 
       <v-col class="pt-6 article-content" md="8" lg="9">
         <v-col cols="12" sm="10" lg="9" offset-sm="1" offset-md="0">
-          <v-row align="center" justify="space-between">
+          <v-row align="center" justify="space-between" no-gutters>
             <div>
               <span
                 v-for="(category, i) in article.categories"

@@ -212,6 +212,9 @@ a {
 #article-view .article-body ol {
   font-size: 20px;
   margin-bottom: 11px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
 }
 #article-view .article-body ul,
 #article-view .article-body ol {
