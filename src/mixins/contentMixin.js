@@ -5,9 +5,6 @@ export const baseFilters = {
     },
     formatDate(date) {
       return date ? date.slice(0, 10) : ''
-    },
-    path(slug, type) {
-      return `/${type}/${slug}`
     }
   }
 }

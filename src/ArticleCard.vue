@@ -15,7 +15,7 @@
 
       <v-col class="mx-0 pa-0" align-self="end">
         <div class="px-6" :class="article.external ? 'pt-0' : 'pt-6'">
-          <ExternalContribution v-if="article.external" />
+          <MarkerExternal v-if="article.external" />
 
           <v-row class="py-0 mx-0">
             <BaseTitleDisplay :to="preview ? '' : `/articles/${article.slug}`">
@@ -56,7 +56,7 @@
           </BasePropDisplay>
         </div>
 
-        <v-row class="ma-0 px-2 pb-2" justify="end">
+        <v-row class="px-2 pb-2" no-gutters justify="end">
           <v-btn
             v-if="article.abstract"
             :aria-label="showAbstract ? 'Hide abstract' : 'Show abstract'"
@@ -77,7 +77,7 @@
         </v-row>
 
         <v-slide-y-transition>
-          <v-card-text v-if="showAbstract">{{ article.abstract }}</v-card-text>
+          <div v-show="showAbstract" class="pa-6">{{ article.abstract }}</div>
         </v-slide-y-transition>
       </v-col>
     </v-row>
@@ -91,7 +91,7 @@ import BaseCard from './components/BaseCard'
 import BasePropChip from './components/BasePropChip'
 import BasePropDisplay from './components/BasePropDisplay'
 import BaseTitleDisplay from './components/BaseTitleDisplay'
-import ExternalContribution from './components/ExternalContribution'
+import MarkerExternal from './components/MarkerExternal'
 
 export default {
   components: {
@@ -100,7 +100,7 @@ export default {
     BasePropChip,
     BasePropDisplay,
     BaseTitleDisplay,
-    ExternalContribution
+    MarkerExternal
   },
   mixins: [baseFilters],
   props: {

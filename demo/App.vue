@@ -32,35 +32,33 @@
           </v-radio-group>
         </v-col>
 
-        <v-col cols="9" md="2">
-          <v-switch
+        <v-row justify="center" no-gutters>
+          <v-checkbox
             v-model="external"
-            class="justify-center"
-            :label="`External contribution: ${external.toString()}`"
-            :disabled="contentType === 'author'"
-          ></v-switch>
-        </v-col>
+            class="mx-4"
+            label="External"
+          ></v-checkbox>
 
-        <v-col cols="9" md="2">
-          <v-switch
+          <v-checkbox
+            v-show="contentType === 'dataset'"
+            v-model="project"
+            class="mx-4"
+            label="Project"
+          ></v-checkbox>
+
+          <v-checkbox
             v-model="preview"
-            class="justify-center"
-            :label="`Preview mode: ${preview.toString()}`"
-            :disabled="contentType === 'author'"
-          ></v-switch>
-        </v-col>
+            class="mx-4"
+            label="Preview"
+          ></v-checkbox>
 
-        <v-col cols="9" md="2">
           <v-switch
             v-model="view"
-            class="justify-center"
-            :label="`Full view: ${view.toString()}`"
-            :disabled="contentType === 'author'"
+            class="mx-4"
+            :label="`View: ${view ? 'Full' : 'Card'}`"
           ></v-switch>
-        </v-col>
+        </v-row>
       </v-row>
-
-      <v-divider></v-divider>
 
       <template v-if="view">
         <RHArticleView
@@ -149,6 +147,7 @@ export default {
       contentType: 'app',
       data,
       external: false,
+      project: false,
       footer: {
         agency: {
           name: 'Illinois Criminal Justice Information Authority',
@@ -156,10 +155,10 @@ export default {
         },
         github: {
           url: 'https://github.com/icjia/icjia-research-lib',
-          version: '0.4.2'
+          version: '0.5.0'
         }
       },
-      preview: false,
+      preview: true,
       view: false,
       views: ['foo', 'bar']
     }
@@ -178,17 +177,13 @@ export default {
     dataset() {
       let item = this.data.dataset
       item.external = this.external
+      item.project = this.project
       return item
     }
   },
   mounted() {
-    this.$watch(
-      'external',
-      () => {
-        this.rerender()
-      },
-      { immediate: true }
-    )
+    this.$watch('external', () => this.rerender(), { immediate: true })
+    this.$watch('project', () => this.rerender(), { immediate: true })
   },
   methods: {
     rerender() {
