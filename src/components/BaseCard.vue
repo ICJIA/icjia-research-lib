@@ -1,5 +1,5 @@
 <template>
-  <v-sheet :elevation="2" :color="external ? 'rgb(255, 252, 245)' : ''">
+  <v-sheet :elevation="2" :color="color">
     <slot></slot>
   </v-sheet>
 </template>
@@ -10,6 +10,17 @@ export default {
     external: {
       type: Boolean,
       default: false
+    },
+    project: {
+      type: Boolean,
+      default: false
+    }
+  },
+  computed: {
+    color() {
+      if (this.external) return 'rgb(255, 250, 245)'
+      else if (this.project) return `rgb(255, 253, 247)`
+      else return ''
     }
   }
 }

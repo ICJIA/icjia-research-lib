@@ -1,5 +1,9 @@
 <template>
-  <BaseCard id="dataset-view" :external="dataset.external">
+  <BaseCard
+    id="dataset-view"
+    :external="dataset.external"
+    :project="dataset.project"
+  >
     <v-row class="mx-0 px-6 py-4">
       <h2>
         <span class="small pl-2" style="color: #666">Datasets</span>
@@ -42,8 +46,14 @@
 
     <v-divider></v-divider>
 
-    <div class="px-6 pb-6" :class="dataset.external ? 'pt-0' : 'pt-6'">
-      <MarkerExternal v-if="dataset.external" />
+    <div
+      class="px-6 pb-6"
+      :class="dataset.external || dataset.project ? 'pt-0' : 'pt-6'"
+    >
+      <v-row no-gutters>
+        <MarkerExternal v-if="dataset.external" />
+        <MarkerProject v-else-if="dataset.project" />
+      </v-row>
 
       <h2 class="mb-4 light">About this dataset</h2>
 
@@ -156,6 +166,7 @@ import BaseInfoBlock from './components/BaseInfoBlock'
 import BasePropChip from './components/BasePropChip'
 import BasePropDisplay from './components/BasePropDisplay'
 import MarkerExternal from './components/MarkerExternal'
+import MarkerProject from './components/MarkerProject'
 
 const arr2table = ({ arr, cols = ['name', 'type', 'definition', 'values'] }) =>
   `<table>${getThead({ cols })}${getTbody({ cols, rows: arr })}</table>`
@@ -178,7 +189,8 @@ export default {
     BaseInfoBlock,
     BasePropChip,
     BasePropDisplay,
-    MarkerExternal
+    MarkerExternal,
+    MarkerProject
   },
   filters: {
     formatTimeperiod({ yearmin, yearmax, yeartype }) {

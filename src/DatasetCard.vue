@@ -1,7 +1,13 @@
 <template>
-  <BaseCard :external="dataset.external">
-    <div class="px-6" :class="dataset.external ? 'pt-0' : 'pt-6'">
-      <MarkerExternal v-if="dataset.external" />
+  <BaseCard :external="dataset.external" :project="dataset.project">
+    <div
+      class="px-6"
+      :class="dataset.external || dataset.project ? 'pt-0' : 'pt-6'"
+    >
+      <v-row no-gutters>
+        <MarkerExternal v-if="dataset.external" />
+        <MarkerProject v-else-if="dataset.project" />
+      </v-row>
 
       <v-row class="py-0 mx-0">
         <BaseTitleDisplay :to="preview ? '' : `/datasets/${dataset.slug}`">
@@ -72,6 +78,7 @@ import BasePropChip from './components/BasePropChip'
 import BasePropDisplay from './components/BasePropDisplay'
 import BaseTitleDisplay from './components/BaseTitleDisplay'
 import MarkerExternal from './components/MarkerExternal'
+import MarkerProject from './components/MarkerProject'
 
 export default {
   components: {
@@ -80,7 +87,8 @@ export default {
     BasePropChip,
     BasePropDisplay,
     BaseTitleDisplay,
-    MarkerExternal
+    MarkerExternal,
+    MarkerProject
   },
   mixins: [baseFilters],
   props: {

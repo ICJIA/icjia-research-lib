@@ -70,6 +70,9 @@ a {
 .marker-external {
   color: orangered !important;
 }
+.marker-project {
+  color: #876f17 !important;
+}
 /* vuetify theme minimal */
 a {
   color: #1976d2;
