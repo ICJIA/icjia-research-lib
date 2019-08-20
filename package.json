@@ -9,6 +9,7 @@
   "files": [
     "src/*",
     "index.js",
+    "style.css",
     "package.json",
     "README.md",
     "LICENSE"
