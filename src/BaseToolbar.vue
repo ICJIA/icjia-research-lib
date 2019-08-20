@@ -74,7 +74,9 @@ export default {
       return this.height * 0.75
     },
     logoSrc() {
-      return this.logoPath ? this.logoPath : process.env.VUE_APP_LOGO_URL
+      return this.logoPath
+        ? this.logoPath
+        : 'https://raw.githubusercontent.com/ICJIA/icjia-public-website/master/_themes/icjia/img/logo-icjia-small-blue-3.png'
     }
   }
 }
