@@ -1,2 +1,3 @@
-export * from 'src'
-export { default as ResearchHubLib } from 'src'
+import ResearchHubLib from './src'
+export default ResearchHubLib
+export * from './src'
