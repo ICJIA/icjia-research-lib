@@ -8,7 +8,7 @@
   },
   "files": [
     "src/*",
-    "lib/*",
+    "index.js",
     "package.json",
     "README.md",
     "LICENSE"
