@@ -9,11 +9,6 @@ const indexFileContent = `\
 //
 // YOU SHOULD NEVER UPDATE THIS FILE DIRECTLY
 
-import Vue from 'vue'
-import Vuetify from 'vuetify/lib'
-
-Vue.use(Vuetify)
-
 ${componentNames
   .map(componentName => `import ${componentName} from './${componentName}.vue'`)
   .join('\n')}
