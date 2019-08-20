@@ -288,8 +288,8 @@ export default {
     },
     printArticle() {
       const content = document.getElementById('article-view').innerHTML
-      const styleSelector = 'link[rel="stylesheet"], style'
-      const style = [...document.querySelectorAll(styleSelector)]
+      const style = document
+        .querySelectorAll('link[rel="stylesheet"], style')
         .map(el => el.outerHTML)
         .join('')
 
