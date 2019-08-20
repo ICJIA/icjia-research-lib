@@ -4,11 +4,6 @@
 //
 // YOU SHOULD NEVER UPDATE THIS FILE DIRECTLY
 
-import Vue from 'vue'
-import Vuetify from 'vuetify/lib'
-
-Vue.use(Vuetify)
-
 import AppCard from './AppCard.vue'
 import AppView from './AppView.vue'
 import ArticleCard from './ArticleCard.vue'
