@@ -2,7 +2,9 @@ export { createMarkdownUtils, initMarkdownIt }
 
 const createMarkdownUtils = md => ({
   addImages(images, markdown) {
-    return `${markdown}${images.map(i => `\n\n[${i.title}]: ${i.src}`)}`
+    return `${markdown}${images
+      .map(i => `\n\n[${i.title}]: ${i.src}`)
+      .join('\n')}`
   },
   parseHeadings(markdown) {
     return new DOMParser()
