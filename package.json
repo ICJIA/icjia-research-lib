@@ -4,7 +4,7 @@
   "scripts": {
     "build": "node build-utils/build-lib.js",
     "lint": "vue-cli-service lint",
-    "demo": "node build-utils/update-index-file.js && vue-cli-service serve"
+    "demo": "vue-cli-service serve"
   },
   "files": [
     "src/*",
