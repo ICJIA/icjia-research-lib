@@ -14,7 +14,16 @@ import DatasetView from './DatasetView.vue'
 import Footer from './Footer.vue'
 
 // Export components individually
-export { AppCard, AppView, ArticleCard, ArticleView, BaseToolbar, DatasetCard, DatasetView, Footer }
+export {
+  AppCard,
+  AppView,
+  ArticleCard,
+  ArticleView,
+  BaseToolbar,
+  DatasetCard,
+  DatasetView,
+  Footer
+}
 
 // What should happen if the user installs the library as a plugin
 function install(Vue) {

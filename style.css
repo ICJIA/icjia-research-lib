@@ -38,21 +38,6 @@ a {
 .large {
   font-size: 1.1em;
 }
-.bold {
-  font-weight: bold;
-}
-.italic {
-  font-style: italic;
-}
-.uppercase {
-  text-transform: uppercase;
-}
-.capitalize {
-  text-transform: capitalize;
-}
-.light {
-  font-weight: 300;
-}
 .greycolor {
   color: rgba(0, 0, 0, 0.66);
 }
