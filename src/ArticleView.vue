@@ -50,7 +50,7 @@
               <span
                 v-for="(category, i) in article.categories"
                 :key="category"
-                class="font-lato uppercase"
+                class="font-lato text-uppercase"
               >
                 <template v-if="i > 0">{{ ', ' }}</template>
                 <template>{{ category }}</template>
@@ -80,7 +80,7 @@
 
           <div class="article-abstract my-6">{{ article.abstract }}</div>
 
-          <div class="mb-4 uppercase font-oswald">
+          <div class="mb-4 text-uppercase font-oswald">
             <span v-for="(author, i) in article.authors" :key="i">
               <template v-if="i > 0">{{
                 article.authors.length > i + 1 ? ', ' : ' and '

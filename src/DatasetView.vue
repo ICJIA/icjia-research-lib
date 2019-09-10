@@ -44,7 +44,7 @@
       <MarkerExternal v-if="dataset.external" />
       <MarkerProject v-else-if="dataset.project" />
 
-      <h2 class="mb-4 light">About this dataset</h2>
+      <h2 class="mb-4 font-weight-light">About this dataset</h2>
 
       <v-row no-gutters>
         <v-col cols="12" md="6" lg="4">
@@ -110,7 +110,7 @@
       </v-row>
 
       <div v-if="dataset.variables" class="hidden-sm-and-down py-6">
-        <h2 class="mb-4 light">Variables</h2>
+        <h2 class="mb-4 font-weight-light">Variables</h2>
         <div ref="variables" class="variables-table font-lato small"></div>
       </div>
 
