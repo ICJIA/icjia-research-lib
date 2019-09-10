@@ -12,7 +12,10 @@
 
       <router-link to="/">
         <v-toolbar-title class="large">
-          <span class="bold uppercase" style="letter-spacing: 0.03em">
+          <span
+            class="font-weight-bold text-uppercase"
+            style="letter-spacing: 0.03em"
+          >
             <template>{{ 'Research Hub' }}</template>
           </span>
           <slot name="titleExtra"></slot>

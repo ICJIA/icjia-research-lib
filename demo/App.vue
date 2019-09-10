@@ -2,7 +2,7 @@
   <v-app>
     <RHBaseToolbar>
       <template v-slot:titleExtra>
-        <span class="light"> Library Demo</span>
+        <span class="font-weight-light"> Library Demo</span>
       </template>
       <template v-slot:toolbarItems>
         <v-btn v-for="view in views" :key="view" text>{{ view }}</v-btn>
@@ -155,7 +155,7 @@ export default {
         },
         github: {
           url: 'https://github.com/icjia/icjia-research-lib',
-          version: '0.6.2'
+          version: '0.6.3'
         }
       },
       preview: true,

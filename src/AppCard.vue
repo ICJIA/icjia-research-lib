@@ -57,7 +57,7 @@
       </BasePropDisplay>
     </div>
 
-    <v-row class="px-2 pb-2" justify="end">
+    <v-row class="px-2 pb-2" no-gutters justify="end">
       <BaseButton
         label="More"
         :to="preview ? null : `/apps/${app.slug}`"

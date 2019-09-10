@@ -41,7 +41,7 @@
       <v-col class="px-6 pb-6" :class="app.external ? 'pt-0' : 'pt-6'" cols="9">
         <MarkerExternal v-if="app.external" />
 
-        <h2 class="pb-4 light">About this app</h2>
+        <h2 class="pb-4 font-weight-light">About this app</h2>
 
         <BasePropDisplay name="Updated">
           <template>{{ app.date | formatDate }}</template>

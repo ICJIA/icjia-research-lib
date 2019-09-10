@@ -1,6 +1,8 @@
 <template functional>
   <div class="py-1 font-lato">
-    <span v-if="props.name" class="small bold pr-2">{{ props.name }}</span>
+    <span v-if="props.name" class="small font-weight-bold pr-2">{{
+      props.name
+    }}</span>
     <template v-if="props.name == 'Tags'">
       <slot></slot>
     </template>
