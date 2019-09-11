@@ -60,15 +60,15 @@ a {
 }
 /* vuetify theme minimal */
 a {
-  color: #1976d2;
+  color: #1873cd;
 }
 .primary {
-  background-color: #1976d2 !important;
-  border-color: #1976d2 !important;
+  background-color: #1873cd !important;
+  border-color: #1873cd !important;
 }
 .primary--text {
-  color: #1976d2 !important;
-  caret-color: #1976d2 !important;
+  color: #1873cd !important;
+  caret-color: #1873cd !important;
 }
 .error {
   background-color: #ff5252 !important;
@@ -138,12 +138,16 @@ a {
 /* footer */
 #footer {
   position: absolute;
+  background-color: #f3f3f3;
   bottom: 0;
   width: 100%;
 }
 #footer > .footer-content {
   width: 100% !important;
   text-align: center !important;
+}
+#footer a {
+  color: #466c8c;
 }
 /* article-view */
 #article-view .article-abstract {
@@ -299,7 +303,7 @@ a {
 }
 
 #article-view .article-print:hover {
-  color: #1976d2;
+  color: #1873cd;
 }
 #article-view .article-download {
   font-size: 0.8em;
@@ -333,15 +337,16 @@ a {
 #article-toc .toc-item {
   font-size: 1.1em;
   color: #333;
+  width: 100%;
 }
 #article-toc .toc-item:hover {
   background: rgba(0, 0, 0, 0.04);
-  color: #1976d2;
-  border-left: 1px solid #1976d2;
+  color: #1873cd;
+  border-left: 1px solid #1873cd;
 }
 #article-toc .toc-item-active {
-  color: #1976d2;
-  border-left: 1px solid #1976d2;
+  color: #1873cd !important;
+  border-left: 1px solid #1873cd !important;
 }
 /* dataset view */
 #dataset-view .variables-table {

@@ -94,8 +94,12 @@
             </span>
 
             <span class="mx-2">|</span>
-            <v-icon class="article-print" @click="printArticle">
-              mdi-printer
+            <v-icon
+              class="article-print"
+              aria-label="Print"
+              @click="printArticle"
+            >
+              <template>{{ 'mdi-printer' }}</template>
             </v-icon>
           </div>
 

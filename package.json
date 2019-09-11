@@ -1,6 +1,6 @@
 {
   "name": "icjia-research-lib",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "scripts": {
     "build": "node build-utils/build-lib.js",
     "lint": "vue-cli-service lint",
@@ -19,6 +19,7 @@
     "markdown-it": "^9.1.0",
     "markdown-it-anchor": "^5.2.4",
     "markdown-it-footnote": "^3.0.2",
+    "markdown-it-link-attributes": "^2.1.0",
     "markdown-it-texmath": "^0.5.5",
     "vue": "^2.6.10",
     "vue-router": "^3.1.2",
