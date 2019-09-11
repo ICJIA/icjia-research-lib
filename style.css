@@ -52,6 +52,9 @@ a {
   padding-bottom: 16px;
   text-transform: uppercase;
 }
+.info-block a {
+  color: #166cc0 !important;
+}
 .marker-external {
   color: orangered !important;
 }
@@ -138,7 +141,7 @@ a {
 /* footer */
 #footer {
   position: absolute;
-  background-color: #f3f3f3;
+  background-color: rgba(27, 31, 35, 0.05);
   bottom: 0;
   width: 100%;
 }
@@ -147,7 +150,7 @@ a {
   text-align: center !important;
 }
 #footer a {
-  color: #466c8c;
+  color: #166cc0 !important;
 }
 /* article-view */
 #article-view .article-abstract {
