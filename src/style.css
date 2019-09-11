@@ -52,6 +52,9 @@ a {
   padding-bottom: 16px;
   text-transform: uppercase;
 }
+.info-block a {
+  color: #166cc0 !important;
+}
 .marker-external {
   color: orangered !important;
 }
