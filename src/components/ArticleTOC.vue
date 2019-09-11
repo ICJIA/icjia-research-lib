@@ -5,16 +5,20 @@
     <v-divider></v-divider>
 
     <v-list>
-      <template v-for="heading in headings">
-        <router-link :key="heading.id" :to="`#${heading.id}`">
-          <div
-            class="large font-lato toc-item py-2 pl-6"
-            :class="{ 'toc-item-active': heading.id === activeHeading }"
-          >
-            <template>{{ heading.innerText }}</template>
-          </div>
+      <v-list-item
+        v-for="heading in headings"
+        :key="heading.id"
+        class="pa-0"
+        dense
+      >
+        <router-link
+          :to="`#${heading.id}`"
+          class="large font-lato toc-item py-2 pl-6"
+          :class="{ 'toc-item-active': heading.id === activeHeading }"
+        >
+          <template>{{ heading.innerText }}</template>
         </router-link>
-      </template>
+      </v-list-item>
     </v-list>
   </div>
 </template>
