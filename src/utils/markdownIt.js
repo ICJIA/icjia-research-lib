@@ -20,6 +20,7 @@ const initMarkdownIt = () =>
   require('markdown-it')(mdOpts)
     .use(require('markdown-it-anchor').default, mdAnchorOpts)
     .use(require('markdown-it-footnote'))
+    .use(require('markdown-it-link-attributes'), mdLinkAttrOpts)
 
 const mdOpts = {
   html: true,
@@ -35,4 +36,10 @@ const mdAnchorOpts = {
       .toLowerCase()
       .replace(/\s+/g, '-')
       .replace(/[^a-zA-Z0-9-_]/g, '')
+}
+
+const mdLinkAttrOpts = {
+  attrs: {
+    target: '_blank'
+  }
 }
