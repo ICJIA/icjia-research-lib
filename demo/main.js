@@ -22,7 +22,8 @@ const router = new Router({
 })
 
 const vuetify = new Vuetify({
-  theme: { disable: true }
+  theme: { disable: true },
+  icons: { iconfont: 'mdiSvg' }
 })
 
 const Components = {

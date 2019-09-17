@@ -61,7 +61,7 @@
       <BaseButton
         label="More"
         :to="preview ? null : `/apps/${app.slug}`"
-        icon="mdi-dots-horizontal"
+        :icon="mdiDotsHorizontal"
       >
         <template>{{ 'more' }}</template>
       </BaseButton>
@@ -77,6 +77,7 @@ import BasePropChip from './components/BasePropChip'
 import BasePropDisplay from './components/BasePropDisplay'
 import BaseTitleDisplay from './components/BaseTitleDisplay'
 import MarkerExternal from './components/MarkerExternal'
+import { mdiDotsHorizontal } from '@mdi/js'
 
 export default {
   components: {
@@ -93,6 +94,11 @@ export default {
     preview: {
       type: Boolean,
       default: false
+    }
+  },
+  data() {
+    return {
+      mdiDotsHorizontal
     }
   },
   computed: {

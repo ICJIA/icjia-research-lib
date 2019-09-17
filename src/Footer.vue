@@ -8,13 +8,15 @@
       <template>{{ ' | ' }}</template>
       <a :href="github.url" target="_blank" rel="noreferrer">
         <template>{{ github.version + ' ' }}</template>
-        <v-icon>mdi-github-circle</v-icon>
+        <v-icon>{{ mdiGithubCircle }}</v-icon>
       </a>
     </div>
   </v-footer>
 </template>
 
 <script>
+import { mdiGithubCircle } from '@mdi/js'
+
 export default {
   props: {
     agency: Object,
@@ -22,6 +24,7 @@ export default {
   },
   data() {
     return {
+      mdiGithubCircle,
       year: new Date().getFullYear(),
       fullname: 'Illinois Criminal Justice Information Authority'
     }

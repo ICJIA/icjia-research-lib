@@ -3,13 +3,13 @@
     <v-row class="mx-0 px-6 py-4">
       <h2>
         <span class="small pl-2" style="color: #666">Apps</span>
-        <v-icon>mdi-chevron-right</v-icon>
+        <v-icon>{{ mdiChevronRight }}</v-icon>
         <template>{{ app.title }}</template>
       </h2>
 
       <v-spacer></v-spacer>
 
-      <BaseButton label="Launch" :href="app.url" icon="mdi-play">
+      <BaseButton label="Launch" :href="app.url" :icon="mdiPlay">
         <template>{{ 'Launch' }}</template>
       </BaseButton>
 
@@ -132,6 +132,7 @@ import BasePropChip from './components/BasePropChip'
 import BasePropDisplay from './components/BasePropDisplay'
 import MarkerExternal from './components/MarkerExternal'
 import BaseInfoBlock from './components/BaseInfoBlock'
+import { mdiChevronRight, mdiPlay } from '@mdi/js'
 
 export default {
   components: {
@@ -148,6 +149,12 @@ export default {
     preview: {
       type: Boolean,
       default: false
+    }
+  },
+  data() {
+    return {
+      mdiChevronRight,
+      mdiPlay
     }
   },
   computed: {

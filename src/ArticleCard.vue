@@ -70,7 +70,7 @@
           <BaseButton
             label="More"
             :to="preview ? null : `/articles/${article.slug}`"
-            icon="mdi-dots-horizontal"
+            :icon="mdiDotsHorizontal"
           >
             <template>{{ 'more' }}</template>
           </BaseButton>
@@ -92,6 +92,7 @@ import BasePropChip from './components/BasePropChip'
 import BasePropDisplay from './components/BasePropDisplay'
 import BaseTitleDisplay from './components/BaseTitleDisplay'
 import MarkerExternal from './components/MarkerExternal'
+import { mdiChevronDown, mdiChevronUp, mdiDotsHorizontal } from '@mdi/js'
 
 export default {
   components: {
@@ -113,6 +114,7 @@ export default {
   },
   data() {
     return {
+      mdiDotsHorizontal,
       showAbstract: false
     }
   },
@@ -121,7 +123,7 @@ export default {
       return this.item
     },
     abstractIcon() {
-      return this.showAbstract ? 'mdi-chevron-down' : 'mdi-chevron-up'
+      return this.showAbstract ? mdiChevronUp : mdiChevronDown
     },
     cardHeight() {
       console.log(this.$refs)

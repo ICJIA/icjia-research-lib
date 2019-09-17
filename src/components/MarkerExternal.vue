@@ -1,10 +1,18 @@
-<template functional>
+<template>
   <div class="font-lato">
-    <i
-      aria-hidden="true"
-      class="v-icon notranslate marker-external mdi mdi-charity"
-      style="font-size: 16px;"
-    ></i>
+    <v-icon class="marker-external" size="16">{{ mdiCharity }}</v-icon>
     <span class="small marker-external">This is an external contribution</span>
   </div>
 </template>
+
+<script>
+import { mdiCharity } from '@mdi/js'
+
+export default {
+  data() {
+    return {
+      mdiCharity
+    }
+  }
+}
+</script>

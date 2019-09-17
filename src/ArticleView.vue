@@ -27,7 +27,7 @@
             @click="downloadHelper('main')"
           >
             <template>{{ article.mainfiletype }}</template>
-            <v-icon>mdi-download</v-icon>
+            <v-icon>{{ mdiDownload }}</v-icon>
           </v-btn>
 
           <v-btn
@@ -38,7 +38,7 @@
             @click="downloadHelper('extra')"
           >
             <template>{{ 'appendix' }}</template>
-            <v-icon>mdi-download</v-icon>
+            <v-icon>{{ mdiDownload }}</v-icon>
           </v-btn>
         </div>
       </v-col>
@@ -99,7 +99,7 @@
               aria-label="Print"
               @click="printArticle"
             >
-              <template>{{ 'mdi-printer' }}</template>
+              <template>{{ mdiPrinter }}</template>
             </v-icon>
           </div>
 
@@ -194,6 +194,8 @@ import BaseInfoBlock from './components/BaseInfoBlock'
 import BasePropChip from './components/BasePropChip'
 import MarkerExternal from './components/MarkerExternal'
 
+import { mdiDownload, mdiPrinter } from '@mdi/js'
+
 export default {
   components: {
     ArticleTOC,
@@ -217,6 +219,8 @@ export default {
       baseUrl: 'localhost:8080/',
       isTOCSticky: false,
       markdownUtils: {},
+      mdiDownload,
+      mdiPrinter,
       viewTitleHeight: 60 + 80
     }
   },

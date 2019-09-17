@@ -7,7 +7,7 @@
     <v-row class="mx-0 px-6 py-4">
       <h2>
         <span class="small pl-2" style="color: #666">Datasets</span>
-        <v-icon>mdi-chevron-right</v-icon>
+        <v-icon>{{ mdiChevronRight }}</v-icon>
         <template>{{ dataset.title }}</template>
       </h2>
 
@@ -15,7 +15,10 @@
 
       <v-dialog v-model="dialog" class="text-center" persistent width="500">
         <template v-slot:activator="{ on }">
-          <v-btn v-on="on" text>Download<v-icon>mdi-download</v-icon></v-btn>
+          <v-btn v-on="on" text>
+            <template>{{ 'Download' }}</template>
+            <v-icon>{{ mdiDownload }}</v-icon>
+          </v-btn>
         </template>
 
         <v-sheet class="font-lato">
@@ -156,6 +159,7 @@ import BasePropChip from './components/BasePropChip'
 import BasePropDisplay from './components/BasePropDisplay'
 import MarkerExternal from './components/MarkerExternal'
 import MarkerProject from './components/MarkerProject'
+import { mdiChevronRight, mdiDownload } from '@mdi/js'
 
 const arr2table = ({ arr, cols = ['name', 'type', 'definition', 'values'] }) =>
   `<table>${getThead({ cols })}${getTbody({ cols, rows: arr })}</table>`
@@ -198,6 +202,8 @@ export default {
   data() {
     return {
       dialog: false,
+      mdiChevronRight,
+      mdiDownload,
       msgDialog:
         'Context matters. Please read and understand the metatdata shown in this page before downloading and using the dataset.'
     }

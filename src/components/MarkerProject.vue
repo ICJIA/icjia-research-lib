@@ -1,10 +1,18 @@
-<template functional>
+<template>
   <div class="font-lato">
-    <i
-      aria-hidden="true"
-      class="v-icon notranslate marker-project mdi mdi-poll-box"
-      style="font-size: 16px;"
-    ></i>
+    <v-icon class="marker-project" size="16">{{ mdiPollBox }}</v-icon>
     <span class="small marker-project">This is a project-specific dataset</span>
   </div>
 </template>
+
+<script>
+import { mdiPollBox } from '@mdi/js'
+
+export default {
+  data() {
+    return {
+      mdiPollBox
+    }
+  }
+}
+</script>

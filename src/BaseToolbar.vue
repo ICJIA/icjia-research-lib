@@ -35,7 +35,7 @@
         text
         @click="drawer = !drawer"
       >
-        <v-icon>mdi-menu</v-icon>
+        <v-icon>{{ mdiMenu }}</v-icon>
       </v-btn>
     </v-app-bar>
 
@@ -55,6 +55,8 @@
 </template>
 
 <script>
+import { mdiMenu } from '@mdi/js'
+
 export default {
   props: {
     menu: {
@@ -69,7 +71,8 @@ export default {
   data() {
     return {
       drawer: null,
-      height: 60
+      height: 60,
+      mdiMenu
     }
   },
   computed: {
