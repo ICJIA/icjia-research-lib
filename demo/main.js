@@ -12,6 +12,7 @@ import RHBaseToolbar from '../src/BaseToolbar.vue'
 import RHDatasetCard from '../src/DatasetCard.vue'
 import RHDatasetView from '../src/DatasetView.vue'
 import RHFooter from '../src/Footer.vue'
+import icons from '../src/icons.js'
 
 Vue.config.productionTip = false
 Vue.use(Router)
@@ -23,7 +24,12 @@ const router = new Router({
 
 const vuetify = new Vuetify({
   theme: { disable: true },
-  icons: { iconfont: 'mdiSvg' }
+  icons: {
+    iconfont: 'mdiSvg',
+    values: {
+      ...icons
+    }
+  }
 })
 
 const Components = {
