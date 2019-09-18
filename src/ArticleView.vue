@@ -27,7 +27,7 @@
             @click="downloadHelper('main')"
           >
             <template>{{ article.mainfiletype }}</template>
-            <v-icon>mdi-download</v-icon>
+            <v-icon>$vuetify.icons.download</v-icon>
           </v-btn>
 
           <v-btn
@@ -38,7 +38,7 @@
             @click="downloadHelper('extra')"
           >
             <template>{{ 'appendix' }}</template>
-            <v-icon>mdi-download</v-icon>
+            <v-icon>$vuetify.icons.download</v-icon>
           </v-btn>
         </div>
       </v-col>
@@ -99,7 +99,7 @@
               aria-label="Print"
               @click="printArticle"
             >
-              <template>{{ 'mdi-printer' }}</template>
+              <template>{{ '$vuetify.icons.printer' }}</template>
             </v-icon>
           </div>
 

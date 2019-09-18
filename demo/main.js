@@ -4,14 +4,17 @@ import Vuetify from 'vuetify/lib'
 import '../style.css'
 
 import App from './App.vue'
-import RHAppCard from '../src/AppCard.vue'
-import RHAppView from '../src/AppView.vue'
-import RHArticleCard from '../src/ArticleCard.vue'
-import RHArticleView from '../src/ArticleView.vue'
-import RHBaseToolbar from '../src/BaseToolbar.vue'
-import RHDatasetCard from '../src/DatasetCard.vue'
-import RHDatasetView from '../src/DatasetView.vue'
-import RHFooter from '../src/Footer.vue'
+import {
+  AppCard as RHAppCard,
+  AppView as RHAppView,
+  ArticleCard as RHArticleCard,
+  ArticleView as RHArticleView,
+  BaseToolbar as RHBaseToolbar,
+  DatasetCard as RHDatasetCard,
+  DatasetView as RHDatasetView,
+  Footer as RHFooter
+} from '../src'
+import icons from '../src/icons.js'
 
 Vue.config.productionTip = false
 Vue.use(Router)
@@ -22,7 +25,13 @@ const router = new Router({
 })
 
 const vuetify = new Vuetify({
-  theme: { disable: true }
+  theme: { disable: true },
+  icons: {
+    iconfont: 'mdiSvg',
+    values: {
+      ...icons
+    }
+  }
 })
 
 const Components = {

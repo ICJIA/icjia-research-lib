@@ -58,7 +58,7 @@
       <BaseButton
         label="More"
         :to="preview ? null : `/datasets/${dataset.slug}`"
-        icon="mdi-dots-horizontal"
+        icon="$vuetify.icons.dotsHorizontal"
       >
         <template>{{ 'more' }}</template>
       </BaseButton>

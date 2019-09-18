@@ -1,6 +1,6 @@
 {
   "name": "icjia-research-lib",
-  "version": "0.6.5",
+  "version": "0.6.6",
   "scripts": {
     "build": "node build-utils/build-lib.js",
     "lint": "vue-cli-service lint",
@@ -26,6 +26,7 @@
     "vuetify": "^2.0.9"
   },
   "devDependencies": {
+    "@mdi/js": "^4.4.95",
     "@vue/cli-plugin-babel": "^3.10.0",
     "@vue/cli-plugin-eslint": "^3.10.0",
     "@vue/cli-service": "^3.10.0",

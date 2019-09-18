@@ -7,7 +7,7 @@
     <v-row class="mx-0 px-6 py-4">
       <h2>
         <span class="small pl-2" style="color: #666">Datasets</span>
-        <v-icon>mdi-chevron-right</v-icon>
+        <v-icon>$vuetify.icons.chevronRight</v-icon>
         <template>{{ dataset.title }}</template>
       </h2>
 
@@ -15,7 +15,10 @@
 
       <v-dialog v-model="dialog" class="text-center" persistent width="500">
         <template v-slot:activator="{ on }">
-          <v-btn v-on="on" text>Download<v-icon>mdi-download</v-icon></v-btn>
+          <v-btn v-on="on" text>
+            <template>{{ 'Download' }}</template>
+            <v-icon>$vuetify.icons.download</v-icon>
+          </v-btn>
         </template>
 
         <v-sheet class="font-lato">

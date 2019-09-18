@@ -8,7 +8,7 @@
       <template>{{ ' | ' }}</template>
       <a :href="github.url" target="_blank" rel="noreferrer">
         <template>{{ github.version + ' ' }}</template>
-        <v-icon>mdi-github-circle</v-icon>
+        <v-icon>$vuetify.icons.githubCircle</v-icon>
       </a>
     </div>
   </v-footer>

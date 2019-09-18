@@ -61,7 +61,7 @@
       <BaseButton
         label="More"
         :to="preview ? null : `/apps/${app.slug}`"
-        icon="mdi-dots-horizontal"
+        icon="$vuetify.icons.dotsHorizontal"
       >
         <template>{{ 'more' }}</template>
       </BaseButton>

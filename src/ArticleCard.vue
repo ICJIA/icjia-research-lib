@@ -70,7 +70,7 @@
           <BaseButton
             label="More"
             :to="preview ? null : `/articles/${article.slug}`"
-            icon="mdi-dots-horizontal"
+            icon="$vuetify.icons.dotsHorizontal"
           >
             <template>{{ 'more' }}</template>
           </BaseButton>
@@ -121,7 +121,9 @@ export default {
       return this.item
     },
     abstractIcon() {
-      return this.showAbstract ? 'mdi-chevron-down' : 'mdi-chevron-up'
+      return this.showAbstract
+        ? '$vuetify.icons.chevronUp'
+        : '$vuetify.icons.chevronDown'
     },
     cardHeight() {
       console.log(this.$refs)

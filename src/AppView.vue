@@ -3,13 +3,13 @@
     <v-row class="mx-0 px-6 py-4">
       <h2>
         <span class="small pl-2" style="color: #666">Apps</span>
-        <v-icon>mdi-chevron-right</v-icon>
+        <v-icon>$vuetify.icons.chevronRight</v-icon>
         <template>{{ app.title }}</template>
       </h2>
 
       <v-spacer></v-spacer>
 
-      <BaseButton label="Launch" :href="app.url" icon="mdi-play">
+      <BaseButton label="Launch" :href="app.url" icon="$vuetify.icons.play">
         <template>{{ 'Launch' }}</template>
       </BaseButton>
 

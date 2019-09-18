@@ -35,7 +35,7 @@
         text
         @click="drawer = !drawer"
       >
-        <v-icon>mdi-menu</v-icon>
+        <v-icon>$vuetify.icons.menu</v-icon>
       </v-btn>
     </v-app-bar>
 
