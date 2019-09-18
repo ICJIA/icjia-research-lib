@@ -1,5 +1,5 @@
 <template functional>
-  <div class="py-1 font-lato">
+  <div class="py-1 font-lato" :class="props.dense ? 'dense' : ''">
     <span v-if="props.name" class="small font-weight-bold pr-2">{{
       props.name
     }}</span>
@@ -16,7 +16,17 @@ export default {
     name: {
       type: String,
       default: ''
+    },
+    dense: {
+      type: Boolean,
+      default: false
     }
   }
 }
 </script>
+
+<style scoped>
+.dense {
+  line-height: 1.2;
+}
+</style>
