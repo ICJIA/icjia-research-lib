@@ -202,7 +202,7 @@ export default {
     return {
       dialog: false,
       msgDialog:
-        'Context matters. Please read and understand the metatdata shown in this page before downloading and using the dataset.'
+        'Context matters. Please read and understand the metadata shown in this page before downloading and using the dataset.'
     }
   },
   computed: {
