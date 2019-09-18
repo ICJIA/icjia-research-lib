@@ -100,13 +100,19 @@
             <template>{{ dataset.unit | capitalize }}</template>
           </BasePropDisplay>
 
-          <BasePropDisplay v-if="dataset.description" name="Description">
-            <template>{{ dataset.description }}</template>
+          <BasePropDisplay
+            v-if="dataset.description"
+            name="Description"
+            :dense="true"
+          >
+            <span>{{ dataset.description }}</span>
           </BasePropDisplay>
 
           <BasePropDisplay v-if="dataset.notes" name="Notes">
             <ul>
-              <li v-for="note in dataset.notes" :key="note">{{ note }}</li>
+              <li v-for="note in dataset.notes" :key="note" class="pb-2">
+                <template>{{ note }}</template>
+              </li>
             </ul>
           </BasePropDisplay>
         </v-col>
