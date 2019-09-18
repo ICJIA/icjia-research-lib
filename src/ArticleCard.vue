@@ -70,7 +70,7 @@
           <BaseButton
             label="More"
             :to="preview ? null : `/articles/${article.slug}`"
-            :icon="mdiDotsHorizontal"
+            icon="$vuetify.icons.dotsHorizontal"
           >
             <template>{{ 'more' }}</template>
           </BaseButton>
@@ -92,7 +92,6 @@ import BasePropChip from './components/BasePropChip'
 import BasePropDisplay from './components/BasePropDisplay'
 import BaseTitleDisplay from './components/BaseTitleDisplay'
 import MarkerExternal from './components/MarkerExternal'
-import { mdiChevronDown, mdiChevronUp, mdiDotsHorizontal } from '@mdi/js'
 
 export default {
   components: {
@@ -114,7 +113,6 @@ export default {
   },
   data() {
     return {
-      mdiDotsHorizontal,
       showAbstract: false
     }
   },
@@ -123,7 +121,9 @@ export default {
       return this.item
     },
     abstractIcon() {
-      return this.showAbstract ? mdiChevronUp : mdiChevronDown
+      return this.showAbstract
+        ? '$vuetify.icons.chevronUp'
+        : '$vuetify.icons.chevronDown'
     },
     cardHeight() {
       console.log(this.$refs)

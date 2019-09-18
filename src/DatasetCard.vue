@@ -58,7 +58,7 @@
       <BaseButton
         label="More"
         :to="preview ? null : `/datasets/${dataset.slug}`"
-        :icon="mdiDotsHorizontal"
+        icon="$vuetify.icons.dotsHorizontal"
       >
         <template>{{ 'more' }}</template>
       </BaseButton>
@@ -75,7 +75,6 @@ import BasePropDisplay from './components/BasePropDisplay'
 import BaseTitleDisplay from './components/BaseTitleDisplay'
 import MarkerExternal from './components/MarkerExternal'
 import MarkerProject from './components/MarkerProject'
-import { mdiDotsHorizontal } from '@mdi/js'
 
 export default {
   components: {
@@ -93,11 +92,6 @@ export default {
     preview: {
       type: Boolean,
       default: false
-    }
-  },
-  data() {
-    return {
-      mdiDotsHorizontal
     }
   },
   computed: {

@@ -35,7 +35,7 @@
         text
         @click="drawer = !drawer"
       >
-        <v-icon>{{ mdiMenu }}</v-icon>
+        <v-icon>$vuetify.icons.menu</v-icon>
       </v-btn>
     </v-app-bar>
 
@@ -55,8 +55,6 @@
 </template>
 
 <script>
-import { mdiMenu } from '@mdi/js'
-
 export default {
   props: {
     menu: {
@@ -71,8 +69,7 @@ export default {
   data() {
     return {
       drawer: null,
-      height: 60,
-      mdiMenu
+      height: 60
     }
   },
   computed: {
