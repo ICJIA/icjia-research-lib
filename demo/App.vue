@@ -132,7 +132,7 @@
       </template>
     </v-content>
 
-    <RHFooter :agency="footer.agency" :github="footer.github" />
+    <RHFooter :github="github" />
   </v-app>
 </template>
 <script>
@@ -147,17 +147,8 @@ export default {
       contentType: 'app',
       data,
       external: false,
+      github: 'https://github.com/icjia/icjia-research-lib',
       project: false,
-      footer: {
-        agency: {
-          name: 'Illinois Criminal Justice Information Authority',
-          url: 'http://www.icjia.state.il.us/'
-        },
-        github: {
-          url: 'https://github.com/icjia/icjia-research-lib',
-          version: '0.6.7'
-        }
-      },
       preview: true,
       view: false,
       views: ['foo', 'bar']
