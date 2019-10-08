@@ -13,7 +13,7 @@
         </template>
       </v-img>
 
-      <v-col class="mx-0 pa-0" align-self="end">
+      <v-col class="mx-0 pa-0">
         <div class="px-6" :class="article.external ? 'pt-0' : 'pt-6'">
           <MarkerExternal v-if="article.external" />
 
