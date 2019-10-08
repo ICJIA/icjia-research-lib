@@ -60,6 +60,7 @@
     <v-row class="px-2 pb-2" no-gutters justify="end">
       <BaseButton
         label="More"
+        :small="true"
         :to="preview ? null : `/apps/${app.slug}`"
         icon="$vuetify.icons.dotsHorizontal"
       >

@@ -60,6 +60,7 @@
           <v-btn
             v-if="article.abstract"
             :aria-label="showAbstract ? 'Hide abstract' : 'Show abstract'"
+            small
             text
             @click="showAbstract = !showAbstract"
           >
@@ -69,6 +70,7 @@
 
           <BaseButton
             label="More"
+            :small="true"
             :to="preview ? null : `/articles/${article.slug}`"
             icon="$vuetify.icons.dotsHorizontal"
           >
