@@ -126,10 +126,6 @@ export default {
       return this.showAbstract
         ? '$vuetify.icons.chevronUp'
         : '$vuetify.icons.chevronDown'
-    },
-    cardHeight() {
-      console.log(this.$refs)
-      return this.$refs.card.$el.clientHeight
     }
   }
 }
