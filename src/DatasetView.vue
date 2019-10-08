@@ -50,7 +50,7 @@
       <h2 class="mb-4 font-weight-light">About this dataset</h2>
 
       <v-row no-gutters>
-        <v-col cols="12" md="6" lg="4">
+        <v-col cols="12" md="6" lg="4" class="mr-sm-4">
           <BasePropDisplay name="Updated">
             <template>{{ dataset.date | formatDate }}</template>
           </BasePropDisplay>
@@ -110,7 +110,7 @@
 
           <BasePropDisplay v-if="dataset.notes" name="Notes">
             <ul>
-              <li v-for="note in dataset.notes" :key="note" class="pb-2">
+              <li v-for="note in dataset.notes" :key="note">
                 <template>{{ note }}</template>
               </li>
             </ul>
