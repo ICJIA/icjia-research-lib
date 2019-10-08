@@ -1,7 +1,7 @@
 <template>
   <v-footer id="footer" app height="auto">
     <div class="footer-content">
-      <template>{{ '© ' + year + ' ' }}</template>
+      <template>{{ '© ' + new Date().getFullYear() + ' ' }}</template>
       <a :href="agency.url" target="_blank" rel="noreferrer">{{
         agency.name
       }}</a>
@@ -28,12 +28,6 @@ export default {
     github: {
       type: String,
       url: ''
-    }
-  },
-  data() {
-    return {
-      year: new Date().getFullYear(),
-      fullname: 'Illinois Criminal Justice Information Authority'
     }
   }
 }
