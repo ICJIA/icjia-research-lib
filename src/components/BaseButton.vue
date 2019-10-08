@@ -3,6 +3,7 @@
     text
     exact
     :aria-label="label"
+    :small="small"
     :to="to"
     :href="href"
     :target="href ? '_blank' : ''"
@@ -18,6 +19,7 @@ export default {
     label: String,
     href: String,
     icon: String,
+    small: Boolean,
     to: String
   }
 }
