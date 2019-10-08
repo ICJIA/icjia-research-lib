@@ -38,8 +38,8 @@
     "type": ["Reports"],
     "categories": ["courts"],
     "tags": ["tag A", "tag B"],
-    "splash": "https://picsum.photos/640/640",
-    "thumbnail": "https://picsum.photos/640/640",
+    "splash": "https://picsum.photos/640/320",
+    "thumbnail": "https://picsum.photos/640/320",
     "images": [
       {
         "title": "figure1",
