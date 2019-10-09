@@ -5,37 +5,43 @@
     :project="dataset.project"
   >
     <v-row class="mx-0 px-6 py-4">
-      <h2>
-        <span class="small pl-2" style="color: #666">Datasets</span>
+      <tag :is="smAndDown ? 'h3' : 'h2'" :class="smAndDown ? 'pb-2' : ''">
+        <span class="small" style="color: #666">Datasets</span>
         <v-icon>$vuetify.icons.chevronRight</v-icon>
         <template>{{ dataset.title }}</template>
-      </h2>
+      </tag>
 
       <v-spacer></v-spacer>
 
-      <v-dialog v-model="dialog" class="text-center" persistent width="500">
-        <template v-slot:activator="{ on }">
-          <v-btn v-on="on" text>
-            <template>{{ 'Download' }}</template>
-            <v-icon>$vuetify.icons.download</v-icon>
-          </v-btn>
-        </template>
+      <v-row justify="end" no-gutters>
+        <v-dialog v-model="dialog" class="text-center" persistent width="500">
+          <template #activator="{ on }">
+            <v-btn v-on="on" :small="smAndDown" text>
+              <template>{{ 'Download' }}</template>
+              <v-icon>$vuetify.icons.download</v-icon>
+            </v-btn>
+          </template>
 
-        <v-sheet class="font-lato">
-          <h3 class="pa-6">Did you read the metadata?</h3>
-          <p class="px-6 pb-6">{{ msgDialog }}</p>
+          <v-sheet class="font-lato">
+            <h3 class="pa-6">Did you read the metadata?</h3>
+            <p class="px-6 pb-6">{{ msgDialog }}</p>
 
-          <v-row class="mx-0 px-3 pb-3" justify="end">
-            <v-btn text @click="downloadHelper">Yes, download</v-btn>
+            <v-row class="mx-0 px-3 pb-3" justify="end">
+              <v-btn text @click="downloadHelper">Yes, download</v-btn>
 
-            <v-btn text @click="dialog = false">Back</v-btn>
-          </v-row>
-        </v-sheet>
-      </v-dialog>
+              <v-btn text @click="dialog = false">Back</v-btn>
+            </v-row>
+          </v-sheet>
+        </v-dialog>
 
-      <BaseButton label="Back" :to="preview ? '' : '/datasets'">
-        <template>{{ 'back' }}</template>
-      </BaseButton>
+        <BaseButton
+          label="Back"
+          :small="smAndDown"
+          :to="preview ? '' : '/datasets'"
+        >
+          <template>{{ 'back' }}</template>
+        </BaseButton>
+      </v-row>
     </v-row>
 
     <v-divider></v-divider>
@@ -124,20 +130,20 @@
       </div>
 
       <BaseInfoBlock v-if="dataset.funding">
-        <template v-slot:title>{{ 'Funding acknowledgment' }}</template>
-        <template v-slot:text>{{ dataset.funding }}</template>
+        <template #title>{{ 'Funding acknowledgment' }}</template>
+        <template #text>{{ dataset.funding }}</template>
       </BaseInfoBlock>
 
       <BaseInfoBlock v-if="dataset.citation">
-        <template v-slot:title>{{ 'Suggested citation' }}</template>
-        <template v-slot:text>
+        <template #title>{{ 'Suggested citation' }}</template>
+        <template #text>
           <span v-html="dataset.citation"></span>
         </template>
       </BaseInfoBlock>
 
       <BaseInfoBlock v-if="hasRelated">
-        <template v-slot:title>{{ 'Related contents' }}</template>
-        <template v-slot:text>
+        <template #title>{{ 'Related contents' }}</template>
+        <template #text>
           <ul class="font-lato">
             <li v-for="(app, i) in dataset.apps" :key="`app${i}`">
               <router-link :to="preview ? '' : `/apps/${app.slug}`">
@@ -218,6 +224,9 @@ export default {
     hasRelated() {
       const { apps, articles } = this.item
       return (apps && apps.length) || (articles && articles.length)
+    },
+    smAndDown() {
+      return this.$vuetify.breakpoint.smAndDown
     }
   },
   mounted() {

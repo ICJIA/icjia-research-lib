@@ -1,32 +1,27 @@
 <template>
-  <BaseCard ref="card" :external="app.external">
-    <v-img :src="app.image" class="hidden-sm-and-down" aspect-ratio="2">
-      <template v-slot:placeholder>
-        <v-row class="fill-height" align="center" justify="center">
-          <v-progress-circular indeterminate />
-        </v-row>
-      </template>
-    </v-img>
+  <BaseCardLayout
+    :external="app.external"
+    :horizontal="horizontal"
+    :image="app.image"
+    :preview="preview"
+  >
+    <template #title>
+      <BaseTitleDisplay :to="preview ? '' : `/apps/${app.slug}`">
+        <template>{{ app.title }}</template>
+      </BaseTitleDisplay>
 
-    <div class="px-6" :class="app.external ? 'pt-0' : 'pt-6'">
-      <MarkerExternal v-if="app.external" />
+      <div v-if="app.tags">
+        <BasePropChip
+          v-for="tag in app.tags"
+          :key="tag"
+          @chip-click="$emit('tag-click', $event)"
+        >
+          <template>{{ tag }}</template>
+        </BasePropChip>
+      </div>
+    </template>
 
-      <v-row class="pb-4" no-gutters>
-        <BaseTitleDisplay :to="preview ? '' : `/apps/${app.slug}`">
-          <template>{{ app.title }}</template>
-        </BaseTitleDisplay>
-
-        <div v-if="app.tags">
-          <BasePropChip
-            v-for="tag in app.tags"
-            :key="tag"
-            @chip-click="$emit('tag-click', $event)"
-          >
-            <template>{{ tag }}</template>
-          </BasePropChip>
-        </div>
-      </v-row>
-
+    <template #props>
       <BasePropDisplay name="Contributors">
         <template v-if="app.contributors">
           <span v-for="(contributor, i) in app.contributors" :key="i">
@@ -55,9 +50,9 @@
           <template>{{ category | capitalize }}</template>
         </span>
       </BasePropDisplay>
-    </div>
+    </template>
 
-    <v-row class="px-2 pb-2" no-gutters justify="end">
+    <template #buttons>
       <BaseButton
         label="More"
         :small="true"
@@ -66,30 +61,32 @@
       >
         <template>{{ 'more' }}</template>
       </BaseButton>
-    </v-row>
-  </BaseCard>
+    </template>
+  </BaseCardLayout>
 </template>
 
 <script>
 import { baseFilters } from './mixins/contentMixin'
 import BaseButton from './components/BaseButton'
-import BaseCard from './components/BaseCard'
+import BaseCardLayout from './components/BaseCardLayout'
 import BasePropChip from './components/BasePropChip'
 import BasePropDisplay from './components/BasePropDisplay'
 import BaseTitleDisplay from './components/BaseTitleDisplay'
-import MarkerExternal from './components/MarkerExternal'
 
 export default {
   components: {
     BaseButton,
-    BaseCard,
+    BaseCardLayout,
     BasePropChip,
     BasePropDisplay,
-    BaseTitleDisplay,
-    MarkerExternal
+    BaseTitleDisplay
   },
   mixins: [baseFilters],
   props: {
+    horizontal: {
+      type: Boolean,
+      default: false
+    },
     item: Object,
     preview: {
       type: Boolean,

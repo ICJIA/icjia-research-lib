@@ -1,14 +1,14 @@
 <template>
   <v-app>
     <RHBaseToolbar>
-      <template v-slot:titleExtra>
+      <template #titleExtra>
         <span class="font-weight-light"> Library Demo</span>
       </template>
-      <template v-slot:toolbarItems>
+      <template #toolbarItems>
         <v-btn v-for="view in views" :key="view" text>{{ view }}</v-btn>
       </template>
 
-      <template v-slot:toolbarDrawerItems>
+      <template #toolbarDrawerItems>
         <v-list-item v-for="(view, i) in views" :key="i">
           <v-list-item-title>{{ view }}</v-list-item-title>
         </v-list-item>
@@ -101,6 +101,7 @@
             <RHAppCard
               :key="`appCard${componentKey}`"
               :item="app"
+              :horizontal="$vuetify.breakpoint.sm"
               :preview="preview"
               @tag-click="onTagClick($event)"
             />
@@ -110,6 +111,7 @@
             <RHArticleCard
               :key="`articleCard${componentKey}`"
               :item="article"
+              :horizontal="$vuetify.breakpoint.smAndUp"
               :preview="preview"
               @tag-click="onTagClick($event)"
             />

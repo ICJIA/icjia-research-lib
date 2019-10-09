@@ -1,7 +1,7 @@
 <template>
   <div id="article-view">
     <v-img :height="splashHeight" :src="article.splash">
-      <template v-slot:placeholder>
+      <template #placeholder>
         <v-row class="fill-height" align="center" justify="center">
           <v-progress-circular indeterminate />
         </v-row>
@@ -104,10 +104,10 @@
           </div>
 
           <BaseInfoBlock v-if="hasAuthorInfo" :large="true">
-            <template v-slot:title>{{
+            <template #title>{{
               `About the author${article.authors.length > 1 ? 's' : ''}`
             }}</template>
-            <template v-slot:text>
+            <template #text>
               <p v-for="(author, i) in article.authors" :key="`authorinfo${i}`">
                 <template>{{ author.description }}</template>
               </p>
@@ -124,13 +124,13 @@
 
           <div class="my-12">
             <BaseInfoBlock v-if="article.funding" :large="true">
-              <template v-slot:title>{{ 'Funding acknowledgment' }}</template>
-              <template v-slot:text>{{ article.funding }}</template>
+              <template #title>{{ 'Funding acknowledgment' }}</template>
+              <template #text>{{ article.funding }}</template>
             </BaseInfoBlock>
 
             <BaseInfoBlock v-if="article.citation" :large="true">
-              <template v-slot:title>{{ 'Suggested citation' }}</template>
-              <template v-slot:text>
+              <template #title>{{ 'Suggested citation' }}</template>
+              <template #text>
                 <span v-html="article.citation"></span>
                 <a
                   v-if="article.doi"
@@ -144,8 +144,8 @@
             </BaseInfoBlock>
 
             <BaseInfoBlock v-if="hasRelated" :large="true">
-              <template v-slot:title>{{ 'Related contents' }}</template>
-              <template v-slot:text>
+              <template #title>{{ 'Related contents' }}</template>
+              <template #text>
                 <ul>
                   <li v-for="(app, i) in article.apps" :key="`app${i}`">
                     <router-link :to="preview ? '' : `/apps/${app.slug}`">
