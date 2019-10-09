@@ -101,6 +101,7 @@
             <RHAppCard
               :key="`appCard${componentKey}`"
               :item="app"
+              :horizontal="$vuetify.breakpoint.sm"
               :preview="preview"
               @tag-click="onTagClick($event)"
             />
@@ -110,6 +111,7 @@
             <RHArticleCard
               :key="`articleCard${componentKey}`"
               :item="article"
+              :horizontal="$vuetify.breakpoint.smAndUp"
               :preview="preview"
               @tag-click="onTagClick($event)"
             />
