@@ -1,111 +1,100 @@
 <template>
-  <BaseCard ref="card" :external="article.external">
-    <v-row class="mx-0">
-      <v-img
-        :src="article.thumbnail"
-        class="hidden-sm-and-down"
-        max-width="200"
+  <BaseCardLayout
+    :external="article.external"
+    :horizontal="horizontal"
+    :image="article.thumbnail"
+    :preview="preview"
+  >
+    <template v-slot:title>
+      <BaseTitleDisplay :to="preview ? '' : `/articles/${article.slug}`">
+        <template>{{ article.title }}</template>
+      </BaseTitleDisplay>
+
+      <div v-if="article.tags">
+        <BasePropChip
+          v-for="tag in article.tags"
+          :key="tag"
+          @chip-click="$emit('tag-click', $event)"
+        >
+          <template>{{ tag }}</template>
+        </BasePropChip>
+      </div>
+    </template>
+
+    <template v-slot:props>
+      <BasePropDisplay v-if="article.date" name="Updated">
+        <template>{{ article.date | formatDate }}</template>
+      </BasePropDisplay>
+
+      <BasePropDisplay v-if="article.authors" name="Authors">
+        <span v-for="(author, i) in article.authors" :key="author.title">
+          <template v-if="i > 0">{{
+            article.authors.length > i + 1 ? ', ' : ' and '
+          }}</template>
+          <a @click="$emit('author-click', $event)">{{ author.title }}</a>
+        </span>
+      </BasePropDisplay>
+
+      <BasePropDisplay v-if="article.categories" name="Categories">
+        <span v-for="(category, i) in article.categories" :key="category">
+          <template v-if="i > 0">{{ ', ' }}</template>
+          <template>{{ category | capitalize }}</template>
+        </span>
+      </BasePropDisplay>
+    </template>
+
+    <template v-slot:buttons>
+      <v-btn
+        v-if="article.abstract && horizontal"
+        :aria-label="showAbstract ? 'Hide abstract' : 'Show abstract'"
+        small
+        text
+        @click="showAbstract = !showAbstract"
       >
-        <template v-slot:placeholder>
-          <v-row class="fill-height" align="center" justify="center">
-            <v-progress-circular indeterminate />
-          </v-row>
-        </template>
-      </v-img>
+        <template>{{ 'abstract' }}</template>
+        <v-icon>{{ abstractIcon }}</v-icon>
+      </v-btn>
 
-      <v-col class="mx-0 pa-0">
-        <div class="px-6" :class="article.external ? 'pt-0' : 'pt-6'">
-          <MarkerExternal v-if="article.external" />
+      <BaseButton
+        label="More"
+        :small="true"
+        :to="preview ? null : `/articles/${article.slug}`"
+        icon="$vuetify.icons.dotsHorizontal"
+      >
+        <template>{{ 'more' }}</template>
+      </BaseButton>
+    </template>
 
-          <v-row class="py-0 mx-0">
-            <BaseTitleDisplay :to="preview ? '' : `/articles/${article.slug}`">
-              <template>{{ article.title }}</template>
-            </BaseTitleDisplay>
-
-            <div v-if="article.tags">
-              <BasePropChip
-                v-for="tag of article.tags"
-                :key="tag"
-                @chip-click="$emit('tag-click', $event)"
-              >
-                <template>{{ tag }}</template>
-              </BasePropChip>
-            </div>
-          </v-row>
-        </div>
-
-        <div class="pt-4 px-6">
-          <BasePropDisplay v-if="article.date" name="Updated">
-            <template>{{ article.date | formatDate }}</template>
-          </BasePropDisplay>
-
-          <BasePropDisplay v-if="article.authors" name="Authors">
-            <span v-for="(author, i) in article.authors" :key="author.title">
-              <template v-if="i > 0">{{
-                article.authors.length > i + 1 ? ', ' : ' and '
-              }}</template>
-              <a @click="$emit('author-click', $event)">{{ author.title }}</a>
-            </span>
-          </BasePropDisplay>
-
-          <BasePropDisplay v-if="article.categories" name="Categories">
-            <span v-for="(category, i) in article.categories" :key="category">
-              <template v-if="i > 0">{{ ', ' }}</template>
-              <template>{{ category | capitalize }}</template>
-            </span>
-          </BasePropDisplay>
-        </div>
-
-        <v-row class="px-2 pb-2" no-gutters justify="end">
-          <v-btn
-            v-if="article.abstract"
-            :aria-label="showAbstract ? 'Hide abstract' : 'Show abstract'"
-            small
-            text
-            @click="showAbstract = !showAbstract"
-          >
-            <template>{{ 'abstract' }}</template>
-            <v-icon>{{ abstractIcon }}</v-icon>
-          </v-btn>
-
-          <BaseButton
-            label="More"
-            :small="true"
-            :to="preview ? null : `/articles/${article.slug}`"
-            icon="$vuetify.icons.dotsHorizontal"
-          >
-            <template>{{ 'more' }}</template>
-          </BaseButton>
-        </v-row>
-
-        <v-slide-y-transition>
-          <div v-show="showAbstract" class="pa-6">{{ article.abstract }}</div>
-        </v-slide-y-transition>
-      </v-col>
-    </v-row>
-  </BaseCard>
+    <template v-slot:extra>
+      <v-slide-y-transition v-if="horizontal">
+        <div v-show="showAbstract" class="pa-6">{{ article.abstract }}</div>
+      </v-slide-y-transition>
+    </template>
+  </BaseCardLayout>
 </template>
 
 <script>
 import { baseFilters } from './mixins/contentMixin'
 import BaseButton from './components/BaseButton'
-import BaseCard from './components/BaseCard'
+import BaseCardLayout from './components/BaseCardLayout'
 import BasePropChip from './components/BasePropChip'
 import BasePropDisplay from './components/BasePropDisplay'
 import BaseTitleDisplay from './components/BaseTitleDisplay'
-import MarkerExternal from './components/MarkerExternal'
 
 export default {
   components: {
     BaseButton,
-    BaseCard,
+    BaseCardLayout,
     BasePropChip,
     BasePropDisplay,
-    BaseTitleDisplay,
-    MarkerExternal
+    BaseTitleDisplay
   },
   mixins: [baseFilters],
   props: {
+    horizontal: {
+      type: Boolean,
+      default: true
+    },
     item: Object,
     onTagClick: Function,
     preview: {

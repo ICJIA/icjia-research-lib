@@ -1,28 +1,22 @@
 <template>
-  <BaseCard :external="dataset.external" :project="dataset.project">
-    <div
-      class="px-6"
-      :class="dataset.external || dataset.project ? 'pt-0' : 'pt-6'"
-    >
-      <MarkerExternal v-if="dataset.external" />
-      <MarkerProject v-else-if="dataset.project" />
+  <BaseCardLayout :external="dataset.external" :project="dataset.project">
+    <template v-slot:title>
+      <BaseTitleDisplay :to="preview ? '' : `/datasets/${dataset.slug}`">
+        <template>{{ dataset.title }}</template>
+      </BaseTitleDisplay>
 
-      <v-row class="pb-4" no-gutters>
-        <BaseTitleDisplay :to="preview ? '' : `/datasets/${dataset.slug}`">
-          <template>{{ dataset.title }}</template>
-        </BaseTitleDisplay>
+      <div v-if="dataset.tags">
+        <BasePropChip
+          v-for="tag in dataset.tags"
+          :key="tag"
+          @chip-click="$emit('tag-click', $event)"
+        >
+          <template>{{ tag }}</template>
+        </BasePropChip>
+      </div>
+    </template>
 
-        <div v-if="dataset.tags">
-          <BasePropChip
-            v-for="tag in dataset.tags"
-            :key="tag"
-            @chip-click="$emit('tag-click', $event)"
-          >
-            <template>{{ tag }}</template>
-          </BasePropChip>
-        </div>
-      </v-row>
-
+    <template v-slot:props>
       <BasePropDisplay name="Updated">
         <template>{{ dataset.date | formatDate }}</template>
       </BasePropDisplay>
@@ -52,9 +46,9 @@
           <template>{{ category | capitalize }}</template>
         </span>
       </BasePropDisplay>
-    </div>
+    </template>
 
-    <v-row class="px-2 pb-2" no-gutters justify="end">
+    <template v-slot:buttons>
       <BaseButton
         label="More"
         :small="true"
@@ -63,29 +57,25 @@
       >
         <template>{{ 'more' }}</template>
       </BaseButton>
-    </v-row>
-  </BaseCard>
+    </template>
+  </BaseCardLayout>
 </template>
 
 <script>
 import { baseFilters } from './mixins/contentMixin'
 import BaseButton from './components/BaseButton'
-import BaseCard from './components/BaseCard'
+import BaseCardLayout from './components/BaseCardLayout'
 import BasePropChip from './components/BasePropChip'
 import BasePropDisplay from './components/BasePropDisplay'
 import BaseTitleDisplay from './components/BaseTitleDisplay'
-import MarkerExternal from './components/MarkerExternal'
-import MarkerProject from './components/MarkerProject'
 
 export default {
   components: {
     BaseButton,
-    BaseCard,
+    BaseCardLayout,
     BasePropChip,
     BasePropDisplay,
-    BaseTitleDisplay,
-    MarkerExternal,
-    MarkerProject
+    BaseTitleDisplay
   },
   mixins: [baseFilters],
   props: {
