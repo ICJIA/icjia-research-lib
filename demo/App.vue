@@ -1,14 +1,14 @@
 <template>
   <v-app>
     <RHBaseToolbar>
-      <template v-slot:titleExtra>
+      <template #titleExtra>
         <span class="font-weight-light"> Library Demo</span>
       </template>
-      <template v-slot:toolbarItems>
+      <template #toolbarItems>
         <v-btn v-for="view in views" :key="view" text>{{ view }}</v-btn>
       </template>
 
-      <template v-slot:toolbarDrawerItems>
+      <template #toolbarDrawerItems>
         <v-list-item v-for="(view, i) in views" :key="i">
           <v-list-item-title>{{ view }}</v-list-item-title>
         </v-list-item>
