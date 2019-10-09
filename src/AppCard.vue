@@ -5,7 +5,7 @@
     :image="app.image"
     :preview="preview"
   >
-    <template v-slot:title>
+    <template #title>
       <BaseTitleDisplay :to="preview ? '' : `/apps/${app.slug}`">
         <template>{{ app.title }}</template>
       </BaseTitleDisplay>
@@ -21,7 +21,7 @@
       </div>
     </template>
 
-    <template v-slot:props>
+    <template #props>
       <BasePropDisplay name="Contributors">
         <template v-if="app.contributors">
           <span v-for="(contributor, i) in app.contributors" :key="i">
@@ -52,7 +52,7 @@
       </BasePropDisplay>
     </template>
 
-    <template v-slot:buttons>
+    <template #buttons>
       <BaseButton
         label="More"
         :small="true"

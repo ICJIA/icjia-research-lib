@@ -5,7 +5,7 @@
     :image="article.thumbnail"
     :preview="preview"
   >
-    <template v-slot:title>
+    <template #title>
       <BaseTitleDisplay :to="preview ? '' : `/articles/${article.slug}`">
         <template>{{ article.title }}</template>
       </BaseTitleDisplay>
@@ -21,7 +21,7 @@
       </div>
     </template>
 
-    <template v-slot:props>
+    <template #props>
       <BasePropDisplay v-if="article.date" name="Updated">
         <template>{{ article.date | formatDate }}</template>
       </BasePropDisplay>
@@ -43,7 +43,7 @@
       </BasePropDisplay>
     </template>
 
-    <template v-slot:buttons>
+    <template #buttons>
       <v-btn
         v-if="article.abstract && horizontal"
         :aria-label="showAbstract ? 'Hide abstract' : 'Show abstract'"
@@ -65,7 +65,7 @@
       </BaseButton>
     </template>
 
-    <template v-slot:extra>
+    <template #extra>
       <v-slide-y-transition v-if="horizontal">
         <div v-show="showAbstract" class="pa-6">{{ article.abstract }}</div>
       </v-slide-y-transition>

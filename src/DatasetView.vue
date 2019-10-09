@@ -14,7 +14,7 @@
       <v-spacer></v-spacer>
 
       <v-dialog v-model="dialog" class="text-center" persistent width="500">
-        <template v-slot:activator="{ on }">
+        <template #activator="{ on }">
           <v-btn v-on="on" text>
             <template>{{ 'Download' }}</template>
             <v-icon>$vuetify.icons.download</v-icon>
@@ -124,20 +124,20 @@
       </div>
 
       <BaseInfoBlock v-if="dataset.funding">
-        <template v-slot:title>{{ 'Funding acknowledgment' }}</template>
-        <template v-slot:text>{{ dataset.funding }}</template>
+        <template #title>{{ 'Funding acknowledgment' }}</template>
+        <template #text>{{ dataset.funding }}</template>
       </BaseInfoBlock>
 
       <BaseInfoBlock v-if="dataset.citation">
-        <template v-slot:title>{{ 'Suggested citation' }}</template>
-        <template v-slot:text>
+        <template #title>{{ 'Suggested citation' }}</template>
+        <template #text>
           <span v-html="dataset.citation"></span>
         </template>
       </BaseInfoBlock>
 
       <BaseInfoBlock v-if="hasRelated">
-        <template v-slot:title>{{ 'Related contents' }}</template>
-        <template v-slot:text>
+        <template #title>{{ 'Related contents' }}</template>
+        <template #text>
           <ul class="font-lato">
             <li v-for="(app, i) in dataset.apps" :key="`app${i}`">
               <router-link :to="preview ? '' : `/apps/${app.slug}`">

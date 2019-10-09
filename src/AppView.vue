@@ -30,7 +30,7 @@
     <v-row class="mx-0" no-gutters>
       <v-col cols="3">
         <v-img :src="app.image">
-          <template v-slot:placeholder>
+          <template #placeholder>
             <v-row class="fill-height" align="center" justify="center">
               <v-progress-circular indeterminate />
             </v-row>
@@ -91,20 +91,20 @@
         </BasePropDisplay>
 
         <BaseInfoBlock v-if="app.funding">
-          <template v-slot:title>{{ 'Funding acknowledgment' }}</template>
-          <template v-slot:text>{{ app.funding }}</template>
+          <template #title>{{ 'Funding acknowledgment' }}</template>
+          <template #text>{{ app.funding }}</template>
         </BaseInfoBlock>
 
         <BaseInfoBlock v-if="app.citation">
-          <template v-slot:title>{{ 'Suggested citation' }}</template>
-          <template v-slot:text>
+          <template #title>{{ 'Suggested citation' }}</template>
+          <template #text>
             <span v-html="app.citation"></span>
           </template>
         </BaseInfoBlock>
 
         <BaseInfoBlock v-if="hasRelated">
-          <template v-slot:title>{{ 'Related contents' }}</template>
-          <template v-slot:text>
+          <template #title>{{ 'Related contents' }}</template>
+          <template #text>
             <ul class="font-lato">
               <li v-for="(article, i) in app.articles" :key="`article${i}`">
                 <router-link :to="preview ? '' : `/articles/${article.slug}`">
