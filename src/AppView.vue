@@ -23,10 +23,10 @@
           v-if="app.src"
           label="Source code"
           :href="app.src"
-          icon="code"
+          icon="$vuetify.icons.codeTags"
           :small="smAndDown"
         >
-          <template>{{ 'Source code' }}</template>
+          <template>{{ 'Code' }}</template>
         </BaseButton>
 
         <BaseButton
