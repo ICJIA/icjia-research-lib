@@ -22,6 +22,6 @@ export default {
   githubCircle: mdiGithubCircle,
   menu: mdiMenu,
   play: mdiPlay,
-  pollbox: mdiPollBox,
+  pollBox: mdiPollBox,
   printer: mdiPrinter
 }
