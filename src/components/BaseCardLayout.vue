@@ -2,7 +2,7 @@
   <BaseCard :external="external" :project="project">
     <BaseImage v-if="image && !horizontal" :src="image" :horizontal="false" />
 
-    <v-row class="mx-0">
+    <v-row class="mx-0" no-gutters>
       <BaseImage v-if="image && horizontal" :src="image" :horizontal="true" />
 
       <v-col class="mx-0 pa-0">
@@ -10,7 +10,7 @@
           <MarkerExternal v-if="external" />
           <MarkerProject v-else-if="project" />
 
-          <v-row class="pb-4" no-gutters>
+          <v-row class="pb-2" no-gutters>
             <slot name="title"></slot>
           </v-row>
 
