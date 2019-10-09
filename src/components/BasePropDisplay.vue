@@ -1,5 +1,5 @@
 <template functional>
-  <div class="py-1 font-lato" :class="props.dense ? 'dense' : ''">
+  <div class="font-lato" :class="props.dense ? 'dense' : ''">
     <span v-if="props.name" class="small font-weight-bold pr-2">{{
       props.name
     }}</span>

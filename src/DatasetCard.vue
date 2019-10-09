@@ -57,6 +57,7 @@
     <v-row class="px-2 pb-2" no-gutters justify="end">
       <BaseButton
         label="More"
+        :small="true"
         :to="preview ? null : `/datasets/${dataset.slug}`"
         icon="$vuetify.icons.dotsHorizontal"
       >

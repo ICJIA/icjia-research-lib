@@ -1,15 +1,16 @@
 <template>
   <v-footer id="footer" app height="auto">
     <div class="footer-content">
-      <template>{{ '© ' + year + ' ' }}</template>
-      <a :href="agency.url" target="_blank" rel="noreferrer">
-        <template>{{ agency.name }}</template>
-      </a>
-      <template>{{ ' | ' }}</template>
-      <a :href="github.url" target="_blank" rel="noreferrer">
-        <template>{{ github.version + ' ' }}</template>
-        <v-icon>$vuetify.icons.githubCircle</v-icon>
-      </a>
+      <template>{{ '© ' + new Date().getFullYear() + ' ' }}</template>
+      <a :href="agency.url" target="_blank" rel="noreferrer">{{
+        agency.name
+      }}</a>
+      <template v-if="github">
+        <span class="mx-1">|</span>
+        <a v-if="github" :href="github" target="_blank" rel="noreferrer">
+          <v-icon>$vuetify.icons.githubCircle</v-icon>
+        </a>
+      </template>
     </div>
   </v-footer>
 </template>
@@ -17,13 +18,16 @@
 <script>
 export default {
   props: {
-    agency: Object,
-    github: Object
-  },
-  data() {
-    return {
-      year: new Date().getFullYear(),
-      fullname: 'Illinois Criminal Justice Information Authority'
+    agency: {
+      type: Object,
+      default: () => ({
+        name: 'Illinois Criminal Justice Information Authority',
+        url: 'https://icjia.illinois.gov/'
+      })
+    },
+    github: {
+      type: String,
+      url: ''
     }
   }
 }

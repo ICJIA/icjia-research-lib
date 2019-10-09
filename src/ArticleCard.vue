@@ -13,7 +13,7 @@
         </template>
       </v-img>
 
-      <v-col class="mx-0 pa-0" align-self="end">
+      <v-col class="mx-0 pa-0">
         <div class="px-6" :class="article.external ? 'pt-0' : 'pt-6'">
           <MarkerExternal v-if="article.external" />
 
@@ -60,6 +60,7 @@
           <v-btn
             v-if="article.abstract"
             :aria-label="showAbstract ? 'Hide abstract' : 'Show abstract'"
+            small
             text
             @click="showAbstract = !showAbstract"
           >
@@ -69,6 +70,7 @@
 
           <BaseButton
             label="More"
+            :small="true"
             :to="preview ? null : `/articles/${article.slug}`"
             icon="$vuetify.icons.dotsHorizontal"
           >
@@ -124,10 +126,6 @@ export default {
       return this.showAbstract
         ? '$vuetify.icons.chevronUp'
         : '$vuetify.icons.chevronDown'
-    },
-    cardHeight() {
-      console.log(this.$refs)
-      return this.$refs.card.$el.clientHeight
     }
   }
 }
