@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-> This project was supported by State Justice Statistics (SJS) Program Grant #2018-BJ-CX-XXXX, awarded to the Illinois Criminal Justice Information Authority by the U.S. Department of Justice Office of Justice Programs' Bureau of Justice Statistics.
+> This project was supported by State Justice Statistics (SJS) Program Grant #2018-86-CX-K006, awarded to the Illinois Criminal Justice Information Authority by the U.S. Department of Justice Office of Justice Programs' Bureau of Justice Statistics.
 
 Vue.js UI components library for ICJIA Research Hub apps.
 
