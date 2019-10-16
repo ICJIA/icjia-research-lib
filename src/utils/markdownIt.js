@@ -21,6 +21,7 @@ const initMarkdownIt = () =>
     .use(require('markdown-it-anchor').default, mdAnchorOpts)
     .use(require('markdown-it-footnote'))
     .use(require('markdown-it-link-attributes'), mdLinkAttrOpts)
+    .use(require('markdown-it-multimd-table'))
 
 const mdOpts = {
   html: true,
