@@ -21,7 +21,7 @@ const initMarkdownIt = () =>
     .use(require('markdown-it-anchor').default, mdAnchorOpts)
     .use(require('markdown-it-footnote'))
     .use(require('markdown-it-link-attributes'), mdLinkAttrOpts)
-    .use(require('markdown-it-multimd-table'))
+    .use(require('markdown-it-multimd-table'), mdMultimdTableOpts)
 
 const mdOpts = {
   html: true,
@@ -43,4 +43,9 @@ const mdLinkAttrOpts = {
   attrs: {
     target: '_blank'
   }
+}
+
+const mdMultimdTableOpts = {
+  enableMultilineRows: true,
+  enableRowspan: true
 }
