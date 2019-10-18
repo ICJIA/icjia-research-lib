@@ -12,7 +12,7 @@ const createMarkdownUtils = md => ({
       .querySelectorAll('h2')
   },
   renderMarkdown(markdown) {
-    return md.render(markdown)
+    return md.render(markdown).replace(/#fn/g, window.location.href + '#fn')
   }
 })
 
