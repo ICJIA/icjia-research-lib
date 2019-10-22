@@ -103,17 +103,6 @@
             </v-icon>
           </div>
 
-          <BaseInfoBlock v-if="hasAuthorInfo" :large="true">
-            <template #title>{{
-              `About the author${article.authors.length > 1 ? 's' : ''}`
-            }}</template>
-            <template #text>
-              <p v-for="(author, i) in article.authors" :key="`authorinfo${i}`">
-                <template>{{ author.description }}</template>
-              </p>
-            </template>
-          </BaseInfoBlock>
-
           <v-divider></v-divider>
 
           <div
@@ -123,6 +112,20 @@
           />
 
           <div class="my-12">
+            <BaseInfoBlock v-if="hasAuthorInfo" :large="true">
+              <template #title>{{
+                `About the author${article.authors.length > 1 ? 's' : ''}`
+              }}</template>
+              <template #text>
+                <p
+                  v-for="(author, i) in article.authors"
+                  :key="`authorinfo${i}`"
+                >
+                  <template>{{ author.description }}</template>
+                </p>
+              </template>
+            </BaseInfoBlock>
+
             <BaseInfoBlock v-if="article.funding" :large="true">
               <template #title>{{ 'Funding acknowledgment' }}</template>
               <template #text>{{ article.funding }}</template>
