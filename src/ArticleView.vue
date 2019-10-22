@@ -186,9 +186,8 @@
 </template>
 
 <script>
-// import MarkdownItTexmath from 'markdown-it-texmath'
 import { createMarkdownUtils, initMarkdownIt } from './utils/markdownIt'
-// import { initKatex } from './utils/katex'
+import { initTexmath } from './utils/texmath'
 import { baseFilters } from './mixins/contentMixin'
 
 import ArticleTOC from './components/ArticleTOC'
@@ -259,10 +258,9 @@ export default {
     }
   },
   async created() {
-    // await initKatex()
+    await initTexmath()
     // eslint-disable-next-line no-undef
-    // const md = initMarkdownIt().use(MarkdownItTexmath.use(katex))
-    const md = initMarkdownIt()
+    const md = initMarkdownIt().use(texmath.use(katex))
     this.markdownUtils = createMarkdownUtils(md)
   },
   methods: {

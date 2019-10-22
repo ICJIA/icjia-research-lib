@@ -1,4 +1,22 @@
-export { initKatex }
+export { initTexmath }
+
+const initTexmath = async () => {
+  await initKatex()
+
+  if (!document.head.querySelector('#texmathCSS'))
+    await loadFromCDN('link', {
+      id: 'texmathCSS',
+      rel: 'stylesheet',
+      href:
+        'https://gitcdn.xyz/cdn/goessner/markdown-it-texmath/master/texmath.css'
+    })
+  if (!document.head.querySelector('#texmathJS'))
+    await loadFromCDN('script', {
+      id: 'texmathJS',
+      src:
+        'https://gitcdn.xyz/cdn/goessner/markdown-it-texmath/master/texmath.js'
+    })
+}
 
 const initKatex = async () => {
   if (!document.head.querySelector('#katexCSS'))
