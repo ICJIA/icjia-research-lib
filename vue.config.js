@@ -15,5 +15,6 @@ module.exports = {
   },
   css: {
     extract: true
-  }
+  },
+  transpileDependencies: ['vuetify', 'markdown-it-texmath']
 }
