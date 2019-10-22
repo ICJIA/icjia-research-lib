@@ -43,7 +43,7 @@
         </div>
       </v-col>
 
-      <v-col class="pt-6 article-content" md="8" lg="9">
+      <v-col id="article-content" class="pt-6 article-content" md="8" lg="9">
         <v-col cols="12" sm="10" lg="9" offset-sm="1" offset-md="0">
           <v-row align="center" justify="space-between" no-gutters>
             <div>
@@ -103,17 +103,6 @@
             </v-icon>
           </div>
 
-          <BaseInfoBlock v-if="hasAuthorInfo" :large="true">
-            <template #title>{{
-              `About the author${article.authors.length > 1 ? 's' : ''}`
-            }}</template>
-            <template #text>
-              <p v-for="(author, i) in article.authors" :key="`authorinfo${i}`">
-                <template>{{ author.description }}</template>
-              </p>
-            </template>
-          </BaseInfoBlock>
-
           <v-divider></v-divider>
 
           <div
@@ -123,6 +112,20 @@
           />
 
           <div class="my-12">
+            <BaseInfoBlock v-if="hasAuthorInfo" :large="true">
+              <template #title>{{
+                `About the author${article.authors.length > 1 ? 's' : ''}`
+              }}</template>
+              <template #text>
+                <p
+                  v-for="(author, i) in article.authors"
+                  :key="`authorinfo${i}`"
+                >
+                  <template>{{ author.description }}</template>
+                </p>
+              </template>
+            </BaseInfoBlock>
+
             <BaseInfoBlock v-if="article.funding" :large="true">
               <template #title>{{ 'Funding acknowledgment' }}</template>
               <template #text>{{ article.funding }}</template>
@@ -183,9 +186,8 @@
 </template>
 
 <script>
-// import MarkdownItTexmath from 'markdown-it-texmath'
 import { createMarkdownUtils, initMarkdownIt } from './utils/markdownIt'
-// import { initKatex } from './utils/katex'
+import { initTexmath } from './utils/texmath'
 import { baseFilters } from './mixins/contentMixin'
 
 import ArticleTOC from './components/ArticleTOC'
@@ -256,10 +258,9 @@ export default {
     }
   },
   async created() {
-    // await initKatex()
+    await initTexmath()
     // eslint-disable-next-line no-undef
-    // const md = initMarkdownIt().use(MarkdownItTexmath.use(katex))
-    const md = initMarkdownIt()
+    const md = initMarkdownIt().use(texmath.use(katex))
     this.markdownUtils = createMarkdownUtils(md)
   },
   methods: {
@@ -292,18 +293,26 @@ export default {
       this.isTOCSticky = top > threshold
     },
     printArticle() {
-      const content = document.getElementById('article-view').innerHTML
-      const style = document
-        .querySelectorAll('link[rel="stylesheet"], style')
+      const fonts =
+        '<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gentium+Book+Basic&amp;display=swap">' +
+        '<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400&display=swap">' +
+        '<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald&display=swap">'
+      const nodes = document.querySelectorAll('link[rel="stylesheet"], style')
+      const style = Array.from(nodes)
         .map(el => el.outerHTML)
         .join('')
+      const content = document.getElementById('article-content').innerHTML
 
-      this.printWindow({ head: style, body: content })
+      this.printWindow({ head: fonts + style, body: content })
     },
     printWindow({ head, body }) {
       const win = window.open('', '')
-      win.document.write(`<head>${head}</head><body>${body}</body>`)
-      win.document.write('<script>window.print(); window.close()<' + '/script>')
+      const toWrite =
+        `<head>${head}</head>` +
+        `<body><div id="app" class="v-application"><div id="article-view">${body}</div></div></body>` +
+        `<script>window.print(); window.close()<` +
+        `/script>`
+      win.document.write(toWrite)
       win.document.close()
       win.focus()
     }
