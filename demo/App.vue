@@ -149,7 +149,7 @@ export default {
       contentType: 'app',
       data,
       external: false,
-      github: 'https://github.com/icjia/icjia-research-lib',
+      github: 'https://github.com/icjia/researchhub-lib',
       project: false,
       preview: true,
       view: false,

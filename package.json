@@ -1,5 +1,5 @@
 {
-  "name": "icjia-research-lib",
+  "name": "researchhub-lib",
   "version": "0.8.4",
   "scripts": {
     "build": "node build-utils/build-lib.js",
