@@ -46,6 +46,6 @@ const mdLinkAttrOpts = {
 }
 
 const mdMultimdTableOpts = {
-  enableMultilineRows: true,
+  multiline: true,
   enableRowspan: true
 }
