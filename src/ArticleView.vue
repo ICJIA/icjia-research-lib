@@ -12,7 +12,7 @@
       <v-col md="4" lg="3" class="hidden-sm-and-down">
         <div class="article-toc" :class="{ 'article-toc-sticky': isTOCSticky }">
           <ArticleTOC
-            v-if="headings"
+            v-if="headings && headings.length"
             class="mb-12"
             :headings="headings"
             :activeHeading="activeHeading"
@@ -273,7 +273,7 @@ export default {
       const top = window.pageYOffset || e.target.scrollTop || 0
       const headings = this.headings
 
-      if (top === 0) {
+      if (headings.length && top === 0) {
         this.activeHeading = headings[0].id
       } else if (headings) {
         headings.forEach(heading => {
