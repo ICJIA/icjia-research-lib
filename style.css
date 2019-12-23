@@ -158,6 +158,9 @@ a {
   font-family: 'Lato', sans-serif;
   font-size: 18px;
 }
+#article-view .article-body {
+  margin-top: 22px;
+}
 #article-view .article-body h1,
 #article-view .article-body h2,
 #article-view .article-body h3,
