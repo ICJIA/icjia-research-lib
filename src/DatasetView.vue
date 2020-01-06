@@ -58,7 +58,7 @@
       <v-row no-gutters>
         <v-col cols="12" md="6" lg="4" class="mr-sm-4">
           <BasePropDisplay name="Updated">
-            <template>{{ dataset.date | formatDate }}</template>
+            <template>{{ dataset.date }}</template>
           </BasePropDisplay>
 
           <BasePropDisplay name="Sources">
@@ -80,10 +80,7 @@
           </BasePropDisplay>
 
           <BasePropDisplay v-if="dataset.categories" name="Categories">
-            <span v-for="(category, i) in dataset.categories" :key="i">
-              <template v-if="i > 0">{{ ', ' }}</template>
-              <template>{{ category | capitalize }}</template>
-            </span>
+            <span>{{ dataset.categories }}</span>
           </BasePropDisplay>
 
           <BasePropDisplay v-if="dataset.tags" name="Tags">
@@ -97,13 +94,13 @@
           </BasePropDisplay>
 
           <BasePropDisplay v-if="dataset.timeperiod" name="Time period">
-            <template>{{ dataset.timeperiod | formatTimeperiod }}</template>
+            <template>{{ dataset.timeperiod }}</template>
           </BasePropDisplay>
         </v-col>
 
         <v-col cols="12" md="6" lg="4">
           <BasePropDisplay v-if="dataset.unit" name="Unit of analysis">
-            <template>{{ dataset.unit | capitalize }}</template>
+            <span class="text-capitalize">{{ dataset.unit }}</span>
           </BasePropDisplay>
 
           <BasePropDisplay
@@ -163,7 +160,7 @@
 </template>
 
 <script>
-import { baseFilters } from './mixins/contentMixin'
+import { format } from './utils/itemFormatter'
 import BaseButton from './components/BaseButton'
 import BaseCard from './components/BaseCard'
 import BaseInfoBlock from './components/BaseInfoBlock'
@@ -196,12 +193,6 @@ export default {
     MarkerExternal,
     MarkerProject
   },
-  filters: {
-    formatTimeperiod({ yearmin, yearmax, yeartype }) {
-      return `${yearmin}-${yearmax} (${yeartype})`
-    }
-  },
-  mixins: [baseFilters],
   props: {
     item: Object,
     downloader: Function,
@@ -219,7 +210,7 @@ export default {
   },
   computed: {
     dataset() {
-      return this.item
+      return format(this.item)
     },
     hasRelated() {
       const { apps, articles } = this.item
