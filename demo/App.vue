@@ -16,21 +16,16 @@
     </RHBaseToolbar>
 
     <v-content>
-      <v-row class="controller mx-0" justify="center" no-gutters>
-        <h3 class="pt-4">Demo Options</h3>
+      <div class="controller">
+        <h3 class="pt-4 text-center">Demo Options</h3>
 
-        <v-col cols="12">
-          <v-radio-group
-            v-model="contentType"
-            class="justify-center"
-            label="Content type"
-            row
-          >
+        <v-row justify="center" no-gutters>
+          <v-radio-group v-model="contentType" label="Content type" row>
             <v-radio label="App" value="app"></v-radio>
             <v-radio label="Article" value="article"></v-radio>
             <v-radio label="Dataset" value="dataset"></v-radio>
           </v-radio-group>
-        </v-col>
+        </v-row>
 
         <v-row justify="center" no-gutters>
           <v-checkbox
@@ -58,7 +53,7 @@
             :label="`View: ${view ? 'Full' : 'Card'}`"
           ></v-switch>
         </v-row>
-      </v-row>
+      </div>
 
       <template v-if="view">
         <RHArticleView
