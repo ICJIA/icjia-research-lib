@@ -47,14 +47,9 @@
         <v-col cols="12" sm="10" lg="9" offset-sm="1" offset-md="0">
           <v-row align="center" justify="space-between" no-gutters>
             <div>
-              <span
-                v-for="(category, i) in article.categories"
-                :key="category"
-                class="font-lato text-uppercase"
-              >
-                <template v-if="i > 0">{{ ', ' }}</template>
-                <template>{{ category }}</template>
-              </span>
+              <span class="font-lato text-uppercase">{{
+                article.categories
+              }}</span>
 
               <template v-if="article.tags">
                 <span class="mx-2">|</span>
@@ -90,7 +85,7 @@
 
             <span v-if="article.date">
               <span class="mx-2">|</span>
-              <template>{{ article.date | formatDate }}</template>
+              <template>{{ article.date }}</template>
             </span>
 
             <span class="mx-2">|</span>
@@ -186,9 +181,9 @@
 </template>
 
 <script>
+import { format } from './utils/itemFormatter'
 import { createMarkdownUtils, initMarkdownIt } from './utils/markdownIt'
 import { initTexmath } from './utils/texmath'
-import { baseFilters } from './mixins/contentMixin'
 
 import ArticleTOC from './components/ArticleTOC'
 import BaseButton from './components/BaseButton'
@@ -204,7 +199,6 @@ export default {
     BasePropChip,
     MarkerExternal
   },
-  mixins: [baseFilters],
   props: {
     item: Object,
     downloader: Function,
@@ -224,7 +218,7 @@ export default {
   },
   computed: {
     article() {
-      return this.item
+      return format(this.item)
     },
     articleBody() {
       const { markdown, images } = this.item

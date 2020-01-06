@@ -23,7 +23,7 @@
 
     <template #props>
       <BasePropDisplay v-if="article.date" name="Updated">
-        <template>{{ article.date | formatDate }}</template>
+        <template>{{ article.date }}</template>
       </BasePropDisplay>
 
       <BasePropDisplay v-if="article.authors" name="Authors">
@@ -36,10 +36,7 @@
       </BasePropDisplay>
 
       <BasePropDisplay v-if="article.categories" name="Categories">
-        <span v-for="(category, i) in article.categories" :key="category">
-          <template v-if="i > 0">{{ ', ' }}</template>
-          <template>{{ category | capitalize }}</template>
-        </span>
+        <span>{{ article.categories }}</span>
       </BasePropDisplay>
     </template>
 
@@ -74,7 +71,7 @@
 </template>
 
 <script>
-import { baseFilters } from './mixins/contentMixin'
+import { format } from './utils/itemFormatter'
 import BaseButton from './components/BaseButton'
 import BaseCardLayout from './components/BaseCardLayout'
 import BasePropChip from './components/BasePropChip'
@@ -89,7 +86,6 @@ export default {
     BasePropDisplay,
     BaseTitleDisplay
   },
-  mixins: [baseFilters],
   props: {
     horizontal: {
       type: Boolean,
@@ -109,7 +105,7 @@ export default {
   },
   computed: {
     article() {
-      return this.item
+      return format(this.item)
     },
     abstractIcon() {
       return this.showAbstract

@@ -45,10 +45,7 @@
       </BasePropDisplay>
 
       <BasePropDisplay v-if="app.categories" name="Categories">
-        <span v-for="(category, i) in app.categories" :key="i">
-          <template v-if="i > 0">{{ ', ' }}</template>
-          <template>{{ category | capitalize }}</template>
-        </span>
+        <span>{{ app.categories }}</span>
       </BasePropDisplay>
     </template>
 
@@ -66,7 +63,7 @@
 </template>
 
 <script>
-import { baseFilters } from './mixins/contentMixin'
+import { format } from './utils/itemFormatter'
 import BaseButton from './components/BaseButton'
 import BaseCardLayout from './components/BaseCardLayout'
 import BasePropChip from './components/BasePropChip'
@@ -81,7 +78,6 @@ export default {
     BasePropDisplay,
     BaseTitleDisplay
   },
-  mixins: [baseFilters],
   props: {
     horizontal: {
       type: Boolean,
@@ -95,7 +91,7 @@ export default {
   },
   computed: {
     app() {
-      return this.item
+      return format(this.item)
     }
   }
 }

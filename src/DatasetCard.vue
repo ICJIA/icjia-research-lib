@@ -18,7 +18,7 @@
 
     <template #props>
       <BasePropDisplay name="Updated">
-        <template>{{ dataset.date | formatDate }}</template>
+        <template>{{ dataset.date }}</template>
       </BasePropDisplay>
 
       <BasePropDisplay v-if="dataset.sources" name="Sources">
@@ -41,10 +41,7 @@
       </BasePropDisplay>
 
       <BasePropDisplay v-if="dataset.categories" name="Categories">
-        <span v-for="(category, i) in dataset.categories" :key="i">
-          <template v-if="i > 0">{{ ', ' }}</template>
-          <template>{{ category | capitalize }}</template>
-        </span>
+        <span>{{ dataset.categories }}</span>
       </BasePropDisplay>
     </template>
 
@@ -62,7 +59,7 @@
 </template>
 
 <script>
-import { baseFilters } from './mixins/contentMixin'
+import { format } from './utils/itemFormatter'
 import BaseButton from './components/BaseButton'
 import BaseCardLayout from './components/BaseCardLayout'
 import BasePropChip from './components/BasePropChip'
@@ -77,7 +74,6 @@ export default {
     BasePropDisplay,
     BaseTitleDisplay
   },
-  mixins: [baseFilters],
   props: {
     item: Object,
     preview: {
@@ -87,7 +83,7 @@ export default {
   },
   computed: {
     dataset() {
-      return this.item
+      return format(this.item)
     }
   }
 }
