@@ -36,7 +36,6 @@
     "title": "My dummy article",
     "slug": "",
     "date": "2019-01-01",
-    "type": ["Reports"],
     "categories": ["courts"],
     "tags": ["tag A", "tag B"],
     "splash": "https://picsum.photos/640/320",
