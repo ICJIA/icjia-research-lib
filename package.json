@@ -1,6 +1,6 @@
 {
   "name": "researchhub-lib",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "scripts": {
     "build": "node build-utils/build-lib.js",
     "lint": "vue-cli-service lint",
@@ -23,13 +23,13 @@
     "markdown-it-multimd-table": "^4.0.1",
     "vue": "^2.6.11",
     "vue-router": "^3.1.5",
-    "vuetify": "^2.2.4"
+    "vuetify": "^2.2.11"
   },
   "devDependencies": {
-    "@mdi/js": "^4.8.95",
-    "@vue/cli-plugin-babel": "^4.1.2",
-    "@vue/cli-plugin-eslint": "^4.1.2",
-    "@vue/cli-service": "^4.1.2",
+    "@mdi/js": "^4.9.95",
+    "@vue/cli-plugin-babel": "^4.2.2",
+    "@vue/cli-plugin-eslint": "^4.2.2",
+    "@vue/cli-service": "^4.2.2",
     "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.0.3",
     "deepmerge": "^4.2.2",
@@ -42,7 +42,7 @@
     "fs-extra": "^8.1.0",
     "sass": "^1.25.0",
     "sass-loader": "^8.0.2",
-    "vue-cli-plugin-vuetify": "^2.0.3",
+    "vue-cli-plugin-vuetify": "^2.0.4",
     "vue-template-compiler": "^2.6.11",
     "vuetify-loader": "^1.4.3"
   },
