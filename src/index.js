@@ -4,6 +4,7 @@
 //
 // YOU SHOULD NEVER UPDATE THIS FILE DIRECTLY
 
+import AlertCOVID from './AlertCOVID.vue'
 import AppCard from './AppCard.vue'
 import AppView from './AppView.vue'
 import ArticleCard from './ArticleCard.vue'
@@ -14,10 +15,11 @@ import DatasetView from './DatasetView.vue'
 import Footer from './Footer.vue'
 
 // Export components individually
-export { AppCard, AppView, ArticleCard, ArticleView, BaseToolbar, DatasetCard, DatasetView, Footer }
+export { AlertCOVID, AppCard, AppView, ArticleCard, ArticleView, BaseToolbar, DatasetCard, DatasetView, Footer }
 
 // What should happen if the user installs the library as a plugin
 function install(Vue) {
+  Vue.component('AlertCOVID', AlertCOVID)
   Vue.component('AppCard', AppCard)
   Vue.component('AppView', AppView)
   Vue.component('ArticleCard', ArticleCard)
