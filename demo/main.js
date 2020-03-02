@@ -5,6 +5,7 @@ import '../style.css'
 
 import App from './App.vue'
 import {
+  AlertCOVID as RHAlertCOVID,
   AppCard as RHAppCard,
   AppView as RHAppView,
   ArticleCard as RHArticleCard,
@@ -35,6 +36,7 @@ const vuetify = new Vuetify({
 })
 
 const Components = {
+  RHAlertCOVID,
   RHAppCard,
   RHAppView,
   RHArticleCard,

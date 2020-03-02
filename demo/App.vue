@@ -16,6 +16,7 @@
     </RHBaseToolbar>
 
     <v-content>
+      <RHAlertCOVID />
       <div class="controller">
         <h3 class="pt-4 text-center">Demo Options</h3>
 
