@@ -1,17 +1,24 @@
 <template>
   <div>
-    <v-app-bar id="toolbar" app fixed :height="height">
+    <v-app-bar
+      id="toolbar"
+      app
+      color="white"
+      :elevation="elevation"
+      fixed
+      :height="height"
+    >
       <a
         class="hidden-xs-only"
         href="http://www.icjia.state.il.us"
         target="_blank"
         rel="noreferrer"
       >
-        <img :src="logoSrc" :height="logoHeight" alt="logo" />
+        <img :src="logoPath" :height="logoHeight" alt="logo" />
       </a>
 
       <router-link to="/">
-        <v-toolbar-title class="large">
+        <v-toolbar-title>
           <span
             class="font-weight-bold text-uppercase"
             style="letter-spacing: 0.03em"
@@ -69,17 +76,25 @@ export default {
   data() {
     return {
       drawer: null,
+      elevation: 0,
       height: 60
     }
   },
   computed: {
     logoHeight() {
       return this.height * 0.75
-    },
-    logoSrc() {
-      return this.logoPath
-        ? this.logoPath
-        : 'https://raw.githubusercontent.com/ICJIA/icjia-public-website/master/_themes/icjia/img/logo-icjia-small-blue-3.png'
+    }
+  },
+  created() {
+    window.addEventListener('scroll', this.setElevation)
+  },
+  destroyed() {
+    window.removeEventListener('scroll', this.setElevation)
+  },
+  methods: {
+    setElevation() {
+      const elevation = window.scrollY === 0 ? 0 : 1
+      if (this.elevation !== elevation) this.elevation = elevation
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <RHBaseToolbar>
+    <RHBaseToolbar logo-path="/icjia-logo.png">
       <template #titleExtra>
         <span class="font-weight-light"> Library Demo</span>
       </template>
@@ -49,14 +49,14 @@
           ></v-checkbox>
 
           <v-switch
-            v-model="view"
+            v-model="fullview"
             class="mx-4"
-            :label="`View: ${view ? 'Full' : 'Card'}`"
+            :label="`View: ${fullview ? 'Full' : 'Card'}`"
           ></v-switch>
         </v-row>
       </div>
 
-      <template v-if="view">
+      <template v-if="fullview">
         <RHArticleView
           v-if="contentType === 'article'"
           :key="`articleView${componentKey}`"
@@ -145,10 +145,10 @@ export default {
       contentType: 'app',
       data,
       external: false,
+      fullview: false,
       github: 'https://github.com/icjia/researchhub-lib',
       project: false,
       preview: true,
-      view: false,
       views: ['foo', 'bar']
     }
   },
