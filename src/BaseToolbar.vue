@@ -1,6 +1,13 @@
 <template>
   <div>
-    <v-app-bar id="toolbar" app color="white" fixed :height="height">
+    <v-app-bar
+      id="toolbar"
+      app
+      color="white"
+      :elevation="elevation"
+      fixed
+      :height="height"
+    >
       <a
         class="hidden-xs-only"
         href="http://www.icjia.state.il.us"
@@ -69,12 +76,25 @@ export default {
   data() {
     return {
       drawer: null,
+      elevation: 0,
       height: 60
     }
   },
   computed: {
     logoHeight() {
       return this.height * 0.75
+    }
+  },
+  created() {
+    window.addEventListener('scroll', this.setElevation)
+  },
+  destroyed() {
+    window.removeEventListener('scroll', this.setElevation)
+  },
+  methods: {
+    setElevation() {
+      const elevation = window.scrollY === 0 ? 0 : 1
+      if (this.elevation !== elevation) this.elevation = elevation
     }
   }
 }
