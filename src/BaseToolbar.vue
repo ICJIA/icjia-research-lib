@@ -11,7 +11,7 @@
       </a>
 
       <router-link to="/">
-        <v-toolbar-title class="large">
+        <v-toolbar-title>
           <span
             class="font-weight-bold text-uppercase"
             style="letter-spacing: 0.03em"
