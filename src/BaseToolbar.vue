@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-app-bar id="toolbar" app fixed :height="height">
+    <v-app-bar id="toolbar" app color="white" fixed :height="height">
       <a
         class="hidden-xs-only"
         href="http://www.icjia.state.il.us"
