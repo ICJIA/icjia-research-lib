@@ -7,7 +7,7 @@
         target="_blank"
         rel="noreferrer"
       >
-        <img :src="logoSrc" :height="logoHeight" alt="logo" />
+        <img :src="logoPath" :height="logoHeight" alt="logo" />
       </a>
 
       <router-link to="/">
@@ -75,11 +75,6 @@ export default {
   computed: {
     logoHeight() {
       return this.height * 0.75
-    },
-    logoSrc() {
-      return this.logoPath
-        ? this.logoPath
-        : 'https://raw.githubusercontent.com/ICJIA/icjia-public-website/master/_themes/icjia/img/logo-icjia-small-blue-3.png'
     }
   }
 }
