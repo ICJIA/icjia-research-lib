@@ -1,16 +1,21 @@
 <template>
   <v-alert v-model="alert" text dismissible color="info" class="mb-0 font-lato">
-    <v-icon small color="red">$vuetify.icons.plusCircle</v-icon>
-    View up to date information on how Illinois is handling the Coronavirus
-    Disease 2019 (COVID-19) from the
-    <a
-      href="http://coronavirus.illinois.gov"
-      target="_blank"
-      rel="noreferrer"
-      style="text-decoration: underline;"
-      >State of Illinois Coronavirus Response Site
-      <v-icon>$vuetify.icons.openInNew</v-icon></a
-    >
+    <v-progress-circular
+      v-if="loading"
+      indeterminate
+      color="primary"
+      size="16"
+      width="2"
+    />
+    <template v-else>
+      <v-icon class="mr-1" small color="red">$vuetify.icons.plusCircle</v-icon>
+
+      <!-- eslint-disable-next-line vue/no-v-html -->
+      <span v-if="success" v-html="html"></span>
+      <span v-else>
+        Please reload the page to view the latest COVID-19 information.
+      </span>
+    </template>
   </v-alert>
 </template>
 
@@ -18,8 +23,24 @@
 export default {
   data() {
     return {
-      alert: true
+      alert: true,
+      html: '',
+      loading: true,
+      success: false
     }
+  },
+  async created() {
+    try {
+      const res = await fetch('https://coronavirus.icjia-api.cloud/')
+      const { html } = await res.json()
+      this.html = html.replace(/<i.*<\/i>/, '').trim()
+
+      this.success = true
+    } catch {
+      this.success = false
+    }
+
+    this.loading = false
   },
   methods: {
     reset() {
