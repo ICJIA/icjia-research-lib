@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <RHBaseToolbar>
+    <RHBaseToolbar logo-path="/icjia-logo.png">
       <template #titleExtra>
         <span class="font-weight-light"> Library Demo</span>
       </template>
