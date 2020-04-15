@@ -7,15 +7,15 @@
       size="16"
       width="2"
     />
-    <template v-else>
-      <v-icon class="mr-1" small color="red">$vuetify.icons.plusCircle</v-icon>
+    <div v-else style="display: flex; align-items: center;">
+      <v-icon class="mr-4" small color="red">$vuetify.icons.plusCircle</v-icon>
 
       <!-- eslint-disable-next-line vue/no-v-html -->
       <span v-if="success" v-html="html"></span>
       <span v-else>
         Please reload the page to view the latest COVID-19 information.
       </span>
-    </template>
+    </div>
   </v-alert>
 </template>
 
@@ -31,9 +31,12 @@ export default {
   },
   async created() {
     try {
-      const res = await fetch('https://coronavirus.icjia-api.cloud/')
+      const res = await fetch('https://coronavirus.icjia-api.cloud/v2/')
       const { html } = await res.json()
-      this.html = html.replace(/<i.*<\/i>/, '').trim()
+      this.html = html
+        .replace(/<(div|i).*?>|<\/(div|i)>/g, '')
+        .replace('. ', '.<br>')
+        .trim()
 
       this.success = true
     } catch {

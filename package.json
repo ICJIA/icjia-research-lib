@@ -1,6 +1,6 @@
 {
   "name": "researchhub-lib",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "scripts": {
     "build": "node build-utils/build-lib.js",
     "lint": "vue-cli-service lint",
@@ -23,7 +23,7 @@
     "markdown-it-multimd-table": "^4.0.1",
     "vue": "^2.6.11",
     "vue-router": "^3.1.6",
-    "vuetify": "^2.2.21"
+    "vuetify": "^2.2.22"
   },
   "devDependencies": {
     "@mdi/js": "^4.9.95",
