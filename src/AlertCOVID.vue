@@ -34,7 +34,7 @@ export default {
       const res = await fetch('https://coronavirus.icjia-api.cloud/v2/')
       const { html } = await res.json()
       this.html = html
-        .replace(/<(div|i).*>|<\/(div|i)>|\n/g, '')
+        .replace(/<(div|i).*?>|<\/(div|i)>/g, '')
         .replace('. ', '.<br>')
         .trim()
 
