@@ -35,7 +35,6 @@ export default {
       const { html } = await res.json()
       this.html = html
         .replace(/<(div|i).*>|<\/(div|i)>|\n/g, '')
-        .replace(/\s+/g, ' ')
         .replace('. ', '.<br>')
         .trim()
 
