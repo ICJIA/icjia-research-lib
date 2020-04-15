@@ -7,7 +7,7 @@
       size="16"
       width="2"
     />
-    <v-row v-else align="center" no-gutters>
+    <div v-else style="display: flex; align-items: center;">
       <v-icon class="mr-4" small color="red">$vuetify.icons.plusCircle</v-icon>
 
       <!-- eslint-disable-next-line vue/no-v-html -->
@@ -15,7 +15,7 @@
       <span v-else>
         Please reload the page to view the latest COVID-19 information.
       </span>
-    </v-row>
+    </div>
   </v-alert>
 </template>
 
