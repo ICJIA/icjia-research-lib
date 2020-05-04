@@ -46,7 +46,10 @@ export default {
       type: Boolean,
       default: true
     },
-    image: String,
+    image: {
+      type: String,
+      default: null
+    },
     preview: Boolean,
     project: Boolean
   }

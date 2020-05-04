@@ -15,8 +15,14 @@
 <script>
 export default {
   props: {
-    horizontal: Boolean,
-    src: String
+    horizontal: {
+      type: Boolean,
+      default: false
+    },
+    src: {
+      type: String,
+      default: null
+    }
   }
 }
 </script>

@@ -83,7 +83,21 @@ export default {
       type: Boolean,
       default: false
     },
-    item: Object,
+    item: {
+      type: Object,
+      default() {
+        return {
+          contributors: null,
+          categories: null,
+          date: null,
+          description: null,
+          external: null,
+          image: null,
+          tags: null,
+          title: null
+        }
+      }
+    },
     preview: {
       type: Boolean,
       default: false

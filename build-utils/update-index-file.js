@@ -14,7 +14,9 @@ ${componentNames
   .join('\n')}
 
 // Export components individually
-export { ${componentNames.map(componentName => componentName).join(', ')} }
+export {
+  ${componentNames.map(componentName => componentName).join(',\n  ')}
+}
 
 // What should happen if the user installs the library as a plugin
 function install(Vue) {

@@ -27,7 +27,7 @@ export default {
     },
     github: {
       type: String,
-      url: ''
+      default: null
     }
   }
 }
