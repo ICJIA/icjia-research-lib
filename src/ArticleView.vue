@@ -290,14 +290,14 @@ export default {
       await this.downloader(type)
     },
     onScroll(e) {
-      if (typeof window === 'undefined') return
+      if (typeof window === 'undefined' || this.headings === null) return
 
       const top = window.pageYOffset || e.target.scrollTop || 0
       const headings = this.headings
 
       if (headings.length && top === 0) {
         this.activeHeading = headings[0].id
-      } else if (headings) {
+      } else {
         headings.forEach(heading => {
           let elHeading = this.$el.querySelector(`#${heading.id}`)
           let rect = elHeading.getBoundingClientRect()
