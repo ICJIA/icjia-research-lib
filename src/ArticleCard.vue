@@ -91,8 +91,25 @@ export default {
       type: Boolean,
       default: true
     },
-    item: Object,
-    onTagClick: Function,
+    item: {
+      type: Object,
+      default() {
+        return {
+          abstract: null,
+          authors: null,
+          categories: null,
+          date: null,
+          external: null,
+          tags: null,
+          title: null,
+          thumbnail: null
+        }
+      }
+    },
+    onTagClick: {
+      type: Function,
+      default() {}
+    },
     preview: {
       type: Boolean,
       default: false

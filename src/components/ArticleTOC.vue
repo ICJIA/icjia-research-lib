@@ -27,7 +27,10 @@
 export default {
   props: {
     headings: NodeList,
-    activeHeading: String
+    activeHeading: {
+      type: String,
+      default: null
+    }
   }
 }
 </script>

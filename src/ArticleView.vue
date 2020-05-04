@@ -1,4 +1,5 @@
 <template>
+  <!-- eslint-disable vue/no-v-html -->
   <div id="article-view">
     <v-img :height="splashHeight" :src="article.splash">
       <template #placeholder>
@@ -13,10 +14,10 @@
         <div class="article-toc" :class="{ 'article-toc-sticky': isTOCSticky }">
           <ArticleTOC
             v-if="headings && headings.length"
+            v-scroll="onScrollTOC"
             class="mb-12"
             :headings="headings"
-            :activeHeading="activeHeading"
-            v-scroll="onScrollTOC"
+            :active-heading="activeHeading"
           />
 
           <v-btn
@@ -101,9 +102,9 @@
           <v-divider></v-divider>
 
           <div
+            v-scroll="onScroll"
             class="article-body"
             v-html="articleBody.main"
-            v-scroll="onScroll"
           />
 
           <div class="my-12">
@@ -169,9 +170,9 @@
             <v-divider></v-divider>
 
             <div
+              v-scroll="onScroll"
               class="article-body"
               v-html="articleBody.footer"
-              v-scroll="onScroll"
             />
           </template>
         </v-col>
@@ -200,8 +201,35 @@ export default {
     MarkerExternal
   },
   props: {
-    item: Object,
-    downloader: Function,
+    item: {
+      type: Object,
+      default() {
+        return {
+          abstract: null,
+          apps: null,
+          authors: null,
+          categories: null,
+          citation: null,
+          datasets: null,
+          date: null,
+          doi: null,
+          external: null,
+          extrafile: null,
+          funding: null,
+          images: null,
+          mainfile: null,
+          mainfiletype: null,
+          markdown: null,
+          splash: null,
+          tags: null,
+          title: null
+        }
+      }
+    },
+    downloader: {
+      type: Function,
+      default() {}
+    },
     preview: {
       type: Boolean,
       default: false

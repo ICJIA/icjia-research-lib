@@ -121,6 +121,7 @@
         <BaseInfoBlock v-if="app.citation">
           <template #title>{{ 'Suggested citation' }}</template>
           <template #text>
+            <!-- eslint-disable-next-line vue/no-v-html -->
             <span v-html="app.citation"></span>
           </template>
         </BaseInfoBlock>
@@ -166,7 +167,26 @@ export default {
     BaseInfoBlock
   },
   props: {
-    item: Object,
+    item: {
+      type: Object,
+      default() {
+        return {
+          articles: null,
+          citation: null,
+          contributors: null,
+          categories: null,
+          datasets: null,
+          date: null,
+          description: null,
+          external: null,
+          funding: null,
+          image: null,
+          tags: null,
+          title: null,
+          url: null
+        }
+      }
+    },
     preview: {
       type: Boolean,
       default: false

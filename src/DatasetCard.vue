@@ -75,7 +75,23 @@ export default {
     BaseTitleDisplay
   },
   props: {
-    item: Object,
+    item: {
+      type: Object,
+      default() {
+        return {
+          articles: null,
+          apps: null,
+          categories: null,
+          date: null,
+          description: null,
+          external: null,
+          project: null,
+          sources: null,
+          tags: null,
+          title: null
+        }
+      }
+    },
     preview: {
       type: Boolean,
       default: false
