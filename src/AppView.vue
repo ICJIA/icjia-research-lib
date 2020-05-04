@@ -20,16 +20,6 @@
         </BaseButton>
 
         <BaseButton
-          v-if="app.src"
-          label="Source code"
-          :href="app.src"
-          icon="$vuetify.icons.codeTags"
-          :small="smAndDown"
-        >
-          <template>{{ 'Code' }}</template>
-        </BaseButton>
-
-        <BaseButton
           label="Back"
           :small="smAndDown"
           :to="preview ? '' : '/apps'"
