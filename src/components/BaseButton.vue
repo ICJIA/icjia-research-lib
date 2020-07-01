@@ -16,11 +16,26 @@
 <script>
 export default {
   props: {
-    label: String,
-    href: String,
-    icon: String,
-    small: Boolean,
-    to: String
+    label: {
+      type: String,
+      default: null
+    },
+    href: {
+      type: String,
+      default: null
+    },
+    icon: {
+      type: String,
+      default: null
+    },
+    small: {
+      type: Boolean,
+      default: false
+    },
+    to: {
+      type: String,
+      default: null
+    }
   }
 }
 </script>

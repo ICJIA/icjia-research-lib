@@ -16,7 +16,7 @@
       <v-row justify="end" no-gutters>
         <v-dialog v-model="dialog" class="text-center" persistent width="500">
           <template #activator="{ on }">
-            <v-btn v-on="on" :small="smAndDown" text>
+            <v-btn :small="smAndDown" text v-on="on">
               <template>{{ 'Download' }}</template>
               <v-icon>$vuetify.icons.download</v-icon>
             </v-btn>
@@ -134,6 +134,7 @@
       <BaseInfoBlock v-if="dataset.citation">
         <template #title>{{ 'Suggested citation' }}</template>
         <template #text>
+          <!-- eslint-disable-next-line vue/no-v-html -->
           <span v-html="dataset.citation"></span>
         </template>
       </BaseInfoBlock>
@@ -194,8 +195,33 @@ export default {
     MarkerProject
   },
   props: {
-    item: Object,
-    downloader: Function,
+    item: {
+      type: Object,
+      default() {
+        return {
+          articles: null,
+          apps: null,
+          categories: null,
+          citation: null,
+          date: null,
+          description: null,
+          external: null,
+          funding: null,
+          notes: null,
+          project: null,
+          sources: null,
+          tags: null,
+          timeperiod: null,
+          title: null,
+          variables: null,
+          unit: null
+        }
+      }
+    },
+    downloader: {
+      type: Function,
+      default() {}
+    },
     preview: {
       type: Boolean,
       default: false
