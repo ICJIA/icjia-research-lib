@@ -8,13 +8,13 @@ const initTexmath = async () => {
       id: 'texmathCSS',
       rel: 'stylesheet',
       href:
-        'https://gitcdn.xyz/cdn/goessner/markdown-it-texmath/master/texmath.css'
+        'https://cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.min.css'
     })
   if (!document.head.querySelector('#texmathJS'))
     await loadFromCDN('script', {
       id: 'texmathJS',
       src:
-        'https://gitcdn.xyz/cdn/goessner/markdown-it-texmath/master/texmath.js'
+        'https://cdn.jsdelivr.net/npm/markdown-it-texmath/texmath.min.js'
     })
 }
 
